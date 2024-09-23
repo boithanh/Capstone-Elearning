@@ -1,5 +1,8 @@
 footer {
+    color: white;
+    background-image: linear-gradient(130deg, $blue-700 0%, $violet 100%);
+
     input {
-        @include styleButton;
+        @include styleInput($glass-white, white, 10px 15px);
     }
 }

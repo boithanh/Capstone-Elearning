@@ -1,7 +1,7 @@
-@mixin styleInput ($bg, $color) {
-    background-color: rgba(255, 255, 255, 0.09);
-    padding: 10px 20px !important;
-    color: white !important;
+@mixin styleInput ($bg, $color, $pd) {
+    background-color: $bg;
+    padding: $pd !important;
+    color: $color !important;
 
     &::placeholder {
         color: white;

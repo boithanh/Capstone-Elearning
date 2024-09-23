@@ -7,7 +7,7 @@ const UserTemplate = () => {
     return (
         <>
             <UserHeader />
-            <main>
+            <main className='h-screen'>
                 <Outlet />
             </main>
             <UserFooter />
