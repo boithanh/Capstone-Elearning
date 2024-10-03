@@ -1,4 +1,6 @@
 export const path = {
     homPage: "/",
-    pageNotFound: "*"
+    pageNotFound: "*",
+    danhMucKhoaHoc: "/danh-muc-khoa-hoc",
+    timKiemKhoaHoc: "/tim-kiem-khoa-hoc"
 }

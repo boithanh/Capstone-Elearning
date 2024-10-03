@@ -1,0 +1,49 @@
+footer {
+    color: white;
+    background-image: linear-gradient(130deg, $blue-700 0%, $violet 100%);
+
+    input {
+        @include styleInput($glass-white, white, 10px 15px);
+        width: 100%;
+    }
+
+    .footer_subscribe {
+        button {
+            @include styleButton($pink-700, white, 10px 18px, white, $pink-700);
+            font-weight: 500;
+            flex-basis: 100%;
+        }
+
+        ul {
+            li {
+                margin-bottom: 5px;
+                font-size: 16px;
+                font-weight: 200;
+
+                i {
+                    color: $orange-300;
+                    font-size: 20px;
+                    margin-right: 23px;
+                }
+            }
+        }
+    }
+
+    .footer_advisory {
+        text-align: center;
+
+        button {
+            @include styleButton($pink-700, white, 15px 18px, lightgrey, $pink-700);
+            font-weight: 500;
+            flex-basis: 100%;
+            background-image: linear-gradient(to right, $blue-300 0, $pink-700 51%, $blue-300 100%);
+            background-size: 200%;
+
+            &:hover {
+                color: white;
+                background-position: right center;
+            }
+        }
+
+    }
+}
