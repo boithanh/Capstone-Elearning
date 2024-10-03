@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useSearchParams } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { khoaHocService } from '../../service/khoaHoc.service';
 
 const TimKiemKhoaHoc = () => {
@@ -20,29 +20,38 @@ const TimKiemKhoaHoc = () => {
         }, [searchParam.get("tenKhoaHoc")])
 
     return (
-        <div className='conatainer timKiemKhoaHoc'>
-            <h1 className='font-bold text-3xl my-3'>{listKhoaHoc.length > 0 ? `Tìm thấy ${listKhoaHoc.length} khóa học` : "Khóa học bạn tìm không có, vui lòng tìm với từ khóa khác, vd: Tư Duy"}</h1>
-            <div className="grid grid-cols-4 gap-5">
+        <div className='container timKiemKhoaHoc py-10'>
+            <h1 className='font-bold text-3xl mb-10 text-[#211C5B]'>{listKhoaHoc.length > 0 ? `Tìm thấy ${listKhoaHoc.length} khóa học: ${searchParam.get("tenKhoaHoc")}` : "Khóa học bạn tìm không có, vui lòng tìm với từ khóa khác, vd: Tư Duy"}</h1>
+            <div>
                 {listKhoaHoc.map((item, index) => {
                     console.log(item);
-                    return <div>
-                        <div className='w-[200px]'>
-                            <img src={item?.hinhAnh} alt="err" className='w-full' />
+                    return <Link to={`/chi-tiet?maKhoaHoc=${item.maKhoaHoc}`} className='mb-10 block'>
+                        <div className='flex items-center justify-end gap-5 border-t pt-1 border-black bg-[#E4D0E5] text-[#211C5B]'>
+                            <div className='w-3/12'>
+                                <div>
+                                    <img src={item?.hinhAnh} alt="err" className='w-64 h-36 object-cover object-center' />
+                                </div>
+                            </div>
+                            <div className='w-7/12 pt-3 pb-5'>
+                                <div>
+                                    <h2 className='text-2xl font-extrabold'>{item?.tenKhoaHoc}</h2>
+                                </div>
+                                <div>
+                                    <p>{item?.moTa}</p>
+                                </div>
+                            </div>
+                            <div className='w-2/12 text-right'>
+                                <span className='text-[#E31C8D] me-4'>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-regular fa-star"></i>
+                                </span>
+                                <p className='me-3'>( {item?.soLuongHocVien} học viên )</p>
+                            </div>
                         </div>
-                        <div>
-                            <h2>{item.tenKhoaHoc}</h2>
-                        </div>
-                        <div>
-                            <h3>{item.congViec?.tenCongViec}</h3>
-                            <p><span className='text-yellow-400 space-x-2'><i class="fa-regular fa-star"></i>{item.congViec?.saoCongViec}</span></p><span>{item.congViec?.danhGia}</span>
-                        </div>
-                        <div>
-                            <p>Lượt xem: {item.luotXem}</p>
-                        </div>
-                        <div>
-                            <button className='bg-black px-5 py-2 text-white'>ĐĂNG KÝ</button>
-                        </div>
-                    </div>
+                    </Link>
                 })
                 }
             </div>

@@ -15,24 +15,28 @@ const ListKhoaHoc = () => {
         }, [])
 
     return (
-        <div className='conatainer listKhoaHoc'>
-            <h1 className='font-bold text-3xl my-3'>Các khóa học mới nhất</h1>
-            <div className="grid grid-cols-4 gap-5">
-                {listKhoaHoc.splice(0, 8).map((item, index) => {
+        <div className='container listKhoaHoc py-10'>
+            <h1 className='font-bold text-3xl mb-10 text-[#211C5B] w-10/12 mx-auto'>Các khóa học mới nhất</h1>
+            <div className="grid grid-cols-3 gap-16 w-10/12 mx-auto">
+                {listKhoaHoc.splice(-9).map((item, index) => {
                     console.log(item);
                     return <div>
-                        <div className='w-[200px]'>
+                        <div className='mb-3 img_content'>
                             <img src={item?.hinhAnh} alt="err" className='w-full' />
                         </div>
-                        <div>
-                            <h2>{item.tenKhoaHoc}</h2>
+                        <div className='mb-3'>
+                            <h2>{item?.tenKhoaHoc}</h2>
                         </div>
-                        <div>
-                            <h3>{item.congViec?.tenCongViec}</h3>
-                            <p><span className='text-yellow-400 space-x-2'><i class="fa-regular fa-star"></i>{item.congViec?.saoCongViec}</span></p><span>{item.congViec?.danhGia}</span>
-                        </div>
-                        <div>
-                            <p>Lượt xem: {item.luotXem}</p>
+                        <div className='mb-5'>
+                            <i class="fa-solid fa-user-graduate text-2xl"></i>
+                            <p className='inline text-xl font-semibold mx-5'>{item?.soLuongHocVien}</p>
+                            <span className='text-[#E31C8D] me-4'>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-regular fa-star"></i>
+                            </span>
                         </div>
                         <div>
                             <button className='bg-black px-5 py-2 text-white'>ĐĂNG KÝ</button>

@@ -6,6 +6,7 @@ import HomePage from '../pages/HomePage/HomePage'
 import ListKhoaHoc from '../pages/ListKhoaHoc/ListKhoaHoc'
 import DanhMucKhoaHoc from '../pages/DanhMucKhoaHoc/DanhMucKhoaHoc'
 import TimKiemKhoaHoc from '../pages/TimKiemKhoaHoc/TimKiemKhoaHoc'
+import ChiTietKhoaHoc from '../pages/ChiTietKhoaHoc/ChiTietKhoaHoc'
 
 const useRoutesCustom = () => {
     const routes = useRoutes([
@@ -24,6 +25,10 @@ const useRoutesCustom = () => {
                 {
                     path: path.timKiemKhoaHoc,
                     element: <TimKiemKhoaHoc />
+                },
+                {
+                    path: path.chiTietKhoaHoc,
+                    element: <ChiTietKhoaHoc />
                 }
             ]
         },

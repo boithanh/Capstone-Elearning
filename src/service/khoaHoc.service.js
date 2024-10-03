@@ -12,5 +12,8 @@ export const khoaHocService = {
     },
     layKhoaHocTheoDanhMuc: (data) => {
         return http.get(`QuanLyKhoaHoc/LayKhoaHocTheoDanhMuc?maDanhMuc=${data}&MaNhom=GP01`)
+    },
+    layChiTietKhoaHocTheoMa: (data) => {
+        return http.get(`QuanLyKhoaHoc/LayThongTinKhoaHoc?maKhoaHoc=${data}`)
     }
 }

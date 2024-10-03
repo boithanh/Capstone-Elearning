@@ -13,14 +13,14 @@
     }
 }
 
-@mixin styleButton ($bg, $color, $pd, $hover-bg, $hover-color) {
+@mixin styleButton ($bg, $color, $pd, $hover-bg, $hover-color: white) {
     background-color: $bg;
     color: $color;
     padding: $pd;
     border: 2px solid $blue-700;
     border-radius: 10px;
     transition: all .5s;
-    font-size: 1rem;
+    font-size: 15px;
     line-height: 1;
 
     &:hover {
