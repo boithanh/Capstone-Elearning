@@ -6,7 +6,7 @@ const ListKhoaHoc = () => {
     useEffect(
         () => {
             khoaHocService.layAllKhoaHoc().then((res) => {
-                console.log(res.data);
+                // console.log(res.data);
                 setListKhoaHoc(res.data);
             }).catch((err) => {
                 console.log(err);
@@ -19,7 +19,7 @@ const ListKhoaHoc = () => {
             <h1 className='font-bold text-3xl mb-10 text-[#211C5B] w-10/12 mx-auto'>Các khóa học mới nhất</h1>
             <div className="grid grid-cols-3 gap-16 w-10/12 mx-auto">
                 {listKhoaHoc.splice(-9).map((item, index) => {
-                    console.log(item);
+                    // console.log(item);
                     return <div>
                         <div className='mb-3 img_content'>
                             <img src={item?.hinhAnh} alt="err" className='w-full' />
@@ -28,14 +28,17 @@ const ListKhoaHoc = () => {
                             <h2>{item?.tenKhoaHoc}</h2>
                         </div>
                         <div className='mb-5'>
-                            <i class="fa-solid fa-user-graduate text-2xl"></i>
+                            <i className="fa-solid fa-user-graduate text-2xl" />
                             <p className='inline text-xl font-semibold mx-5'>{item?.soLuongHocVien}</p>
                             <span className='text-[#E31C8D] me-4'>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
+                                <div>
+                                    <i className="fa-solid fa-star" />
+                                    <i className="fa-solid fa-star" />
+                                    <i className="fa-solid fa-star" />
+                                    <i className="fa-solid fa-star" />
+                                    <i className="fa-regular fa-star" />
+                                </div>
+
                             </span>
                         </div>
                         <div>

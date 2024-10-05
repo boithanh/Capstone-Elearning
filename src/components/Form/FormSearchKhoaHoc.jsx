@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { path } from './../../common/path'
 
-const FormSearchKhoaHoc = ({ setItems, setOpenDropdown, handleGetValueChildren }) => {
+const FormSearchKhoaHoc = ({ setOpenDropdown, handleGetValueChildren }) => {
     const [valueSearch, setValueSearch] = useState("");
     const navigate = useNavigate();
 

@@ -29,9 +29,11 @@ const DanhMucKhoaHoc = () => {
                         <div className='mb-3'>
                             <h2>{item?.tenKhoaHoc}</h2>
                         </div>
-                        <div className='mb-5'>
-                            <i class="fa-solid fa-user-graduate text-2xl"></i>
-                            <p className='inline text-xl font-semibold mx-5'>{item?.soLuongHocVien}</p>
+                        <div>
+                            <div className='mb-4'>
+                                <i class="fa-solid fa-user-graduate text-2xl"></i>
+                                <p className='inline text-xl font-semibold mx-5'>{item?.soLuongHocVien}</p>
+                            </div>
                             <span className='text-[#E31C8D] me-4'>
                                 <div>
                                     <i className="fa-solid fa-star" />

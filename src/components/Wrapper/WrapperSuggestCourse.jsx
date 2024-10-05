@@ -21,7 +21,9 @@ const WrapperSuggestCourse = ({ children }) => {
                 let newItems = res.data.slice(0, 4).map((item, index) => {
                     return {
                         key: index.toString(),
-                        label: <Link to={`/chi-tiet?maKhoaHoc=${item?.maKhoaHoc}`} className='flex items-center space-x-10'>
+                        label: <Link to={`/chi-tiet?maKhoaHoc=${item?.maKhoaHoc}`} className='flex items-center space-x-10' onClick={() => {
+                            setOpenDropdown(false);
+                        }}>
                             <img src={item?.hinhAnh} alt="err" className='h-24 w-36' />
                             <div className='text-[#211C5B]'>
                                 <h4 className='text-xl font-semibold'>{item?.tenKhoaHoc}</h4>
