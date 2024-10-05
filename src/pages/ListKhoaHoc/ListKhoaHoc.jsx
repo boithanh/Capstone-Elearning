@@ -39,7 +39,7 @@ const ListKhoaHoc = () => {
                             </span>
                         </div>
                         <div>
-                            <button className='bg-black px-5 py-2 text-white'>ĐĂNG KÝ</button>
+                            <button>ĐĂNG KÝ</button>
                         </div>
                     </div>
                 })
