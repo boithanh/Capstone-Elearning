@@ -1,13 +1,15 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { useFormik } from "formik";
 import InputCustom from "../../components/Input/InputCustom";
 import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 import { path } from "../../common/path";
 import { userService } from "../../service/user.service";
 import { useSelector } from "react-redux";
+import { NotificationContext } from "../../App";
 
 const EditUser = () => {
   const dataUser = useSelector((state) => state.userSlice.editUser);
+  const { showNotification } = useContext(NotificationContext);
   const navigate = useNavigate();
   useEffect(() => {
     if (dataUser) {
@@ -45,7 +47,7 @@ const EditUser = () => {
       userService
         .updateUser({ ...values, maNhom: "GP01" })
         .then((res) => {
-          console.log(res.data);
+          showNotification(`Đã sửa tài khoản ${res.data.taiKhoan}`, "warning");
           navigate(path.adminPage);
           resetForm();
         })
@@ -128,14 +130,14 @@ const EditUser = () => {
             </div>
             <div className="flex justify-between">
               <Link
-                className="px-5 py-3 rounded-md block bg-black text-white w-1/4 text-center"
+                className="px-5 py-3 rounded-md button-right w-1/4 text-center"
                 to={path.adminPage}
               >
                 <i className="fa-solid fa-arrow-left"></i> Back
               </Link>
               <button
                 type="submit"
-                className="px-5 py-3 rounded-md block bg-black text-white w-1/4 text-center"
+                className="px-5 py-3 rounded-md button-left w-1/4 text-center"
               >
                 Edit
               </button>

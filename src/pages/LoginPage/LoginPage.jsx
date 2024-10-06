@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import InputCustom from "../../components/Input/InputCustom";
 import { useFormik } from "formik";
 import { authService } from "../../service/auth.service";
@@ -6,12 +6,14 @@ import { useLottie } from "lottie-react";
 import { Link, useNavigate } from "react-router-dom";
 import { path } from "../../common/path";
 import { setLocalStorage } from "../../utils/utils";
+import { NotificationContext } from "../../App";
 import animationSignIn from "../../assets/animation/signinAnimation.json";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 
 const LoginPage = () => {
   const navigate = useNavigate();
+  const { showNotification } = useContext(NotificationContext);
   const { values, handleChange, handleSubmit, touched, errors } = useFormik({
     initialValues: {
       taiKhoan: "",
@@ -22,36 +24,22 @@ const LoginPage = () => {
         .signIn(values)
         .then((res) => {
           if (res.data.maLoaiNguoiDung == "HV") {
+            showNotification(`Chào mừng học viên ${res.data.hoTen}`, "info");
             navigate(path.userInfo);
             setLocalStorage("user", { ...res.data, matKhau: values.matKhau });
           }
           if (res.data.maLoaiNguoiDung == "GV") {
+            showNotification(`Chào mừng giáo vụ ${res.data.hoTen}`, "info");
             navigate(path.adminPage);
             setLocalStorage("admin", { ...res.data, matKhau: values.matKhau });
           }
-          // if (res.data.content.user.role == "USER") {
-          //   showNotification("Bạn không có quyền đăng nhập", "error");
-          //   let soLanViPham = getLocalStorage("viPham");
-          //   if (!soLanViPham) {
-          //     setLocalStorage("viPham", 1);
-          //   } else {
-          //     soLanViPham++;
-          //     soLanViPham == 3
-          //       ? (window.location.href = "https://google.com")
-          //       : setLocalStorage("viPham", soLanViPham);
-          //   }
-          // } else {
-          //   setLocalStorage("user", res.data.content);
-          //   dispatch(getInfoUser(res.data.content));
-          //   navigate("/admin/manager-user");
-          // }
         })
         .catch((err) => {
           console.log(err);
-          // showNotification(
-          //   "Có lỗi xảy ra vui lòng thử lại hoặc liên hệ bộ phận khách hàng",
-          //   "error"
-          // );
+          showNotification(
+            "Có lỗi xảy ra vui lòng thử lại hoặc liên hệ bộ phận khách hàng",
+            "error"
+          );
         });
     },
   });

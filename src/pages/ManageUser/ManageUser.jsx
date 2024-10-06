@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Space, Table, Tag } from "antd";
 import { getValueUserApi, setUser } from "../../redux/userSlice";
@@ -6,9 +6,11 @@ import { Link, Outlet, useNavigate } from "react-router-dom";
 import { path } from "../../common/path";
 import utils from "../../utils/utils";
 import { userService } from "../../service/user.service";
+import { NotificationContext } from "../../App";
 
 const ManageUser = () => {
   const dispatch = useDispatch();
+  const { showNotification } = useContext(NotificationContext);
   const [arrFilter, setArrFilter] = useState([]);
   const [isSearching, setIsSearching] = useState(false);
   const { listUsers } = useSelector((state) => state.userSlice);
@@ -83,12 +85,20 @@ const ManageUser = () => {
                 .xoaNguoiDung(record.taiKhoan)
                 .then((res) => {
                   console.log(res);
+                  showNotification(
+                    `Đã xóa người dùng ${record.hoTen}`,
+                    "error"
+                  );
                   dispatch(getValueUserApi());
                   setIsSearching(false);
                   userService.layDanhSachNguoiDung();
                 })
                 .catch((err) => {
                   console.log(err);
+                  showNotification(
+                    `Người dùng này đã tạo khóa học không thể xóa!`,
+                    "info"
+                  );
                 });
             }}
           >
