@@ -17,43 +17,45 @@ const DanhMucKhoaHoc = () => {
 
         }, [searchParam.get("maDanhMuc")])
     return (
-        <div className='conatainer danhMucKhoaHoc pb-16 pt-8'>
-            <h1 className='font-bold text-3xl mb-10 w-10/12 mx-auto'>Danh sách khóa học theo danh mục: {searchParam.get("maDanhMuc") ? searchParam.get("maDanhMuc") : ""}</h1>
-            <div className="grid grid-cols-4 gap-16 w-10/12 mx-auto">
-                {listKhoaHoc.splice(-9).map((item, index) => {
-                    // console.log(item);
-                    return <div>
-                        <div className='mb-3 img_content'>
-                            <img src={item?.hinhAnh} alt="err" className='w-full' />
-                        </div>
-                        <div className='mb-3'>
-                            <h2>{item?.tenKhoaHoc}</h2>
-                        </div>
-                        <div>
-                            <div className='mb-4'>
-                                <i class="fa-solid fa-user-graduate text-2xl"></i>
-                                <p className='inline text-xl font-semibold mx-5'>{item?.soLuongHocVien}</p>
+        <>
+            <div className='conatainer danhMucKhoaHoc pb-16 pt-8'>
+                <h1 className='font-bold text-3xl mb-10 w-10/12 mx-auto'>Danh sách khóa học theo danh mục: {searchParam.get("maDanhMuc") ? searchParam.get("maDanhMuc") : ""}</h1>
+                <div className="grid grid-cols-4 gap-16 w-10/12 mx-auto">
+                    {listKhoaHoc.splice(-9).map((item, index) => {
+                        // console.log(item);
+                        return <div>
+                            <div className='mb-3 img_content'>
+                                <img src={item?.hinhAnh} alt="err" className='w-full' />
                             </div>
-                            <span className='text-[#E31C8D] me-4'>
-                                <div>
-                                    <i className="fa-solid fa-star" />
-                                    <i className="fa-solid fa-star" />
-                                    <i className="fa-solid fa-star" />
-                                    <i className="fa-solid fa-star" />
-                                    <i className="fa-regular fa-star" />
+                            <div className='mb-3'>
+                                <h2>{item?.tenKhoaHoc}</h2>
+                            </div>
+                            <div>
+                                <div className='mb-4'>
+                                    <i class="fa-solid fa-user-graduate text-2xl"></i>
+                                    <p className='inline text-xl font-semibold mx-5'>{item?.soLuongHocVien}</p>
                                 </div>
+                                <span className='text-[#E31C8D] me-4'>
+                                    <div>
+                                        <i className="fa-solid fa-star" />
+                                        <i className="fa-solid fa-star" />
+                                        <i className="fa-solid fa-star" />
+                                        <i className="fa-solid fa-star" />
+                                        <i className="fa-regular fa-star" />
+                                    </div>
 
-                            </span>
+                                </span>
+                            </div>
+                            <div>
+                                <button>ĐĂNG KÝ</button>
+                            </div>
                         </div>
-                        <div>
-                            <button>ĐĂNG KÝ</button>
-                        </div>
-                    </div>
-                })
-                }
+                    })
+                    }
+                </div>
             </div>
-        </div>
-    )
+        </>)
+
 }
 
 export default DanhMucKhoaHoc

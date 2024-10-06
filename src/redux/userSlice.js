@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { userService } from "../service/user.service";
+import { getLocalStorage } from "../utils/utils";
 
 export const getValueUserApi = createAsyncThunk(
   "user/getValueUserApi",
@@ -12,6 +13,7 @@ export const getValueUserApi = createAsyncThunk(
 const initialState = {
   listUsers: [],
   editUser: null,
+  infoUser: getLocalStorage("user")
 };
 
 const userSlice = createSlice({
@@ -21,6 +23,9 @@ const userSlice = createSlice({
     setUser(state, action) {
       state.editUser = action.payload;
     },
+    userStatus: (state, action) => {
+      state.infoUser = action.payload;
+    }
   },
   extraReducers: (builder) => {
     builder.addCase(getValueUserApi.fulfilled, (state, action) => {
@@ -29,6 +34,6 @@ const userSlice = createSlice({
   },
 });
 
-export const { setUser } = userSlice.actions;
+export const { setUser, userStatus } = userSlice.actions;
 
 export default userSlice.reducer;
