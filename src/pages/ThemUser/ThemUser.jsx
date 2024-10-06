@@ -1,11 +1,13 @@
 import React from "react";
 import { useFormik } from "formik";
 import InputCustom from "../../components/Input/InputCustom";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import { path } from "../../common/path";
 import { userService } from "../../service/user.service";
+import { useDispatch } from "react-redux";
 
 const ThemUser = () => {
+  const navigate = useNavigate();
   const { values, handleChange, handleSubmit, touched, errors, resetForm } =
     useFormik({
       initialValues: {
@@ -23,6 +25,7 @@ const ThemUser = () => {
           .then((res) => {
             console.log(res.data);
             resetForm();
+            navigate(path.adminPage);
           })
           .catch((err) => {
             console.log(err);
@@ -33,7 +36,7 @@ const ThemUser = () => {
     <>
       <div className="container mx-auto">
         <div className="flex flex-col justify-center space-y-5">
-          <h2 className="text-3xl font-bold">Thêm người dùng</h2>
+          <h2 className="text-3xl font-bold text-blue-400">Thêm người dùng</h2>
           <form className="space-y-5" onSubmit={handleSubmit}>
             <div className="grid grid-cols-2 gap-8">
               <div>
@@ -100,14 +103,14 @@ const ThemUser = () => {
             </div>
             <div className="flex justify-between">
               <Link
-                className="px-5 py-3 rounded-md block bg-black text-white w-1/4 text-center"
+                className="px-5 py-3 rounded-md button-right w-1/4 text-center"
                 to={path.adminPage}
               >
                 <i className="fa-solid fa-arrow-left"></i> Back
               </Link>
               <button
                 type="submit"
-                className="px-5 py-3 rounded-md block bg-black text-white w-1/4 text-center"
+                className="px-5 py-3 rounded-md button-left w-1/4 text-center"
               >
                 Add
               </button>
