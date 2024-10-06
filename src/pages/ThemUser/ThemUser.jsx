@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useFormik } from "formik";
 import InputCustom from "../../components/Input/InputCustom";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import { path } from "../../common/path";
 import { userService } from "../../service/user.service";
+import { NotificationContext } from "../../App";
 import { useDispatch } from "react-redux";
 
 const ThemUser = () => {
   const navigate = useNavigate();
+  const { showNotification } = useContext(NotificationContext);
   const { values, handleChange, handleSubmit, touched, errors, resetForm } =
     useFormik({
       initialValues: {
@@ -24,11 +26,13 @@ const ThemUser = () => {
           .themNguoiDung(values)
           .then((res) => {
             console.log(res.data);
+            showNotification(`Đã thêm học viên ${res.data.taiKhoan}`, "info");
             resetForm();
             navigate(path.adminPage);
           })
           .catch((err) => {
             console.log(err);
+            showNotification(`Bạn nhập thiếu dữ liệu`, "error");
           });
       },
     });

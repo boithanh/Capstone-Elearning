@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { authService } from "../../service/auth.service";
 import { useFormik } from "formik";
 import { useLottie } from "lottie-react";
@@ -6,12 +6,14 @@ import { Link, useNavigate } from "react-router-dom";
 import { path } from "../../common/path";
 import animationSignUp from "../../assets/animation/SignUpAnimation.json";
 import InputCustom from "../../components/Input/InputCustom";
+import { NotificationContext } from "../../App";
 import { setLocalStorage } from "../../utils/utils";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 
 const SignUpPage = () => {
   const navigate = useNavigate();
+  const { showNotification } = useContext(NotificationContext);
   const { values, handleChange, handleSubmit, touched, errors, resetForm } =
     useFormik({
       initialValues: {
@@ -28,11 +30,16 @@ const SignUpPage = () => {
           .signUp(values)
           .then((res) => {
             console.log(res.data.content);
+            showNotification("Đăng ký thành công", "success");
             navigate(path.loginPage);
             resetForm();
           })
           .catch((err) => {
             console.log(err);
+            showNotification(
+              "Có lỗi xảy ra vui lòng thử lại hoặc liên hệ bộ phận khách hàng",
+              "error"
+            );
           });
       },
     });
