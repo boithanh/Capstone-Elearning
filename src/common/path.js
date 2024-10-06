@@ -3,6 +3,7 @@ export const path = {
   pageNotFound: "*",
   danhMucKhoaHoc: "/danh-muc-khoa-hoc",
   timKiemKhoaHoc: "/tim-kiem-khoa-hoc",
+  chiTietKhoaHoc: "/chi-tiet",
   loginPage: "/login",
   signUpPage: "/sign-up",
   userInfo: "/user-info",

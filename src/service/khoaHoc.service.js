@@ -17,6 +17,10 @@ export const khoaHocService = {
       `QuanLyKhoaHoc/LayKhoaHocTheoDanhMuc?maDanhMuc=${data}&MaNhom=GP01`
     );
   },
+
+  layChiTietKhoaHocTheoMa: (data) => {
+    return http.get(`QuanLyKhoaHoc/LayThongTinKhoaHoc?maKhoaHoc=${data}`);
+  },
   //   layThongTinKhoaHoc: (data) => {
   //     return http.get(`QuanLyKhoaHoc/LayThongTinKhoaHoc?maKhoaHoc=${data}`);
   //   },

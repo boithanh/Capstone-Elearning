@@ -14,6 +14,7 @@ import ManageUser from "../pages/ManageUser/ManageUser";
 import ManageCourse from "../pages/ManageCourse/ManageCourse";
 import ThemUser from "../pages/ThemUser/ThemUser";
 import EditUser from "../pages/EditUser/EditUser";
+import ChiTietKhoaHoc from "../pages/ChiTietKhoaHoc/ChiTietKhoaHoc";
 
 const useRoutesCustom = () => {
   const routes = useRoutes([
@@ -33,16 +34,17 @@ const useRoutesCustom = () => {
           path: path.timKiemKhoaHoc,
           element: <TimKiemKhoaHoc />,
         },
+        {
+          path: path.chiTietKhoaHoc,
+          element: <ChiTietKhoaHoc />,
+        },
       ],
     },
     {
       path: path.pageNotFound,
       element: <PageNotFound />,
     },
-    {
-      path: path.loginPage,
-      element: <LoginPage />,
-    },
+    { path: path.loginPage, element: <LoginPage /> },
     {
       path: path.signUpPage,
       element: <SignUpPage />,

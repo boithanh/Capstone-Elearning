@@ -9,7 +9,7 @@ const DanhMucKhoaHoc = () => {
         () => {
             let maDanhMuc = searchParam.get("maDanhMuc");
             khoaHocService.layKhoaHocTheoDanhMuc(maDanhMuc).then((res) => {
-                console.log(res.data);
+                // console.log(res.data);
                 setListKhoaHoc(res.data);
             }).catch((err) => {
                 console.log(err);
@@ -17,27 +17,36 @@ const DanhMucKhoaHoc = () => {
 
         }, [searchParam.get("maDanhMuc")])
     return (
-        <div className='conatainer'>
-            <h1 className='font-bold text-3xl my-3'>Danh sách khóa học theo danh mục: {searchParam.get("maDanhMuc") ? searchParam.get("maDanhMuc") : ""}</h1>
-            <div className="grid grid-cols-4 gap-5">
-                {listKhoaHoc.map((item, index) => {
-                    console.log(item);
+        <div className='conatainer danhMucKhoaHoc pb-16 pt-8'>
+            <h1 className='font-bold text-3xl mb-10 w-10/12 mx-auto'>Danh sách khóa học theo danh mục: {searchParam.get("maDanhMuc") ? searchParam.get("maDanhMuc") : ""}</h1>
+            <div className="grid grid-cols-4 gap-16 w-10/12 mx-auto">
+                {listKhoaHoc.splice(-9).map((item, index) => {
+                    // console.log(item);
                     return <div>
-                        <div className='w-[200px]'>
+                        <div className='mb-3 img_content'>
                             <img src={item?.hinhAnh} alt="err" className='w-full' />
                         </div>
-                        <div>
-                            <h2>{item.tenKhoaHoc}</h2>
+                        <div className='mb-3'>
+                            <h2>{item?.tenKhoaHoc}</h2>
                         </div>
                         <div>
-                            <h3>{item.congViec?.tenCongViec}</h3>
-                            <p><span className='text-yellow-400 space-x-2'><i class="fa-regular fa-star"></i>{item.congViec?.saoCongViec}</span></p><span>{item.congViec?.danhGia}</span>
+                            <div className='mb-4'>
+                                <i class="fa-solid fa-user-graduate text-2xl"></i>
+                                <p className='inline text-xl font-semibold mx-5'>{item?.soLuongHocVien}</p>
+                            </div>
+                            <span className='text-[#E31C8D] me-4'>
+                                <div>
+                                    <i className="fa-solid fa-star" />
+                                    <i className="fa-solid fa-star" />
+                                    <i className="fa-solid fa-star" />
+                                    <i className="fa-solid fa-star" />
+                                    <i className="fa-regular fa-star" />
+                                </div>
+
+                            </span>
                         </div>
                         <div>
-                            <p>Lượt xem: {item.luotXem}</p>
-                        </div>
-                        <div>
-                            <button className='bg-black px-5 py-2 text-white'>ĐĂNG KÝ</button>
+                            <button>ĐĂNG KÝ</button>
                         </div>
                     </div>
                 })
