@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Tabs } from "antd";
 import { useFormik } from "formik";
 import InputCustom from "../../components/Input/InputCustom";
@@ -7,9 +7,11 @@ import { userService } from "../../service/user.service";
 import { khoaHocService } from "../../service/khoaHoc.service";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
+import { NotificationContext } from "../../App";
 
 const UserInfoTemplate = () => {
   const onChange = () => {};
+  const { showNotification } = useContext(NotificationContext);
   const [userInfo, setUserInfo] = useState(getLocalStorage("user"));
   const [listKhoaHoc, setListKhoaHoc] = useState([]);
   const { taiKhoan, matKhau, hoTen, email, soDT } = userInfo;
@@ -56,6 +58,7 @@ const UserInfoTemplate = () => {
       userService
         .updateUser(values)
         .then((res) => {
+          showNotification(`Đã sửa tài khoản ${values.taiKhoan}`, "warning");
           setUserInfo(res.data);
           setLocalStorage("user", values);
         })
