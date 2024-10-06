@@ -21,7 +21,7 @@ const ManageUser = () => {
 
   useEffect(() => {
     dispatch(getValueUserApi());
-  }, []);
+  }, [dispatch]);
 
   const columns = [
     {
@@ -38,6 +38,11 @@ const ManageUser = () => {
       title: "Họ và Tên",
       dataIndex: "hoTen",
       key: "hoTen",
+    },
+    {
+      title: "Email",
+      dataIndex: "email",
+      key: "email",
     },
     {
       title: "Số điện thoại",
@@ -58,7 +63,7 @@ const ManageUser = () => {
       title: "Tác vụ",
       key: "action",
       render: (_, record) => (
-        <Space size="middle" className="space-x-2">
+        <Space size="middle" className="space-x-1">
           <button className="bg-blue-500/80 text-white py-2 px-3 rounded-md">
             Ghi Danh
           </button>
@@ -79,6 +84,7 @@ const ManageUser = () => {
                 .then((res) => {
                   console.log(res);
                   dispatch(getValueUserApi());
+                  setIsSearching(false);
                   userService.layDanhSachNguoiDung();
                 })
                 .catch((err) => {
@@ -86,7 +92,7 @@ const ManageUser = () => {
                 });
             }}
           >
-            Xóa
+            X
           </button>
         </Space>
       ),
@@ -110,7 +116,10 @@ const ManageUser = () => {
   return (
     <>
       <div className="container mx-auto space-y-5 h-full">
-        <Link className="bg-dark text-black" to={path.addUser}>
+        <Link
+          className="bg-dark text-black hover:underline font-semibold text-3xl"
+          to={path.addUser}
+        >
           Thêm người dùng
         </Link>
         <div className="flex flex-row gap-x-5">

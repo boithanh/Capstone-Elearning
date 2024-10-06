@@ -1,5 +1,5 @@
 export const path = {
-  homPage: "/",
+  homePage: "/",
   pageNotFound: "*",
   danhMucKhoaHoc: "/danh-muc-khoa-hoc",
   timKiemKhoaHoc: "/tim-kiem-khoa-hoc",

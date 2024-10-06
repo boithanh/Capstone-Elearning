@@ -7,15 +7,18 @@ import {
   VideoCameraOutlined,
 } from "@ant-design/icons";
 import { Button, Layout, Menu, theme } from "antd";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import { path } from "../../common/path";
+import LogoIcon from "../../components/Icon/LogoIcon";
 const { Header, Sider, Content } = Layout;
 
 const AdminTemplate = () => {
-  const [collapsed, setCollapsed] = useState(false);
+  const [collapsed, setCollapsed] = useState(true);
+  const navigate = useNavigate();
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
+
   return (
     <Layout>
       <Sider trigger={null} collapsible collapsed={collapsed}>
@@ -43,15 +46,16 @@ const AdminTemplate = () => {
           style={{
             padding: 0,
             background: colorBgContainer,
+            backgroundColor: "#211C5B",
           }}
         >
           <Button
             type="text"
-            icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-            onClick={() => setCollapsed(!collapsed)}
+            icon={<LogoIcon />}
+            onClick={() => navigate(path.homPage)}
             style={{
               fontSize: "16px",
-              width: 64,
+              width: 200,
               height: 64,
             }}
           />
