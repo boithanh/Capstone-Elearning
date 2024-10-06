@@ -23,6 +23,7 @@ const UserInfoTemplate = () => {
       .then((res) => setListKhoaHoc(res.data))
       .catch((err) => console.log(err));
   }, []);
+
   const { values, handleChange, handleSubmit, touched, errors } = useFormik({
     initialValues: {
       taiKhoan,

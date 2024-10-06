@@ -1,39 +1,65 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useFormik } from "formik";
 import InputCustom from "../../components/Input/InputCustom";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 import { path } from "../../common/path";
 import { userService } from "../../service/user.service";
+import { useSelector } from "react-redux";
 
-const ThemUser = () => {
-  const { values, handleChange, handleSubmit, touched, errors, resetForm } =
-    useFormik({
-      initialValues: {
-        taiKhoan: "",
-        matKhau: "",
-        hoTen: "",
-        email: "",
-        soDT: "",
-        maNhom: "GP01",
-        maLoaiNguoiDung: "",
-      },
-      onSubmit: (values) => {
-        userService
-          .themNguoiDung(values)
-          .then((res) => {
-            console.log(res.data);
-            resetForm();
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-      },
-    });
+const EditUser = () => {
+  const dataUser = useSelector((state) => state.userSlice.editUser);
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (dataUser) {
+      userService
+        .timKiemNguoiDung(dataUser)
+        .then((res) => {
+          setValues(...res.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [dataUser]);
+
+  const {
+    values,
+    handleChange,
+    handleSubmit,
+    touched,
+    errors,
+    resetForm,
+    setValues,
+  } = useFormik({
+    initialValues: {
+      taiKhoan: "",
+      matKhau: "",
+      hoTen: "",
+      email: "",
+      soDt: "",
+
+      maLoaiNguoiDung: "",
+    },
+    onSubmit: (values) => {
+      console.log(values);
+      userService
+        .updateUser({ ...values, maNhom: "GP01" })
+        .then((res) => {
+          console.log(res.data);
+          navigate(path.adminPage);
+          resetForm();
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+  });
+
   return (
     <>
       <div className="container mx-auto">
         <div className="flex flex-col justify-center space-y-5">
-          <h2 className="text-3xl font-bold">Thêm người dùng</h2>
+          <h2 className="text-3xl font-bold">Sửa người dùng</h2>
           <form className="space-y-5" onSubmit={handleSubmit}>
             <div className="grid grid-cols-2 gap-8">
               <div>
@@ -42,7 +68,9 @@ const ThemUser = () => {
                   labelContent="Tài khoản"
                   typeInput="text"
                   value={values.taiKhoan}
+                  placeholder={values.taiKhoan}
                   onChange={handleChange}
+                  disabled={true}
                 />
               </div>
               <div>
@@ -74,10 +102,10 @@ const ThemUser = () => {
               </div>
               <div>
                 <InputCustom
-                  name="soDT"
+                  name="soDt"
                   labelContent="Số Điện Thoại"
                   onChange={handleChange}
-                  value={values.soDT}
+                  value={values.soDt}
                 />
               </div>
               <div className="p-2.5 mb-3">
@@ -109,7 +137,7 @@ const ThemUser = () => {
                 type="submit"
                 className="px-5 py-3 rounded-md block bg-black text-white w-1/4 text-center"
               >
-                Add
+                Edit
               </button>
             </div>
           </form>
@@ -119,4 +147,4 @@ const ThemUser = () => {
   );
 };
 
-export default ThemUser;
+export default EditUser;

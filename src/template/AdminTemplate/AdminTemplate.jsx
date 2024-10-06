@@ -28,7 +28,7 @@ const AdminTemplate = () => {
             {
               key: "1",
               icon: <i className="fa-solid fa-people-arrows"></i>,
-              label: <Link to={path.manageUser}>Quản lý người dùng</Link>,
+              label: <Link to={path.adminPage}>Quản lý người dùng</Link>,
             },
             {
               key: "2",

@@ -10,4 +10,5 @@ export const path = {
   manageUser: "manage-user",
   manageCourse: "manage-course",
   addUser: "add-user",
+  editUser: "edit-user",
 };

@@ -13,6 +13,7 @@ import AdminTemplate from "../template/AdminTemplate/AdminTemplate";
 import ManageUser from "../pages/ManageUser/ManageUser";
 import ManageCourse from "../pages/ManageCourse/ManageCourse";
 import ThemUser from "../pages/ThemUser/ThemUser";
+import EditUser from "../pages/EditUser/EditUser";
 
 const useRoutesCustom = () => {
   const routes = useRoutes([
@@ -55,14 +56,16 @@ const useRoutesCustom = () => {
       element: <AdminTemplate />,
       children: [
         {
-          path: path.manageUser,
+          index: true,
           element: <ManageUser />,
-          children: [
-            {
-              path: path.addUser,
-              element: <ThemUser />,
-            },
-          ],
+        },
+        {
+          path: path.addUser,
+          element: <ThemUser />,
+        },
+        {
+          path: path.editUser,
+          element: <EditUser />,
         },
         {
           path: path.manageCourse,
