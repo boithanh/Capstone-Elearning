@@ -1,18 +1,38 @@
 import React, { useEffect, useState } from "react";
 import { useFormik } from "formik";
+import { getValueUserApi } from "../../redux/userSlice";
 import InputCustom from "../../components/Input/InputCustom";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import { path } from "../../common/path";
 import { khoaHocService } from "../../service/khoaHoc.service";
+import { useDispatch, useSelector } from "react-redux";
+import ImgUpload from "../../components/ImgUpload/ImgUpload";
+import { createEditor } from "slate";
+import { Slate, Editable, withReact } from "slate-react";
 
 const ThemCourse = () => {
   const [danhMuc, setDanhMuc] = useState([]);
+  const dispatch = useDispatch();
+  const { listUsers } = useSelector((state) => state.userSlice);
+  const listGV = listUsers.filter((item) => item.maLoaiNguoiDung === "GV");
+  const [editor] = useState(() => withReact(createEditor()));
+  const initialValue = [
+    {
+      type: "paragraph",
+      children: [{ text: "A line of text in a paragraph." }],
+    },
+  ];
+
+  useEffect(() => {
+    dispatch(getValueUserApi());
+  }, []);
+
   useEffect(() => {
     khoaHocService
       .layAllDanhMucKhoaHoc()
       .then((res) => {
         setDanhMuc(res.data);
-        console.log(res.data);
+        // console.log(res.data);
       })
       .catch((err) => console.log(err));
   }, []);
@@ -87,6 +107,7 @@ const ThemCourse = () => {
                   labelContent="Ngày tạo"
                   typeInput="text"
                   onChange={handleChange}
+                  placeholder={"dd/mm/yyyy"}
                   // value={values.hoTen}
                 />
               </div>
@@ -94,7 +115,7 @@ const ThemCourse = () => {
                 <InputCustom
                   name="danhGia"
                   labelContent="Đánh giá"
-                  typeInput="text"
+                  typeInput="number"
                   onChange={handleChange}
                   // value={values.email}
                 />
@@ -103,19 +124,45 @@ const ThemCourse = () => {
                 <InputCustom
                   name="luotXem"
                   labelContent="Lượt xem"
+                  typeInput="number"
                   onChange={handleChange}
                   // value={values.soDT}
                 />
               </div>
               <div>
-                <h1>Người tạo</h1>
+                <label className="block mb-2 text-sm font-medium text-gray-900">
+                  Người tạo
+                </label>
+                <select
+                  onChange={handleChange}
+                  // value={values.maDanhMuc}
+                  name="taiKhoanNguoiTao"
+                  className="bg-gray-50 border border-gray-300 hover:border-black focus:border-black text-gray-900 text-sm rounded-md outline-none block w-1/2 p-2.5 mb-3"
+                >
+                  <option value="">--Xin chọn người tạo khóa học--</option>
+                  {listGV?.slice(10, 15).map((item, index) => (
+                    <option key={index} value={item.taiKhoan}>
+                      {item.hoTen}
+                    </option>
+                  ))}
+                </select>
               </div>
               <div>
-                <h1>Hình Ảnh</h1>
+                <label className="block mb-2 text-sm font-medium text-gray-900">
+                  Hình ảnh
+                </label>
+                <ImgUpload />
               </div>
             </div>
             <div>
-              <h1>Mô Tả</h1>
+              <label className="block mb-2 text-sm font-medium text-gray-900">
+                Mô tả
+              </label>
+              <div className="border rounded-md min-h-[200px] p-2">
+                <Slate editor={editor} initialValue={initialValue}>
+                  <Editable />
+                </Slate>
+              </div>
             </div>
             <div className="flex justify-between">
               <Link
