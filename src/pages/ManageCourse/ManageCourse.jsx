@@ -1,13 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Space, Table, Tag } from "antd";
 import { getValueCourseApi } from "../../redux/courseSlice";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import { path } from "../../common/path";
-import { userService } from "../../service/user.service";
 import utils from "../../utils/utils";
+import { khoaHocService } from "../../service/khoaHoc.service";
+import { NotificationContext } from "../../App";
+
 const ManageCourse = () => {
   const dispatch = useDispatch();
+  const { showNotification } = useContext(NotificationContext);
   const [arrFilter, setArrFilter] = useState([]);
   const [isSearching, setIsSearching] = useState(false);
   const { listCourse } = useSelector((state) => state.courseSlice);
@@ -38,14 +41,6 @@ const ManageCourse = () => {
       dataIndex: "tenKhoaHoc",
       key: "tenKhoaHoc",
     },
-    // {
-    //   title: "Hình ảnh",
-    //   dataIndex: "hinhAnh",
-    //   key: "hinhAnh",
-    //   render: (text, record) => {
-    //     <img src={record.hinhAnh} className="w-[10px]" />;
-    //   },
-    // },
     {
       title: "Lượt xem",
       dataIndex: "luotXem",
@@ -66,30 +61,35 @@ const ManageCourse = () => {
             Ghi Danh
           </button>
           <Link
-            to={path.editUser}
+            // to={path.editUser}
             className="bg-yellow-500/80 text-white py-2 px-3 rounded-md"
-            onClick={() => {
-              dispatch(setUser(record.taiKhoan));
-            }}
+            // onClick={() => {
+            //   dispatch(setUser(record.taiKhoan));
+            // }}
           >
             Sửa
           </Link>
           <button
             className="bg-red-500/80 text-white py-2 px-3 rounded-md"
             onClick={() => {
-              userService
-                .xoaNguoiDung(record.taiKhoan)
+              khoaHocService
+                .xoaKhoaHoc(record.maKhoaHoc)
                 .then((res) => {
-                  console.log(res);
-                  dispatch(getValueUserApi());
-                  userService.layDanhSachNguoiDung();
+                  // console.log(res);
+                  showNotification(
+                    `Đã xóa mã khóa học ${record.maKhoaHoc}`,
+                    "error"
+                  );
+                  dispatch(getValueCourseApi());
+                  khoaHocService.layAllKhoaHoc();
                 })
                 .catch((err) => {
-                  console.log(err);
+                  showNotification(`${err.response.data}`, "info");
+                  // console.log(err);
                 });
             }}
           >
-            Xóa
+            X
           </button>
         </Space>
       ),
@@ -113,7 +113,18 @@ const ManageCourse = () => {
   return (
     <>
       <div className="container mx-auto space-y-5 h-full">
-        <Link className="bg-dark text-black">Thêm khóa học</Link>
+        <div className="flex justify-between items-center">
+          <h1 className="text-blue-400 uppercase font-bold text-3xl">
+            Danh sách khóa học
+          </h1>
+          <Link
+            to={path.addCourse}
+            className="bg-dark text-black hover:underline font-semibold text-xl"
+          >
+            Thêm khóa học
+          </Link>
+        </div>
+
         <div className="flex flex-row gap-x-5">
           <input
             type="text"

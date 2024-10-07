@@ -26,9 +26,14 @@ const ThemUser = () => {
           .themNguoiDung(values)
           .then((res) => {
             console.log(res.data);
-            showNotification(`Đã thêm học viên ${res.data.taiKhoan}`, "info");
+            showNotification(
+              `Đã thêm ${
+                res.data.maLoaiNguoiDung == "HV" ? "Học viên" : "Giáo vụ"
+              }  ${res.data.taiKhoan}`,
+              "info"
+            );
             resetForm();
-            navigate(path.adminPage);
+            navigate(path.manageUser);
           })
           .catch((err) => {
             console.log(err);
@@ -40,7 +45,9 @@ const ThemUser = () => {
     <>
       <div className="container mx-auto">
         <div className="flex flex-col justify-center space-y-5">
-          <h2 className="text-3xl font-bold text-blue-400">Thêm người dùng</h2>
+          <h2 className="text-3xl font-bold text-blue-400 uppercase">
+            Thêm người dùng
+          </h2>
           <form className="space-y-5" onSubmit={handleSubmit}>
             <div className="grid grid-cols-2 gap-8">
               <div>
@@ -87,7 +94,7 @@ const ThemUser = () => {
                   value={values.soDT}
                 />
               </div>
-              <div className="p-2.5 mb-3">
+              <div>
                 <label
                   htmlFor="maLoaiNguoiDung"
                   className="block mb-2 text-sm font-medium text-gray-900"
@@ -98,6 +105,7 @@ const ThemUser = () => {
                   onChange={handleChange}
                   value={values.maLoaiNguoiDung}
                   name="maLoaiNguoiDung"
+                  className="bg-gray-50 border border-gray-300 hover:border-black focus:border-black text-gray-900 text-sm rounded-md outline-none block w-1/2 p-2.5 mb-3"
                 >
                   <option value="">--Xin chọn loại người dùng--</option>
                   <option value="GV">Giáo vụ</option>
@@ -108,7 +116,7 @@ const ThemUser = () => {
             <div className="flex justify-between">
               <Link
                 className="px-5 py-3 rounded-md button-right w-1/4 text-center"
-                to={path.adminPage}
+                to={path.manageUser}
               >
                 <i className="fa-solid fa-arrow-left"></i> Back
               </Link>

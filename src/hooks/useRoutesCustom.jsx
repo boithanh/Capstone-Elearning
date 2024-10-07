@@ -15,6 +15,7 @@ import ManageCourse from "../pages/ManageCourse/ManageCourse";
 import ThemUser from "../pages/ThemUser/ThemUser";
 import EditUser from "../pages/EditUser/EditUser";
 import ChiTietKhoaHoc from "../pages/ChiTietKhoaHoc/ChiTietKhoaHoc";
+import ThemCourse from "../pages/ThemCourse/ThemCourse";
 
 const useRoutesCustom = () => {
   const routes = useRoutes([
@@ -58,7 +59,7 @@ const useRoutesCustom = () => {
       element: <AdminTemplate />,
       children: [
         {
-          index: true,
+          path: path.manageUser,
           element: <ManageUser />,
         },
         {
@@ -72,6 +73,10 @@ const useRoutesCustom = () => {
         {
           path: path.manageCourse,
           element: <ManageCourse />,
+        },
+        {
+          path: path.addCourse,
+          element: <ThemCourse />,
         },
       ],
     },

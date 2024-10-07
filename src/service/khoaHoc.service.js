@@ -26,4 +26,7 @@ export const khoaHocService = {
       `QuanLyKhoaHoc/LayDanhSachKhoaHoc?tenKhoaHoc=react&MaNhom=GP01`
     );
   },
+  xoaKhoaHoc: (data) => {
+    return http.delete(`QuanLyKhoaHoc/XoaKhoaHoc?MaKhoaHoc=${data}`);
+  },
 };
