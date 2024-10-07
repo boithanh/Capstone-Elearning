@@ -26,12 +26,17 @@ const AdminTemplate = () => {
         <Menu
           theme="dark"
           mode="inline"
-          defaultSelectedKeys={["1"]}
+          defaultSelectedKeys={["0"]}
           items={[
+            {
+              key: "0",
+              icon: <i className="fa-solid fa-list-check"></i>,
+              label: <Link to={path.adminPage}></Link>,
+            },
             {
               key: "1",
               icon: <i className="fa-solid fa-people-arrows"></i>,
-              label: <Link to={path.adminPage}>Quản lý người dùng</Link>,
+              label: <Link to={path.manageUser}>Quản lý người dùng</Link>,
             },
             {
               key: "2",
@@ -64,7 +69,7 @@ const AdminTemplate = () => {
           style={{
             margin: "24px 16px",
             padding: 24,
-            minHeight: 280,
+            height: "100vh",
             background: colorBgContainer,
             borderRadius: borderRadiusLG,
           }}

@@ -84,7 +84,7 @@ const ManageUser = () => {
               userService
                 .xoaNguoiDung(record.taiKhoan)
                 .then((res) => {
-                  console.log(res);
+                  // console.log(res);
                   showNotification(
                     `Đã xóa người dùng ${record.hoTen}`,
                     "error"
@@ -94,11 +94,8 @@ const ManageUser = () => {
                   userService.layDanhSachNguoiDung();
                 })
                 .catch((err) => {
-                  console.log(err);
-                  showNotification(
-                    `Người dùng này đã tạo khóa học không thể xóa!`,
-                    "info"
-                  );
+                  // console.log(err);
+                  showNotification(`${err.response.data}`, "info");
                 });
             }}
           >
@@ -126,12 +123,18 @@ const ManageUser = () => {
   return (
     <>
       <div className="container mx-auto space-y-5 h-full">
-        <Link
-          className="bg-dark text-black hover:underline font-semibold text-3xl"
-          to={path.addUser}
-        >
-          Thêm người dùng
-        </Link>
+        <div className="flex justify-between items-center">
+          <h1 className="bg-dark text-blue-400 uppercase font-bold text-3xl">
+            Danh sách người dùng
+          </h1>
+          <Link
+            className="bg-dark text-black hover:underline font-semibold text-xl"
+            to={path.addUser}
+          >
+            Thêm người dùng
+          </Link>
+        </div>
+
         <div className="flex flex-row gap-x-5">
           <input
             type="text"

@@ -8,8 +8,9 @@ export const path = {
   signUpPage: "/sign-up",
   userInfo: "/user-info",
   adminPage: "/admin",
-  manageUser: "manage-user",
-  manageCourse: "manage-course",
-  addUser: "add-user",
-  editUser: "edit-user",
+  manageUser: "/admin/manage-user",
+  manageCourse: "/admin/manage-course",
+  addUser: "/admin/add-user",
+  editUser: "/admin/edit-user",
+  addCourse: "/admin/add-course",
 };
