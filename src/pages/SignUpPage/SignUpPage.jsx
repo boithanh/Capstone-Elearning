@@ -29,7 +29,7 @@ const SignUpPage = () => {
         authService
           .signUp(values)
           .then((res) => {
-            console.log(res.data.content);
+            // console.log(res.data.content);
             showNotification("Đăng ký thành công", "success");
             navigate(path.loginPage);
             resetForm();
