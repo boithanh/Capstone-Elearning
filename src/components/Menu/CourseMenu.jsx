@@ -16,7 +16,7 @@ const CourseMenu = () => {
     // console.log(valueDanhMuc);
 
     const items = valueDanhMuc.map((item, index) => ({
-        label: <NavLink to={`/danh-muc-khoa-hoc?maDanhMuc=${item.maDanhMuc}&MaNhom=GP01`}>{item.tenDanhMuc}</NavLink>,
+        label: <NavLink to={`/danh-muc-khoa-hoc?maDanhMuc=${item?.maDanhMuc}&ten=${item?.tenDanhMuc}&MaNhom=GP01`}>{item?.tenDanhMuc}</NavLink>,
         key: { index },
     }))
 

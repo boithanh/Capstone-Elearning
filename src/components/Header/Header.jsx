@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import LogoIcon from "../Icon/LogoIcon";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import FormSearchKhoaHoc from "../Form/FormSearchKhoaHoc";
 import CourseMenu from "../Menu/CourseMenu";
 import WrapperSuggestCourse from "../Wrapper/WrapperSuggestCourse";
@@ -9,19 +9,18 @@ import { Avatar, Dropdown } from "antd";
 import UserIcon from "../Icon/UserIcon";
 import LogOutIcon from "../Icon/LogOutIcon";
 import { path } from "../../common/path";
-import Banner from "../Banner/Banner";
+import { useDispatch, useSelector } from "react-redux";
+import { userStatus } from "../../redux/userSlice";
+import { info } from "sass";
 
 const Header = () => {
-  const [infoUser, setInfoUser] = useState({
-    avartar:
-      "https://this-person-does-not-exist.com/img/avatar-gen89fbe58a15d2b85e6bdc6173bb43096b.jpg",
-    name: "Thạnh Bối",
-  });
-
+  const { infoUser } = useSelector(state => state.userSlice);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const items = [
     {
       label: (
-        <Link className="flex space-x-2 items-center font-bold">
+        <Link to={path.userInfo} className="flex space-x-2 items-center font-bold">
           <UserIcon />
           <span>Thông tin cá nhân</span>
         </Link>
@@ -30,10 +29,11 @@ const Header = () => {
     },
     {
       label: (
-        <Link
+        <Link to={path.homePage}
           className="flex space-x-2 items-center font-bold text-[#4054B2]"
           onClick={() => {
-            setInfoUser(null);
+            dispatch(userStatus(null));
+            localStorage.removeItem("user");
           }}
         >
           <LogOutIcon />
@@ -46,6 +46,8 @@ const Header = () => {
       type: "divider",
     },
   ];
+
+
   // Note: infoUser giả lập user sau khi login sẽ có thông tin này để load lên header menu
   const checkUserLogin = () => {
     return infoUser ? (
@@ -60,12 +62,12 @@ const Header = () => {
           size={30}
           shape="square"
         >
-          {infoUser.name.charAt(0)}
+          {infoUser?.hoTen.charAt(0)}
         </Avatar>
       </Dropdown>
     ) : (
       <>
-        <Link className="me-8 text-white" to={"/sign-in"}>
+        <Link className="me-8 text-white" to={"/login"}>
           Đăng nhập
         </Link>
         <Link className="text-white" to={"/sign-up"}>

@@ -5,15 +5,18 @@ import { authService } from "../../service/auth.service";
 import { useLottie } from "lottie-react";
 import { Link, useNavigate } from "react-router-dom";
 import { path } from "../../common/path";
-import { setLocalStorage } from "../../utils/utils";
+import { getLocalStorage, setLocalStorage } from "../../utils/utils";
 import { NotificationContext } from "../../App";
 import animationSignIn from "../../assets/animation/signinAnimation.json";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
+import { useDispatch } from "react-redux";
+import { userStatus } from "../../redux/userSlice";
 
 const LoginPage = () => {
   const navigate = useNavigate();
   const { showNotification } = useContext(NotificationContext);
+  const dispatch = useDispatch();
   const { values, handleChange, handleSubmit, touched, errors } = useFormik({
     initialValues: {
       taiKhoan: "",
@@ -25,13 +28,19 @@ const LoginPage = () => {
         .then((res) => {
           if (res.data.maLoaiNguoiDung == "HV") {
             showNotification(`Chào mừng học viên ${res.data.hoTen}`, "info");
-            navigate(path.userInfo);
             setLocalStorage("user", { ...res.data, matKhau: values.matKhau });
+            dispatch(userStatus(res.data));
+            setTimeout(() => {
+              navigate(path.homePage);
+            }, 1000);
           }
           if (res.data.maLoaiNguoiDung == "GV") {
             showNotification(`Chào mừng giáo vụ ${res.data.hoTen}`, "info");
-            navigate(path.adminPage);
             setLocalStorage("admin", { ...res.data, matKhau: values.matKhau });
+            dispatch(userStatus(res.data));
+            setTimeout(() => {
+              navigate(path.adminPage);
+            }, 1000);
           }
         })
         .catch((err) => {
