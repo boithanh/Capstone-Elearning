@@ -29,4 +29,10 @@ export const khoaHocService = {
   xoaKhoaHoc: (data) => {
     return http.delete(`QuanLyKhoaHoc/XoaKhoaHoc?MaKhoaHoc=${data}`);
   },
+  themKhoaHoc: (data) => {
+    return http.post(`QuanLyKhoaHoc/ThemKhoaHoc`, data);
+  },
+  suaKhoaHoc: (data) => {
+    return http.put("QuanLyKhoaHoc/CapNhatKhoaHoc", data);
+  },
 };

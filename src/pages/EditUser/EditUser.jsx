@@ -11,6 +11,7 @@ const EditUser = () => {
   const dataUser = useSelector((state) => state.userSlice.editUser);
   const { showNotification } = useContext(NotificationContext);
   const navigate = useNavigate();
+
   useEffect(() => {
     if (dataUser) {
       userService
@@ -39,7 +40,6 @@ const EditUser = () => {
       hoTen: "",
       email: "",
       soDt: "",
-
       maLoaiNguoiDung: "",
     },
     onSubmit: (values) => {

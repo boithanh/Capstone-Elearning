@@ -69,7 +69,7 @@ const AdminTemplate = () => {
           style={{
             margin: "24px 16px",
             padding: 24,
-            height: "100vh",
+            height: "100%",
             background: colorBgContainer,
             borderRadius: borderRadiusLG,
           }}

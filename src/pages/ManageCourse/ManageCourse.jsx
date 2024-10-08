@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Space, Table, Tag } from "antd";
-import { getValueCourseApi } from "../../redux/courseSlice";
+import { getValueCourseApi, setCourse } from "../../redux/courseSlice";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import { path } from "../../common/path";
 import utils from "../../utils/utils";
@@ -23,7 +23,7 @@ const ManageCourse = () => {
 
   useEffect(() => {
     dispatch(getValueCourseApi());
-  }, []);
+  }, [dispatch]);
 
   const columns = [
     {
@@ -40,7 +40,9 @@ const ManageCourse = () => {
       title: "Tên khóa học",
       dataIndex: "tenKhoaHoc",
       key: "tenKhoaHoc",
+      width: 280,
     },
+    { title: "Ngày tạo", dataIndex: "ngayTao", key: "ngayTao" },
     {
       title: "Lượt xem",
       dataIndex: "luotXem",
@@ -50,7 +52,7 @@ const ManageCourse = () => {
       title: "Người tạo",
       dataIndex: "nguoiTao",
       key: "nguoiTao",
-      render: (text, record) => record.nguoiTao.taiKhoan,
+      render: (text, record) => record.nguoiTao.hoTen,
     },
     {
       title: "Tác vụ",
@@ -61,11 +63,11 @@ const ManageCourse = () => {
             Ghi Danh
           </button>
           <Link
-            // to={path.editUser}
+            to={path.editCourse}
             className="bg-yellow-500/80 text-white py-2 px-3 rounded-md"
-            // onClick={() => {
-            //   dispatch(setUser(record.taiKhoan));
-            // }}
+            onClick={() => {
+              dispatch(setCourse(record.maKhoaHoc));
+            }}
           >
             Sửa
           </Link>
