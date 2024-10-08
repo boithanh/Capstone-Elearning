@@ -41,7 +41,7 @@ const ListKhoaHoc = () => {
                                 <i className="fa-regular fa-star" />
                             </span>
                         </div>
-                        <Link>ĐĂNG KÝ</Link>
+                        <Link to={`chi-tiet?maKhoaHoc=${item.maKhoaHoc}`}>ĐĂNG KÝ</Link>
 
                     </div>
                 })

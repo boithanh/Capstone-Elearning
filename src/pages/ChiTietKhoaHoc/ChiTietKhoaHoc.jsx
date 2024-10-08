@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { Link, useSearchParams } from 'react-router-dom';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { getLocalStorage } from '../../utils/utils';
 import { khoaHocService } from '../../service/khoaHoc.service';
 import { NotificationContext } from '../../App';
@@ -9,6 +9,7 @@ const ChiTietKhoaHoc = () => {
     const [searchParam, setSearchParam] = useSearchParams();
     const [chiTietKhoaHoc, setChiTietKhoaHoc] = useState([]);
     const [duLieuDangKy, setDuLieuDangKy] = useState({ "maKhoaHoc": "", "taiKhoan": "", });
+    const navigate = useNavigate();
     const handleSignUpCourse = () => {
         let maKhoaHoc = searchParam.get("maKhoaHoc");
         let taiKhoan = getLocalStorage("user").taiKhoan;
@@ -55,7 +56,7 @@ const ChiTietKhoaHoc = () => {
                                 </span>
                             </p>
                             <button onClick={() => {
-                                handleSignUpCourse();
+                                getLocalStorage("user") ? handleSignUpCourse() : navigate("/login");
                             }}>ĐĂNG KÝ</button>
                         </div>
                         <div className='w-4/12'>
