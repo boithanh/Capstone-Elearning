@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { khoaHocService } from '../../service/khoaHoc.service';
+import { Link } from 'react-router-dom';
 
 const ListKhoaHoc = () => {
     const [listKhoaHoc, setListKhoaHoc] = useState([]);
@@ -27,27 +28,21 @@ const ListKhoaHoc = () => {
                         <div className='mb-3'>
                             <h2>{item?.tenKhoaHoc}</h2>
                         </div>
-                        <div>
-                            <div className='mb-4'>
+                        <div className='flex items-center justify-start mb-8'>
+                            <div>
                                 <i className="fa-solid fa-user-graduate text-2xl" />
                                 <p className='inline text-xl font-semibold mx-5'>{item?.soLuongHocVien}</p>
                             </div>
-                            <div>
-                                <span className='text-[#E31C8D] me-4'>
-                                    <div>
-                                        <i className="fa-solid fa-star" />
-                                        <i className="fa-solid fa-star" />
-                                        <i className="fa-solid fa-star" />
-                                        <i className="fa-solid fa-star" />
-                                        <i className="fa-regular fa-star" />
-                                    </div>
+                            <span className='text-[#E31C8D] me-4 inline-block'>
+                                <i className="fa-solid fa-star" />
+                                <i className="fa-solid fa-star" />
+                                <i className="fa-solid fa-star" />
+                                <i className="fa-solid fa-star" />
+                                <i className="fa-regular fa-star" />
+                            </span>
+                        </div>
+                        <Link>ĐĂNG KÝ</Link>
 
-                                </span>
-                            </div>
-                        </div>
-                        <div>
-                            <button>ĐĂNG KÝ</button>
-                        </div>
                     </div>
                 })
                 }

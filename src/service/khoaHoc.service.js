@@ -35,4 +35,12 @@ export const khoaHocService = {
   suaKhoaHoc: (data) => {
     return http.put("QuanLyKhoaHoc/CapNhatKhoaHoc", data);
   },
+  dangKyKhoaHocUser: (token, data) => {
+    return http.post(`QuanLyKhoaHoc/DangKyKhoaHoc`, data, {
+      headers: {
+        token,
+      }
+    }
+    );
+  }
 };
