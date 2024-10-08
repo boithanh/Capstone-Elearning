@@ -13,4 +13,5 @@ export const path = {
   addUser: "/admin/add-user",
   editUser: "/admin/edit-user",
   addCourse: "/admin/add-course",
+  editCourse: "/admin/edit-course",
 };

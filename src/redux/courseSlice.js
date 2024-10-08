@@ -10,12 +10,17 @@ export const getValueCourseApi = createAsyncThunk(
 );
 const initialState = {
   listCourse: [],
+  editCourse: null,
 };
 
 const courseSlice = createSlice({
   name: "course",
   initialState,
-  reducers: {},
+  reducers: {
+    setCourse(state, action) {
+      state.editCourse = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(getValueCourseApi.fulfilled, (state, action) => {
       state.listCourse = action.payload;
@@ -23,6 +28,6 @@ const courseSlice = createSlice({
   },
 });
 
-export const {} = courseSlice.actions;
+export const { setCourse } = courseSlice.actions;
 
 export default courseSlice.reducer;

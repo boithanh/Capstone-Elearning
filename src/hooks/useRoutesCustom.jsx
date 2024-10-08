@@ -16,6 +16,7 @@ import ThemUser from "../pages/ThemUser/ThemUser";
 import EditUser from "../pages/EditUser/EditUser";
 import ChiTietKhoaHoc from "../pages/ChiTietKhoaHoc/ChiTietKhoaHoc";
 import ThemCourse from "../pages/ThemCourse/ThemCourse";
+import EditCourse from "../pages/EditCourse/EditCourse";
 
 const useRoutesCustom = () => {
   const routes = useRoutes([
@@ -77,6 +78,10 @@ const useRoutesCustom = () => {
         {
           path: path.addCourse,
           element: <ThemCourse />,
+        },
+        {
+          path: path.editCourse,
+          element: <EditCourse />,
         },
       ],
     },

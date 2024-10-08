@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const ImgUpload = () => {
+const ImgUpload = ({ setFieldValue }) => {
   const [image, setImage] = useState(null);
 
   const handleImageChange = (e) => {
@@ -8,7 +8,9 @@ const ImgUpload = () => {
     if (file) {
       const reader = new FileReader();
       reader.onloadend = () => {
+        const httpUrlImg = "http://example.com/" + file.name;
         setImage(reader.result);
+        setFieldValue("hinhAnh", httpUrlImg);
       };
       reader.readAsDataURL(file);
     }
