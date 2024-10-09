@@ -32,20 +32,18 @@ const EditCourse = () => {
   }, []);
 
   useEffect(() => {
-    if (dataCourse) {
-      khoaHocService
-        .layChiTietKhoaHocTheoMa(dataCourse)
-        .then((res) => {
-          setValues({
-            ...res.data,
-            maDanhMucKhoahoc: "",
-            taiKhoanNguoiTao: "",
-          });
-        })
-        .catch((err) => {
-          console.log(err);
+    khoaHocService
+      .layChiTietKhoaHocTheoMa(dataCourse)
+      .then((res) => {
+        setValues({
+          ...res.data,
+          maDanhMucKhoaHoc: res.data.danhMucKhoaHoc.maDanhMucKhoahoc,
+          taiKhoanNguoiTao: res.data.nguoiTao.taiKhoan,
         });
-    }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }, [dataCourse]);
 
   const {
@@ -78,21 +76,20 @@ const EditCourse = () => {
       },
     },
     onSubmit: (values) => {
-      //   const { danhMucKhoaHoc, nguoiTao, soLuongHocVien, ...formValues } =
-      //     values;
-      //   console.log("formValues", formValues);
-      console.log("edit", values);
-      //   khoaHocService
-      //     .suaKhoaHoc(values)
-      //     .then((res) => {
-      //       showNotification(`Đã sửa khóa học ${res.data.tenKhoaHoc}`, "warning");
-      //       //   resetForm();
-      //       //   navigate(path.manageCourse);
-      //     })
-      //     .catch((err) => {
-      //       console.log(err);
-      //       showNotification(`${err.response.data}`, "error");
-      //     });
+      const { danhMucKhoaHoc, nguoiTao, soLuongHocVien, ...formValues } =
+        values;
+      // console.log("formEdit", formValues);
+      khoaHocService
+        .suaKhoaHoc(formValues)
+        .then((res) => {
+          showNotification(`Đã sửa khóa học ${res.data.tenKhoaHoc}`, "warning");
+          resetForm();
+          navigate(path.manageCourse);
+        })
+        .catch((err) => {
+          console.log(err);
+          showNotification(`${err.response.data}`, "error");
+        });
     },
   });
 

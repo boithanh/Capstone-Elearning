@@ -22,4 +22,10 @@ export const userService = {
       `QuanLyNguoiDung/TimKiemNguoiDung?MaNhom=GP01&tuKhoa=${data}`
     );
   },
+  layDanhSachKhoaHocDaXetDuyet: (data) => {
+    return http.post(`QuanLyNguoiDung/LayDanhSachKhoaHocDaXetDuyet`, data);
+  },
+  layDanhSachKhoaHocChoXetDuyet: (data) => {
+    return http.post("QuanLyNguoiDung/LayDanhSachKhoaHocChoXetDuyet", data);
+  },
 };
