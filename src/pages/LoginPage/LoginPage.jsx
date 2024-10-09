@@ -39,7 +39,7 @@ const LoginPage = () => {
             setLocalStorage("admin", { ...res.data, matKhau: values.matKhau });
             dispatch(userStatus(res.data));
             setTimeout(() => {
-              navigate(path.adminPage);
+              navigate(path.manageUser);
             }, 1000);
           }
         })
