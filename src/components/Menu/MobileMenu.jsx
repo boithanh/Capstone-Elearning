@@ -17,7 +17,6 @@ const MobileMenu = () => {
     }, [])
     return (
         <div className="topnav mobile-menu">
-            <div className="active"></div>
             {isMenuOpen && (
                 <div id="myLinks">
                     {

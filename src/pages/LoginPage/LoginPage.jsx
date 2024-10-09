@@ -61,10 +61,10 @@ const LoginPage = () => {
   return (
     <>
       <Header />
-      <div className="container mx-auto">
-        <div className="flex justify-between h-full">
-          <div className="w-1/2">{View}</div>
-          <div className="w-1/2 flex flex-col justify-center space-y-8">
+      <div className="container xs:max-w-full xs:px-4 md:px-8 mx-auto py-10">
+        <div className="xs:block sm:flex md:flex justify-between items-center h-full">
+          <div className="xs:w-full sm:w-1/2">{View}</div>
+          <div className="xs:w-full sm:w-1/2 xs:block sm:flex flex-col justify-center space-y-8">
             <h2 className="text-3xl font-bold text-purple-800">Login Page</h2>
             <form className="space-y-5" onSubmit={handleSubmit}>
               <InputCustom
@@ -81,16 +81,16 @@ const LoginPage = () => {
                 onChange={handleChange}
                 value={values.matKhau}
               />
-              <div className="flex justify-between">
+              <div className="xs:block sm:block md:flex md:justify-center lg:justify-between gap-5 !mt-8">
                 <button
                   type="submit"
-                  className="px-5 py-3 rounded-md button-left"
+                  className="px-5 py-3 rounded-md button-left xs:block xs:w-full lg:w-1/4 mb-4"
                 >
                   Login
                 </button>
                 <Link
                   type="submit"
-                  className="px-5 py-3 rounded-md button-right text-center w-1/4"
+                  className="px-5 py-3 rounded-md button-right text-center xs:block xs:w-full lg:w-1/4 mb-4"
                   to={path.signUpPage}
                 >
                   Sign Up ? <i className="fa-solid fa-arrow-right"></i>

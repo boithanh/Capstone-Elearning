@@ -16,14 +16,14 @@ const ListKhoaHoc = () => {
         }, [])
 
     return (
-        <div className='container listKhoaHoc py-10'>
+        <div className='container listKhoaHoc py-10 xs:max-w-full'>
             <h1 className='font-bold text-3xl mb-10 text-[#211C5B] w-10/12 mx-auto'>Các khóa học mới nhất</h1>
-            <div className="grid grid-cols-3 gap-16 w-10/12 mx-auto">
+            <div className=" xs:block md:grid-cols-2 md:grid lg:grid lg:grid-cols-3 xs:w-full sm:w-10/12 gap-16 mx-auto">
                 {listKhoaHoc.splice(-9).map((item, index) => {
                     // console.log(item);
-                    return <div>
+                    return <div className='mb-14'>
                         <div className='mb-3 img_content'>
-                            <img src={item?.hinhAnh} alt="err" className='w-full' />
+                            <img src={item?.hinhAnh} alt="err" className=' xs:!w-full xs:!h-full md:!w-[310px] md:!h-[176px]' />
                         </div>
                         <div className='mb-3'>
                             <h2>{item?.tenKhoaHoc}</h2>
