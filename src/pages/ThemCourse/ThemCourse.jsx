@@ -51,7 +51,7 @@ const ThemCourse = () => {
 
   useEffect(() => {
     dispatch(getValueUserApi());
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     khoaHocService
@@ -85,11 +85,10 @@ const ThemCourse = () => {
       taiKhoanNguoiTao: "",
     },
     onSubmit: (values) => {
-      console.log(values);
       khoaHocService
         .themKhoaHoc(values)
         .then((res) => {
-          console.log(res.data);
+          // console.log(res.data);
           showNotification(`Đã thêm khóa học ${res.data.tenKhoaHoc}`, "info");
           resetForm();
           navigate(path.manageCourse);
