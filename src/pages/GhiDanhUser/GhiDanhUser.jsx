@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Space, Table, Tag } from "antd";
 import { userService } from "../../service/user.service";
+import utils from "../../utils/utils";
 
 const GhiDanhUser = (taiKhoan) => {
   const [dsDaXet, setDsDaXet] = useState([]);
   const [dsChoXet, setDsChoXet] = useState([]);
+  // const [arrFilter, setArrFilter] = useState([]);
+  // const [isSearching, setIsSearching] = useState(false);
 
   useEffect(() => {
     userService
@@ -99,14 +102,47 @@ const GhiDanhUser = (taiKhoan) => {
     },
   ];
 
+  // const searchTheoHoVaTen = (name) => {
+  //   let txt = utils.removeVietnameseTones(name).trim().toLowerCase();
+  //   let arrSearch = listUsers.filter((item, index) => {
+  //     let searchName = utils
+  //       .removeVietnameseTones(item.hoTen)
+  //       .trim()
+  //       .toLowerCase();
+  //     return searchName.includes(txt);
+  //   });
+  //   setIsSearching(true);
+  //   setArrFilter(arrSearch);
+  //   return arrSearch;
+  // };
+
   return (
     <div className="space-y-3">
-      <div className="space-y-5 border-b-2 border-blue-500">
-        <h1 className="text-xl font-semibold">Khoá học chờ xác nhận</h1>
-        <Table columns={columnsChuaXet} dataSource={dataSourceChoXet} />;
+      <div className="space-y-5 border-b-2 border-gray-400">
+        <div className="flex items-center justify-between">
+          <h1 className="text-xl text-blue-700 font-semibold">
+            Khoá học chờ xác nhận
+          </h1>
+          {/* <input
+            type="text"
+            placeholder="Tìm kiếm họ và tên"
+            className="border w-1/2 px-2 py-3 rounded-md"
+            onInput={(e) => {
+              if (e.target.value.trim() !== "") {
+                setIsSearching(true);
+                searchTheoHoVaTen(e.target.value);
+              } else {
+                setIsSearching(false);
+              }
+            }}
+          /> */}
+        </div>
+        <Table columns={columnsChuaXet} dataSource={dataSourceChoXet} />
       </div>
       <div className="space-y-5">
-        <h1 className="text-xl font-semibold">Khoá học đã ghi danh</h1>
+        <h1 className="text-xl text-green-500 font-semibold">
+          Khoá học đã ghi danh
+        </h1>
         <Table columns={columnsDaXet} dataSource={dataSourceDaXet} />
       </div>
     </div>
