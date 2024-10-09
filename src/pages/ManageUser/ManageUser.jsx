@@ -16,6 +16,7 @@ const ManageUser = () => {
   const [arrFilter, setArrFilter] = useState([]);
   const [isSearching, setIsSearching] = useState(false);
   const [ghiDanhUser, setGhiDanhUser] = useState("");
+  const [ghiDanhHV, setGhiDanhHV] = useState("");
   const { listUsers } = useSelector((state) => state.userSlice);
   const dataSource = (isSearching ? arrFilter : listUsers).map(
     (item, index) => ({
@@ -74,6 +75,7 @@ const ManageUser = () => {
             onClick={() => {
               showModal();
               setGhiDanhUser(record.taiKhoan);
+              setGhiDanhHV(record.hoTen);
             }}
           >
             Ghi Danh
@@ -144,7 +146,7 @@ const ManageUser = () => {
   return (
     <>
       <Modal
-        // title="DANH SÁCH GHI DANH"
+        title={`Khóa học của học viên - ${ghiDanhHV}`}
         open={isModalOpen}
         onOk={handleOk}
         onCancel={handleCancel}
@@ -167,7 +169,6 @@ const ManageUser = () => {
             Thêm người dùng
           </Link>
         </div>
-
         <div className="flex flex-row gap-x-5">
           <input
             type="text"

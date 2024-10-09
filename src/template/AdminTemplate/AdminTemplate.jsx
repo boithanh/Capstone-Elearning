@@ -65,6 +65,7 @@ const AdminTemplate = () => {
             }}
           />
         </Header>
+
         <Content
           style={{
             margin: "24px 16px",
