@@ -14,13 +14,16 @@ import { userStatus } from "../../redux/userSlice";
 import { info } from "sass";
 
 const Header = () => {
-  const { infoUser } = useSelector(state => state.userSlice);
+  const { infoUser } = useSelector((state) => state.userSlice);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const items = [
     {
       label: (
-        <Link to={path.userInfo} className="flex space-x-2 items-center font-bold">
+        <Link
+          to={path.userInfo}
+          className="flex space-x-2 items-center font-bold"
+        >
           <UserIcon />
           <span>Thông tin cá nhân</span>
         </Link>
@@ -29,7 +32,8 @@ const Header = () => {
     },
     {
       label: (
-        <Link to={path.homePage}
+        <Link
+          to={path.homePage}
           className="flex space-x-2 items-center font-bold text-[#4054B2]"
           onClick={() => {
             dispatch(userStatus(null));
@@ -46,7 +50,6 @@ const Header = () => {
       type: "divider",
     },
   ];
-
 
   // Note: infoUser giả lập user sau khi login sẽ có thông tin này để load lên header menu
   const checkUserLogin = () => {
@@ -76,6 +79,7 @@ const Header = () => {
       </>
     );
   };
+
   return (
     <>
       <header>
