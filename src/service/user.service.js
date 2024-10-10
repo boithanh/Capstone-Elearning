@@ -28,4 +28,10 @@ export const userService = {
   layDanhSachKhoaHocChoXetDuyet: (data) => {
     return http.post("QuanLyNguoiDung/LayDanhSachKhoaHocChoXetDuyet", data);
   },
+  layDanhSachHocVienChoXetDuyet: (data) => {
+    return http.post("QuanLyNguoiDung/LayDanhSachHocVienChoXetDuyet", data);
+  },
+  layDanhSachHocVienKhoaHoc: (data) => {
+    return http.post("QuanLyNguoiDung/LayDanhSachHocVienKhoaHoc", data);
+  },
 };

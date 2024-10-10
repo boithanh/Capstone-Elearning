@@ -7,12 +7,16 @@ import { path } from "../../common/path";
 import utils from "../../utils/utils";
 import { khoaHocService } from "../../service/khoaHoc.service";
 import { NotificationContext } from "../../App";
+import { Button, Modal } from "antd";
+import GhiDanhCourse from "../GhiDanhCourse/GhiDanhCourse";
 
 const ManageCourse = () => {
   const dispatch = useDispatch();
   const { showNotification } = useContext(NotificationContext);
   const [arrFilter, setArrFilter] = useState([]);
   const [isSearching, setIsSearching] = useState(false);
+  const [ghiDanhCourse, setGhiDanhCourse] = useState("");
+  const [courseGhiDanh, setCourseGhiDanh] = useState("");
   const { listCourse } = useSelector((state) => state.courseSlice);
   const dataSource = (isSearching ? arrFilter : listCourse).map(
     (item, index) => ({
@@ -59,18 +63,28 @@ const ManageCourse = () => {
       key: "action",
       render: (_, record) => (
         <Space size="middle" className="space-x-2">
-          <button className="bg-blue-500/80 text-white py-2 px-3 rounded-md">
-            Ghi Danh
-          </button>
-          <Link
-            to={path.editCourse}
-            className="bg-yellow-500/80 text-white py-2 px-3 rounded-md"
+          <button
+            className="bg-blue-500/80 text-white py-2 px-3 rounded-md hover:scale-125 duration-300"
             onClick={() => {
-              dispatch(setCourse(record.maKhoaHoc));
+              if (record.maKhoaHoc) {
+                showModal();
+                setGhiDanhCourse(record.maKhoaHoc);
+                setCourseGhiDanh(record.tenKhoaHoc);
+              }
             }}
           >
-            Sửa
-          </Link>
+            Ghi Danh
+          </button>
+          <button className="bg-yellow-500/80 text-white py-2 px-3 rounded-md hover:text-white hover:scale-125 duration-300">
+            <Link
+              to={path.editCourse}
+              onClick={() => {
+                dispatch(setCourse(record.maKhoaHoc));
+              }}
+            >
+              <span className="text-white">Sửa</span>
+            </Link>
+          </button>
           <button
             className="bg-red-500/80 text-white py-2 px-3 rounded-md"
             onClick={() => {
@@ -112,8 +126,31 @@ const ManageCourse = () => {
     return arrSearch;
   };
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+  const handleOk = () => {
+    setIsModalOpen(false);
+  };
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <>
+      <Modal
+        title={`Danh sách khóa học - ${courseGhiDanh}`}
+        open={isModalOpen}
+        onOk={handleOk}
+        onCancel={handleCancel}
+        maskClosable={false}
+        okText="Ghi Danh"
+        cancelText="Đóng"
+        width={800}
+      >
+        <GhiDanhCourse maKhoaHoc={ghiDanhCourse} />
+      </Modal>
       <div className="container mx-auto space-y-5 h-full">
         <div className="flex justify-between items-center">
           <h1 className="text-blue-400 uppercase font-bold text-3xl">

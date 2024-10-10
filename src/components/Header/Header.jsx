@@ -28,7 +28,10 @@ const Header = () => {
   const items = [
     {
       label: (
-        <Link to={path.userInfo} className="flex space-x-2 items-center font-bold">
+        <Link
+          to={path.userInfo}
+          className="flex space-x-2 items-center font-bold"
+        >
           <UserIcon />
           <span>Thông tin cá nhân</span>
         </Link>
@@ -37,7 +40,8 @@ const Header = () => {
     },
     {
       label: (
-        <Link to={path.homePage}
+        <Link
+          to={path.homePage}
           className="flex space-x-2 items-center font-bold text-[#4054B2]"
           onClick={() => {
             dispatch(userStatus(null));
@@ -81,6 +85,7 @@ const Header = () => {
       </>
     );
   };
+
   return (
     <>
       <header>
