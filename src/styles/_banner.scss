@@ -9,8 +9,9 @@
 
     button:last-of-type {
         @include styleButton($pink-700, white, 13px 20px, $blue-700);
-        background-size: 200%;
-        background-image: linear-gradient(to right, $blue-300 0, $pink-700 51%, $blue-300 100%);
+        background-size: 150%;
+        // background-image: linear-gradient(to right, $blue-700 0, $pink-700 51%, $blue-700 100%);
+        background-image: linear-gradient(to right, $pink-700 0, $blue-300 51%, $pink-700 100%);
         font-weight: 600;
         transition: all 1s;
 
@@ -57,7 +58,6 @@
         border-radius: 15px;
         object-fit: cover;
         object-position: center;
-        box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
     }
 }
 

@@ -2,21 +2,16 @@ import React, { useEffect, useState } from 'react'
 import { khoaHocService } from '../../service/khoaHoc.service';
 import { Link } from 'react-router-dom';
 
-const MobileMenu = () => {
+const MobileMenu = ({ valueDanhMuc }) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const [valueDanhMuc, setValueDanhMuc] = useState([]);
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen); // Thay đổi trạng thái menu mỗi khi nút được ấn
     };
-    useEffect(() => {
-        khoaHocService.layAllDanhMucKhoaHoc().then((res) => {
-            setValueDanhMuc(res.data);
-        }).catch(() => {
-            console.log(err);
-        })
-    }, [])
     return (
-        <div className="topnav mobile-menu">
+        <nav className="topnav mobile-menu xs:!block sm:!hidden">
+            <button className="icon" onClick={toggleMenu}>
+                <i className="fa fa-bars" />
+            </button>
             {isMenuOpen && (
                 <div id="myLinks">
                     {
@@ -29,10 +24,7 @@ const MobileMenu = () => {
                     }
                 </div>
             )}
-            <button className="icon" onClick={toggleMenu}>
-                <i className="fa fa-bars" />
-            </button>
-        </div>
+        </nav>
     )
 }
 

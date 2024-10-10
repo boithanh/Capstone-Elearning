@@ -32,8 +32,8 @@ const FormSearchKhoaHoc = ({ setOpenDropdown, handleGetValueChildren }) => {
     }
     return (
         <>
-            <form onSubmit={handleSubmit} className='w-1/2 inline-block'>
-                <input onChange={handleChange} className='w-6/12 ms-32' type="text" placeholder='Tìm khóa học' />
+            <form onSubmit={handleSubmit} className='inline-block'>
+                <input onChange={handleChange} className='w-full' type="text" placeholder='Tìm khóa học' />
                 <button type='submit' onClick={handleSubmit} className='p-2 text-sm hidden'><i className="fa-solid fa-magnifying-glass"></i></button>
             </form>
         </>

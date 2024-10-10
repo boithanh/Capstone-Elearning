@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { Link, useNavigate, useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { getLocalStorage } from '../../utils/utils';
 import { khoaHocService } from '../../service/khoaHoc.service';
 import { NotificationContext } from '../../App';
@@ -42,9 +42,9 @@ const ChiTietKhoaHoc = () => {
     return (
         <>
             <div className='banner_course'>
-                <div className='container text-[#211C5B] py-14 relative'>
-                    <div className='flex items-center py-32 w-10/12 mx-auto'>
-                        <div className='w-8/12 text-white'>
+                <div className='container text-[#211C5B] py-14 relative xs:max-w-full'>
+                    <div className='xs:block md:flex items-center py-32 w-10/12 mx-auto'>
+                        <div className='xs:w-full md:w-8/12 text-white mb-10'>
                             <h1 className='text-4xl uppercase mb-5'>{chiTietKhoaHoc?.tenKhoaHoc}</h1>
                             <p className='mb-5'>Đánh giá khóa học
                                 <span className='text-[#F28820] ms-4'>
@@ -59,14 +59,14 @@ const ChiTietKhoaHoc = () => {
                                 getLocalStorage("user") ? handleSignUpCourse() : navigate("/login");
                             }}>ĐĂNG KÝ</button>
                         </div>
-                        <div className='w-4/12'>
-                            <div className='w-full'><img src={chiTietKhoaHoc?.hinhAnh} alt="err" /></div>
+                        <div className='xs:w-full md:w-4/12 mb-5'>
+                            <div className='w-full'><img src={chiTietKhoaHoc?.hinhAnh} alt="err" className='xs:!w-full xs:!h-full md:!w-[310px] md:!h-[176px] ' /></div>
                         </div>
                     </div>
                 </div>
             </div>
             <div className="detail_course py-20">
-                <div className='container'>
+                <div className='container xs:max-w-full sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg'>
                     <h1 className='text-3xl font-semibold mb-5'>Giới thiệu khóa học</h1>
                     <p>{chiTietKhoaHoc?.moTa}</p>
                 </div>
