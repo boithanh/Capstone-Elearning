@@ -13,7 +13,7 @@ const MobileMenu = ({ valueDanhMuc }) => {
                 <i className="fa fa-bars" />
             </button>
             {isMenuOpen && (
-                <div id="myLinks">
+                <div id="myLinks" className='animate__animated animate__fast animate__jello'>
                     {
                         valueDanhMuc.map((item, index) => {
                             return (

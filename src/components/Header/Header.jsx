@@ -14,7 +14,7 @@ import { userStatus } from "../../redux/userSlice";
 import { khoaHocService } from "../../service/khoaHoc.service";
 
 const Header = () => {
-  const { infoUser } = useSelector(state => state.userSlice);
+  const { infoUser } = useSelector((state) => state.userSlice);
   const [valueDanhMuc, setValueDanhMuc] = useState([]);
   const dispatch = useDispatch();
   const navigate = useNavigate();
