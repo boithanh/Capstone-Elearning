@@ -9,10 +9,11 @@ const MobileMenuGlass = ({ valueDanhMuc }) => {
     return (
         <nav className="topnav mobile-menu xs:!block sm:!hidden">
             <button className="icon" onClick={toggleMenu}>
-                <i className="fa fa-bars" />
+                {isMenuOpen ? <i className="fa-solid fa-circle-xmark" />
+                    : <i className="fa fa-bars" />}
             </button>
             {isMenuOpen && (
-                <div id="myLinks" className='animate__animated'>
+                <div id="myLinks" className='animate__animated animate__slideInDown'>
                     {
                         valueDanhMuc.map((item, index) => {
                             return (
