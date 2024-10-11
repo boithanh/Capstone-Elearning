@@ -12,6 +12,7 @@ import { path } from "../../common/path";
 import { useDispatch, useSelector } from "react-redux";
 import { userStatus } from "../../redux/userSlice";
 import { khoaHocService } from "../../service/khoaHoc.service";
+import MobileMenuGlass from "../Menu/MobileMenuGlass";
 
 const Header = () => {
   const { infoUser } = useSelector((state) => state.userSlice);
@@ -105,7 +106,8 @@ const Header = () => {
                 </div>
               </div>
             </nav>
-            <MobileMenu valueDanhMuc={valueDanhMuc} />
+            {/* <MobileMenu valueDanhMuc={valueDanhMuc} /> */}
+            <MobileMenuGlass valueDanhMuc={valueDanhMuc} />
           </div>
         </div>
       </header>

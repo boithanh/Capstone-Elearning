@@ -1,61 +1,19 @@
 header {
+    position: fixed;
+    width: 100%;
     background-color: transparent;
     background-image: linear-gradient(130deg, $blue-700 0%, $violet 100%);
     box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.1);
-    padding: 15px 0;
+    z-index: 100;
+
+    @media screen and (max-width:575.98px) {
+        padding: 10px 0;
+    }
 
     .header_container {
         .header_main {
             input {
                 @include styleInput($glass-white, white, 10px 20px);
-            }
-        }
-
-        .topnav {
-            display: none;
-            padding: 15px 0;
-            transition: all 5s;
-
-            @media screen and (max-width:575.98px) {
-                padding: 5px;
-            }
-
-            #myLinks {
-                background-color: white;
-                left: 0;
-                position: absolute;
-                width: 100%;
-                overflow: hidden;
-                z-index: 10;
-
-                @media screen and (max-width:575.98px) {
-                    top: 60px;
-                }
-            }
-
-            a {
-                color: $blue-700;
-                padding: 20px 16px;
-                text-decoration: none;
-                font-size: 13px;
-                display: block;
-                text-align: center;
-                border-bottom: 1px solid rgb(0, 0, 0, 0.1);
-                font-weight: 600;
-
-                &:hover {
-                    color: $pink-700;
-                }
-            }
-
-            button.icon {
-                z-index: 100;
-                font-size: 25px;
-                color: white;
-
-                @media screen and (max-width:575.98px) {
-                    transform: translateY(-5px);
-                }
             }
         }
     }
