@@ -14,9 +14,9 @@ const ListKhoaHoc = () => {
 
         }, []);
     return (
-        <div className='container listKhoaHoc py-10 xs:max-w-full sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg xl:max-w-screen-xl'>
-            <h1 className='font-bold text-3xl mb-10 text-[#211C5B] w-10/12 mx-auto'>Các khóa học mới nhất</h1>
-            <div className=" xs:block md:grid-cols-2 md:grid lg:grid lg:grid-cols-3 xs:w-full sm:w-10/12 gap-16 mx-auto">
+        <div className='container listKhoaHoc py-10 xs:max-w-full sm:max-w-screen-sm md:max-w-screen-md lg:max-w-[1140px]'>
+            <h1 className='font-bold text-3xl mb-10 text-[#211C5B] mx-auto'>Các khóa học mới nhất</h1>
+            <div className=" xs:block md:grid-cols-2 md:grid lg:grid lg:grid-cols-3 gap-16 mx-auto">
                 {listKhoaHoc.splice(-9).map((item, index) => {
                     // console.log(item);
                     return <div className='mb-14 animate__animated animate__fadeInUp animate__slow animate__delay-5s'>
@@ -24,7 +24,7 @@ const ListKhoaHoc = () => {
                             <img src={item?.hinhAnh} alt="err" className='xs:!w-full xs:!h-full md:!w-[310px] md:!h-[176px]' />
                         </div>
                         <div className='mb-3'>
-                            <h2>{item?.tenKhoaHoc}</h2>
+                            <h2 className='leading-8'>{item?.tenKhoaHoc}</h2>
                         </div>
                         <div className='flex items-center justify-start mb-8'>
                             <div>

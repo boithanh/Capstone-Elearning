@@ -20,14 +20,14 @@ const DanhMucKhoaHoc = () => {
         }, [searchParam.get("maDanhMuc")])
     return (
         <>
-            <div className="container px-0 xs:max-w-full mx-auto">
+            <div className="container px-0 mx-auto xs:max-w-full">
                 <div className='banner_danhmuc text-center'>
                     <h1 className='xs:text-2xl sm:text-3xl text-[#211C5B] ms-8 animate__animated animate__slower animate__fadeInDown'>{searchParam.get("ten")}</h1>
                 </div>
             </div>
-            <div className='conatainer danhMucKhoaHoc pb-16 pt-8 px-5 xs:max-w-full sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg xl:max-w-screen-xl mx-auto'>
+            <div className='container danhMucKhoaHoc pb-16 pt-8 px-5 mx-auto xs:max-w-full sm:max-w-screen-sm md:max-w-screen-md lg:max-w-[1140px]'>
                 <h1 className='font-bold xs:text-xl sm:text-2xl mb-10 mx-auto wow animate__animated animate__slower animate__flipInX'>Các khóa học phổ biến</h1>
-                <div className='xs:w-full xs:block md:grid sm:grid-cols-3 lg:grid-cols-4 gap-5'>
+                <div className='xs:w-full xs:block md:grid sm:grid-cols-3 lg:grid-cols-4 gap-3'>
                     {listKhoaHoc.splice(-9).map((item, index) => {
                         // console.log(item);
                         return <div className='p-3 mb-10' key={index}>

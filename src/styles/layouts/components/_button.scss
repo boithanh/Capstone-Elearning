@@ -1,0 +1,53 @@
+.button-left,
+.button-violet {
+  @include styleButton($violet, white, 12px 30px, $pink-700);
+}
+
+.button-pink {
+  @include styleButton($pink-700, white, 13px 20px, $blue-700);
+}
+
+.button-blue {
+  @include styleButton($blue-700, white, 13px 20px, $pink-700);
+}
+
+.button-right,
+.button-gradient1 {
+  @include styleButton($pink-700, white, 15px 18px, lightgrey, $pink-700);
+  font-weight: 500;
+  background-image: linear-gradient(to right,
+      $blue-300 0,
+      $pink-700 51%,
+      $blue-300 100%);
+  background-size: 200%;
+  width: 25%;
+
+  &:hover {
+    color: white;
+    background-position: right center;
+  }
+}
+
+.button-gradient2 {
+  @include styleButton($pink-700, white, 13px 20px, $blue-700);
+  background-size: 150%;
+  background-image: linear-gradient(to right, $pink-700 0, $blue-300 51%, $pink-700 100%);
+  font-weight: 600;
+  transition: all 1s;
+
+  &:hover {
+    background-position: right center;
+  }
+}
+
+.button-gradient3 {
+  @include styleButton($pink-700, white, 13px 20px, $blue-700);
+  background-size: 200%;
+  background-image: linear-gradient(to right, $blue-300 0, $pink-700 51%, $blue-300 100%);
+  font-weight: 600;
+  transition: all 1s;
+
+  &:hover {
+    background-position: right center;
+  }
+}

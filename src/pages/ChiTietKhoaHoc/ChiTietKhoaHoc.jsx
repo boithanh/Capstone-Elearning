@@ -19,8 +19,9 @@ const ChiTietKhoaHoc = () => {
             maKhoaHoc, taiKhoan
         });
         khoaHocService.dangKyKhoaHocUser(token, duLieuDangKy).then((res) => {
-            console.log(res);
+            // console.log(res);
             showNotification("Đăng ký thành công, vui lòng kiểm tra thông tin khóa đã đăng ký", "success");
+            navigate("/user-info")
         }).catch((err) => {
             console.log(err);
             showNotification(err.response.data, "error");
