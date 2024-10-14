@@ -11,6 +11,12 @@
   @include styleButton($blue-700, white, 13px 20px, $pink-700);
 }
 
+.button-transparent {
+  @include styleButton(transparent, white, 13px 20px, transparent);
+  border: 2px solid white;
+  font-weight: 600;
+}
+
 .button-right,
 .button-gradient1 {
   @include styleButton($pink-700, white, 15px 18px, lightgrey, $pink-700);

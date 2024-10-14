@@ -7,18 +7,19 @@ import { path } from '../../common/path'
 import LetStarted from '../../components/UI/LetStarted'
 import Discover from '../../components/UI/Discover'
 import Prepare from '../../components/UI/Prepare'
+import WhyLearn from '../../components/UI/WhyLearn'
 
 const HomePage = () => {
     const location = useLocation();
     return (
         <>
             <Header />
-            {location.pathname === path.homePage && (<> <Banner /> <Prepare /> </>)}
+            {location.pathname === path.homePage && (<> <Banner /><Prepare /> </>)}
 
             <main className='min-h-screen'>
                 <Outlet />
             </main>
-            {location.pathname === path.homePage && (<><Discover />
+            {location.pathname === path.homePage && (<><Discover /> <WhyLearn />
                 <LetStarted /></>)}
             <Footer />
         </>
