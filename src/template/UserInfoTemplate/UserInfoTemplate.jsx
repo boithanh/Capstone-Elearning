@@ -75,7 +75,7 @@ const UserInfoTemplate = () => {
         <>
           <div className="container mx-auto">
             <form
-              className="grid grid-cols-2 grid-rows-3 gap-x-5 items-center"
+              className="grid lg:grid-cols-2 lg:grid-rows-3 gap-x-5 items-center"
               onSubmit={handleSubmit}
             >
               <div className="w-1/2">
@@ -124,7 +124,8 @@ const UserInfoTemplate = () => {
                   value={values.soDT}
                 />
               </div>
-              <div className="w-1/2 flex flex-row-reverse">
+              <div className="lg:px-16">
+                <br />
                 <button
                   type="submit"
                   className="font-bold text-center w-1/2 button-right p-2"
@@ -143,15 +144,15 @@ const UserInfoTemplate = () => {
       children: (
         <>
           <div className="container mx-auto space-y-8">
-            <div className="flex justify-around">
-              <h1 className="text-4xl font-bold">Các lớp học đã tham gia</h1>
+            <div className="grid lg:grid-cols-2 gap-x-40 gap-y-5">
+              <h1 className="text-3xl font-bold">Các lớp học đã tham gia</h1>
               <input
                 type="text"
                 placeholder="Nhập khóa học cần tìm"
                 className="border py-2 px-3 rounded-md"
               />
             </div>
-            <div className="space-y-5 px-32">
+            <div className="space-y-5">
               {listKhoaHoc.map((item, index) => {
                 return (
                   <div
@@ -190,13 +191,12 @@ const UserInfoTemplate = () => {
   return (
     <>
       <Header />
-      <div className="container mx-auto py-10 listKhoaHoc space-y-8">
-        <h1 className="font-bold text-3xl mb-10 text-[#211C5B] w-10/12 mx-auto">
+      <div className="container listKhoaHoc py-10 xs:max-w-full sm:max-w-screen-sm md:max-w-screen-md lg:max-w-[1140px] space-y-8">
+        <h1 className="font-bold text-3xl mt-16 text-[#211C5B] mx-auto">
           Các khóa học mới nhất
         </h1>
-        <div className="grid grid-cols-3 gap-16 w-10/12 mx-auto">
+        <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16 mx-auto">
           {listKhoaHocMoi.splice(-4).map((item, index) => {
-            // console.log(item);
             return (
               <div>
                 <div className="mb-3 img_content">
@@ -231,7 +231,9 @@ const UserInfoTemplate = () => {
             );
           })}
         </div>
-        <Tabs onChange={onChange} type="card" items={tabItems} />
+        <div className="w-full px-20">
+          <Tabs onChange={onChange} type="card" items={tabItems} />
+        </div>
       </div>
       <Footer />
     </>

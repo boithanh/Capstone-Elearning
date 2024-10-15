@@ -10,6 +10,7 @@ import ImgUpload from "../../components/ImgUpload/ImgUpload";
 import { createEditor } from "slate";
 import { NotificationContext } from "../../App";
 import { Slate, Editable, withReact } from "slate-react";
+import { Rate } from "antd";
 
 const ThemCourse = () => {
   const [danhMuc, setDanhMuc] = useState([]);
@@ -100,6 +101,10 @@ const ThemCourse = () => {
     },
   });
 
+  const handleRateChange = (value) => {
+    setFieldValue("danhGia", value);
+  };
+
   return (
     <>
       <div className="container mx-auto">
@@ -156,12 +161,21 @@ const ThemCourse = () => {
                 />
               </div>
               <div>
-                <InputCustom
+                {/* <InputCustom
                   name="danhGia"
                   labelContent="Đánh giá"
                   typeInput="number"
                   onChange={handleChange}
                   value={values.danhGia}
+                /> */}
+                <label className="block mb-2 text-sm font-medium text-gray-900">
+                  Đánh giá
+                </label>
+                <Rate
+                  defaultValue={2}
+                  value={values.danhGia}
+                  onChange={handleRateChange}
+                  className="rounded-md outline-none block w-1/2 py-2.5 mb-3"
                 />
               </div>
               <div>

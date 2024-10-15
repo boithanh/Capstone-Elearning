@@ -8,6 +8,7 @@ import { NotificationContext } from "../../App";
 import { khoaHocService } from "../../service/khoaHoc.service";
 import ImgUpload from "../../components/ImgUpload/ImgUpload";
 import { getValueUserApi } from "../../redux/userSlice";
+import { Rate } from "antd";
 
 const EditCourse = () => {
   const navigate = useNavigate();
@@ -78,7 +79,7 @@ const EditCourse = () => {
     onSubmit: (values) => {
       const { danhMucKhoaHoc, nguoiTao, soLuongHocVien, ...formValues } =
         values;
-      // console.log("formEdit", formValues);
+      console.log("formEdit", formValues);
       khoaHocService
         .suaKhoaHoc(formValues)
         .then((res) => {
@@ -92,6 +93,10 @@ const EditCourse = () => {
         });
     },
   });
+
+  const handleRateChange = (value) => {
+    setFieldValue("danhGia", value);
+  };
 
   return (
     <>
@@ -160,12 +165,21 @@ const EditCourse = () => {
                 />
               </div>
               <div>
-                <InputCustom
+                {/* <InputCustom
                   name="danhGia"
                   labelContent="Đánh giá"
                   typeInput="number"
                   onChange={handleChange}
                   value={values.danhGia}
+                /> */}
+                <label className="block mb-2 text-sm font-medium text-gray-900">
+                  Đánh giá
+                </label>
+                <Rate
+                  defaultValue={2}
+                  value={values.danhGia}
+                  onChange={handleRateChange}
+                  className="rounded-md outline-none block w-1/2 py-2.5 mb-3"
                 />
               </div>
               <div>

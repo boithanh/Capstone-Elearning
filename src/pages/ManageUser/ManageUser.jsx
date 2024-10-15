@@ -172,7 +172,7 @@ const ManageUser = () => {
         <div className="flex flex-row gap-x-5">
           <input
             type="text"
-            placeholder="Tìm kiếm họ và tên"
+            placeholder="Tìm kiếm Họ và tên"
             className="border w-3/4 px-2 py-3 rounded-md"
             onInput={(e) => {
               if (e.target.value.trim() !== "") {
@@ -183,12 +183,12 @@ const ManageUser = () => {
               }
             }}
           />
-          <button
+          {/* <button
             className="border rounded-md px-5 py-3 bg-blue-400 text-white"
             onClick={() => {}}
           >
             Tìm kiếm
-          </button>
+          </button> */}
         </div>
         <Table columns={columns} dataSource={dataSource} />
         <Outlet />

@@ -48,7 +48,7 @@ const EditUser = () => {
         .updateUser({ ...values, maNhom: "GP01" })
         .then((res) => {
           showNotification(`Đã sửa tài khoản ${res.data.taiKhoan}`, "warning");
-          navigate(path.adminPage);
+          navigate(path.manageUser);
           resetForm();
         })
         .catch((err) => {
@@ -110,7 +110,7 @@ const EditUser = () => {
                   value={values.soDt}
                 />
               </div>
-              <div className="p-2.5 mb-3">
+              <div>
                 <label
                   htmlFor="maLoaiNguoiDung"
                   className="block mb-2 text-sm font-medium text-gray-900"
@@ -121,6 +121,7 @@ const EditUser = () => {
                   onChange={handleChange}
                   value={values.maLoaiNguoiDung}
                   name="maLoaiNguoiDung"
+                  className="bg-gray-50 border border-gray-300 hover:border-black focus:border-black text-gray-900 text-sm rounded-md outline-none block w-1/4 p-2.5 mb-3"
                 >
                   <option value="">--Xin chọn loại người dùng--</option>
                   <option value="GV">Giáo vụ</option>

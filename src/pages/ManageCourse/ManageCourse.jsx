@@ -97,6 +97,7 @@ const ManageCourse = () => {
                     "error"
                   );
                   dispatch(getValueCourseApi());
+                  setIsSearching(false);
                   khoaHocService.layAllKhoaHoc();
                 })
                 .catch((err) => {
@@ -167,7 +168,7 @@ const ManageCourse = () => {
         <div className="flex flex-row gap-x-5">
           <input
             type="text"
-            placeholder="Tìm kiếm tên khóa học"
+            placeholder="Tìm kiếm Tên khóa học"
             className="border w-3/4 px-2 py-3 rounded-md"
             onInput={(e) => {
               if (e.target.value.trim() !== "") {
@@ -178,12 +179,12 @@ const ManageCourse = () => {
               }
             }}
           />
-          <button
+          {/* <button
             className="border rounded-md px-5 py-3 bg-blue-400 text-white"
             onClick={() => {}}
           >
             Tìm kiếm
-          </button>
+          </button> */}
         </div>
         <Table columns={columns} dataSource={dataSource} />
         <Outlet />
