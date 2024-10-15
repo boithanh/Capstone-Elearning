@@ -1,0 +1,69 @@
+.successStory {
+    .left {
+        background-image: url('./../assets/img/bgsuccess.png');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+
+        img {
+            transition: all .5s;
+
+            &:hover {
+                transform: translateY(-20px);
+            }
+        }
+    }
+
+    .right {
+        h2 {
+            font-size: 38px;
+            font-weight: 600;
+            color: $blue-700;
+        }
+
+        .carousel_inner {
+            p {
+                font-size: 20.8px;
+                font-weight: 400;
+                color: $blue-700;
+            }
+
+            h3 {
+                font-size: 19px;
+                color: $blue-700;
+                font-weight: 600;
+            }
+
+            span {
+                font-size: 13px;
+                color: #7A7A7A;
+                font-weight: 400;
+            }
+
+            .carousel_img {
+                text-align: -webkit-right;
+            }
+
+            .carousel_content {
+                text-align: -webkit-left;
+            }
+
+            .slick-arrow.slick-next,
+            .slick-arrow.slick-prev {
+                color: black;
+            }
+
+            .slick-dots.slick-dots-bottom {
+                li {
+                    width: 10px;
+                    height: 10px;
+                    border-radius: 100%;
+
+                    button {
+                        background-color: black !important;
+                    }
+                }
+            }
+        }
+    }
+}

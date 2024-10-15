@@ -4,7 +4,7 @@ const Prepare = () => {
     return (
         <div className='prepare'>
             <div className="container prepare_content gap-3 xs:block md:flex items-start py-10 xs:max-w-full sm:max-w-screen-sm md:max-w-screen-md lg:max-w-[1140px]">
-                <div className='prepare_left mb-5'>
+                <div className='prepare_left mb-10'>
                     <div className='title'>
                         <h2 className='text-4xl'>Prepare for the future, learn the right skills </h2>
                     </div>

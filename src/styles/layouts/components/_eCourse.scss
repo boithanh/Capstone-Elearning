@@ -1,0 +1,46 @@
+.eCourse {
+    .left {
+        position: relative;
+
+        .overlay {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 500px;
+            top: 0;
+            left: 0;
+            background-repeat: no-repeat;
+            background-position: top;
+            background-size: cover;
+            background-image: url('./../assets/img/home-sec-2.png');
+
+            @media screen and (max-width:1023.98px) {
+                height: 100%;
+            }
+        }
+
+        img {
+            position: relative;
+            transition: all .5s;
+
+            &:hover {
+                transform: translateY(-20px);
+            }
+
+        }
+    }
+
+    .right {
+
+        h2,
+        p {
+            color: $blue-700;
+        }
+
+        @media screen and (max-width:1023.98px) {
+            .progress_bar {
+                display: none;
+            }
+        }
+    }
+}

@@ -13,6 +13,11 @@ export default {
       screens: {
         'xs': '320px',
       },
+      textAlign: {
+        'webkit-center': '-webkit-center',
+        'webkit-left': '-webkit-left',
+        'webkit-right': '-webkit-right',
+      },
     },
   },
   plugins: [],
