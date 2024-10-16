@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import LogoIcon from '../Icon/LogoIcon'
 const Footer = () => {
+
     return (
         <footer className='pt-10 pb-10'>
             <div className="container xs:max-w-full sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg xl:max-w-screen-xl xs:px-4 md:px-8 mx-auto">

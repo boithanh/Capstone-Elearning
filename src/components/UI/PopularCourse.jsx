@@ -12,12 +12,12 @@ const PopularCourse = () => {
             <div className='container gap-3 xs:block md:flex items-start py-10 xs:max-w-full sm:max-w-screen-sm md:max-w-screen-md lg:max-w-[1140px]'>
                 <div className='xs:block lg:flex justify-center items-center mb-5'>
                     <div className="left mb-5">
-                        <div className="popular_title animate__animated animate__fadeInDown animate__delay-1s animate__slow">
+                        <div className="popular_title" data-aos="fade-down" data-aos-delay="100">
                             <h2 className='font-semibold text-4xl leading-normal mb-3'>Discover Our
                                 Popular Courses</h2>
                             <p className='mb-10'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.</p>
                         </div>
-                        <div className='popular_content xs:block lg:grid grid-cols-2 grid-rows-2 mb-5 animate__animated animate__fadeInUp animate__delay-1s animate__slow'>
+                        <div className='popular_content xs:block lg:grid grid-cols-2 grid-rows-2 mb-5' data-aos="fade-up" data-aos-delay="1000">
                             <div className='xs:block lg:flex flex-col justify-center mb-5'>
                                 <img src={popular1} alt="err" width={78} height={78} className='mb-5 hover:animate-bounce' />
                                 <p>Digital Painting</p>
@@ -35,11 +35,11 @@ const PopularCourse = () => {
                                 <p>Web Design</p>
                             </div>
                         </div>
-                        <Link className='button-pink inline-block mb-3 animate__animated animate__fadeInDown animate__delay-1s animate__slow'>More Course</Link>
+                        <Link className='button-pink inline-block mb-3' data-aos="fade-down" data-aos-delay="1500">More Course</Link>
                     </div>
                     <div className="right mb-5">
-                        <div className="overlay animate__animated animate__fadeInDown animate__delay-1s animate__slow"></div>
-                        <img src={rightImg} alt="err" className='w-full' />
+                        <div className="overlay" data-aos="fade-down" data-aos-delay="1500"></div>
+                        <img src={rightImg} alt="err" className='w-full' data-aos="fade-up" data-aos-delay="3000" />
                     </div>
                 </div>
             </div>

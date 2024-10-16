@@ -26,7 +26,7 @@ const TimKiemKhoaHoc = () => {
                 {listKhoaHoc.map((item, index) => {
                     console.log(item);
                     return <Link to={`/chi-tiet?maKhoaHoc=${item.maKhoaHoc}`} className='mb-10 block xl:ps-20 xl:pe-20'>
-                        <div className='xs:block xl:flex items-center justify-end gap-5 border-t-2 rounded-tr-3xl rounded-bl-3xl border-[#211C5B] bg-[#423E73] text-white animate__animated animate__slower animate__zoomInLeft'>
+                        <div className='xs:block xl:flex items-center justify-end gap-5 border-t-2 rounded-tr-3xl rounded-bl-3xl border-[#211C5B] bg-[#423E73] text-white' data-aos="zoom-in-left" data-aos-delay="1000">
                             <div className='xs:w-full lg:w-6/12 xl:w-3/12 mx-auto'>
                                 <div className='xs:p-5 xl:p-0'>
                                     <img src={item?.hinhAnh} alt="err" className='w-64 h-36 object-cover object-center xs:mb-3 lg:mb-0 rounded-bl-3xl' />

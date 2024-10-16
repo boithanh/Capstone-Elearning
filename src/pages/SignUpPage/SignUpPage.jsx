@@ -54,8 +54,8 @@ const SignUpPage = () => {
       <Header />
       <div className="container xs:max-w-full sm:max-w-screen-sm md:max-w-screen-md lg:max-w-[1140px] xs:px-4 md:px-8 mx-auto py-10">
         <div className="xs:block sm:flex md:flex justify-between items-center h-full">
-          <div className="xs:w-full sm:w-1/2 md:w-1/2 animate__animated animate__fadeIn animate__delay-1s">{View}</div>
-          <div className="xs:w-full sm:w-1/2 md:w-1/2 flex flex-col justify-center space-y-5 animate__animated animate__fadeIn animate__delay-2s">
+          <div className="xs:w-full sm:w-1/2 md:w-1/2" data-aos="flip-left" data-aos-delay="1000">{View}</div>
+          <div className="xs:w-full sm:w-1/2 md:w-1/2 flex flex-col justify-center space-y-5" data-aos="flip-right" data-aos-delay="2000">
             <h2 className="text-3xl font-bold text-purple-800">Sign Up Page</h2>
             <form className="space-y-5" onSubmit={handleSubmit}>
               <InputCustom

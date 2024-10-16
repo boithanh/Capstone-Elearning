@@ -15,11 +15,11 @@ const ListKhoaHoc = () => {
         }, []);
     return (
         <div className='container listKhoaHoc py-10 xs:max-w-full sm:max-w-screen-sm md:max-w-screen-md lg:max-w-[1140px]'>
-            <h1 className='font-bold text-3xl mb-10 text-[#211C5B] mx-auto'>Các khóa học mới nhất</h1>
+            <h1 className='font-bold text-3xl mb-10 text-[#211C5B] mx-auto' data-aos="flip-down" data-aos-delay="1000">Các khóa học mới nhất</h1>
             <div className=" xs:block md:grid-cols-2 md:grid lg:grid lg:grid-cols-3 gap-16 mx-auto">
                 {listKhoaHoc.splice(-9).map((item, index) => {
                     // console.log(item);
-                    return <div className='mb-14 animate__animated animate__fadeInUp animate__slow animate__delay-2s'>
+                    return <div className='mb-14' data-aos="fade-up" data-aos-delay="1000">
                         <div className='mb-3 img_content'>
                             <img src={item?.hinhAnh} alt="err" className='xs:!w-full xs:!h-full md:!w-[310px] md:!h-[176px]' />
                         </div>
