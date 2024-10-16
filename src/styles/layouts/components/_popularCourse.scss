@@ -53,11 +53,7 @@
 
         img {
             position: relative;
-            transition: all .5s;
-
-            &:hover {
-                transform: translateY(-20px);
-            }
+            animation: move2 5s infinite;
         }
 
         @media screen and (max-width: 1023.98px) {

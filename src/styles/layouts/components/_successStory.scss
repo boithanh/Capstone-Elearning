@@ -7,10 +7,7 @@
 
         img {
             transition: all .5s;
-
-            &:hover {
-                transform: translateY(-20px);
-            }
+            animation: move2 5s infinite;
         }
     }
 

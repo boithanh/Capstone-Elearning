@@ -19,7 +19,7 @@ const ListKhoaHoc = () => {
             <div className=" xs:block md:grid-cols-2 md:grid lg:grid lg:grid-cols-3 gap-16 mx-auto">
                 {listKhoaHoc.splice(-9).map((item, index) => {
                     // console.log(item);
-                    return <div className='mb-14 animate__animated animate__fadeInUp animate__slow animate__delay-5s'>
+                    return <div className='mb-14 animate__animated animate__fadeInUp animate__slow animate__delay-2s'>
                         <div className='mb-3 img_content'>
                             <img src={item?.hinhAnh} alt="err" className='xs:!w-full xs:!h-full md:!w-[310px] md:!h-[176px]' />
                         </div>

@@ -3,3 +3,17 @@
         max-width: 100% !important;
     }
 }
+
+@keyframes move2 {
+    0% {
+        transform: rotate(1deg) translate(2px, 2px);
+    }
+
+    50% {
+        transform: rotate(-1deg) translate(-2px, -2px);
+    }
+
+    100% {
+        transform: rotate(1deg) translate(2px, 2px);
+    }
+}

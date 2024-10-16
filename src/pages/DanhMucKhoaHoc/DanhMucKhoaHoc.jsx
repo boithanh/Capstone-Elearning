@@ -30,14 +30,14 @@ const DanhMucKhoaHoc = () => {
                 <div className='xs:w-full xs:block md:grid sm:grid-cols-3 lg:grid-cols-4 gap-3'>
                     {listKhoaHoc.splice(-9).map((item, index) => {
                         // console.log(item);
-                        return <div className='p-3 mb-10' key={index}>
+                        return <div className='p-3 mb-10 animate__animated animate__slow animate__fadeInUp animate__delay-1s' key={index}>
                             <div className='mb-3 img_content'>
-                                <img src={item?.hinhAnh} alt="err" className='xs:!w-full xs:!h-full md:!w-[310px] md:!h-[176px] animate__animated animate__slower animate__fadeInUpBig animate__delay-4s' />
+                                <img src={item?.hinhAnh} alt="err" className='xs:!w-full xs:!h-full md:!w-[310px] md:!h-[176px]' />
                             </div>
                             <div className='mb-3'>
-                                <h2 className='animate__animated animate__slower animate__fadeInUpBig animate__delay-1s'>{item?.tenKhoaHoc}</h2>
+                                <h2>{item?.tenKhoaHoc}</h2>
                             </div>
-                            <div className='flex items-center justify-start mb-8 animate__animated animate__slower animate__fadeInUpBig animate__delay-2s'>
+                            <div className='flex items-center justify-start mb-8'>
                                 <div>
                                     <i className="fa-solid fa-user-graduate text-2xl" />
                                     <p className='inline text-xl font-semibold mx-5'>{item?.soLuongHocVien}</p>
@@ -50,7 +50,7 @@ const DanhMucKhoaHoc = () => {
                                     <i className="fa-regular fa-star" />
                                 </span>
                             </div>
-                            <div className='animate__animated animate__slower animate__fadeInUpBig animate__delay-3s'>
+                            <div className='animate__animated animate__fast animate__delay-2s animate__bounceIn'>
                                 <Link to={`/chi-tiet?maKhoaHoc=${item?.maKhoaHoc}`}>ĐĂNG KÝ</Link>
                             </div>
                         </div>

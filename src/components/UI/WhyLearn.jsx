@@ -6,12 +6,12 @@ const WhyLearn = () => {
         <div className='whyLearn pt-10 pb-20'>
             <div className='container mx-auto py-10 xs:max-w-full sm:max-w-screen-sm md:max-w-screen-md lg:max-w-[1140px]'>
                 <div className='whyLearn_title mb-5 xs:w-full lg:w-4/12'>
-                    <h2 className='mb-5'>3 bước giúp
+                    <h2 className='mb-5 animate__animated animate__fadeInUp animate__delay-1s animate__slow'>3 bước giúp
                         bạn chuyển nghề</h2>
                     <Link className='button-pink inline-block mb-5'>Tư vấn định hướng</Link>
                 </div>
                 <div className='whyLearn_content mb-5 xs:block lg:flex gap-6 justify-center'>
-                    <div className='flip-card'>
+                    <div className='flip-card animate__animated animate__fadeInUp animate__delay-1s animate__slow'>
                         <div className='flip-card-inner'>
                             <div className="flip-card-front">
                                 <i className="fa-solid fa-earth-americas" />
@@ -25,7 +25,7 @@ const WhyLearn = () => {
                             </div>
                         </div>
                     </div>
-                    <div className='flip-card'>
+                    <div className='flip-card animate__animated animate__fadeInDown animate__delay-1s animate__slow'>
                         <div className='flip-card-inner'>
                             <div className="flip-card-front">
                                 <i className="fa-solid fa-trophy" />
@@ -39,7 +39,7 @@ const WhyLearn = () => {
                             </div>
                         </div>
                     </div>
-                    <div className='flip-card'>
+                    <div className='flip-card animate__animated animate__fadeInUp animate__delay-1s animate__slow'>
                         <div className='flip-card-inner'>
                             <div className="flip-card-front">
                                 <i className="fa-solid fa-business-time" />

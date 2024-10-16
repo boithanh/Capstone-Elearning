@@ -1,11 +1,17 @@
 header {
     position: fixed;
     width: 100%;
-    background-color: transparent;
-    background-image: linear-gradient(130deg, $blue-700 0%, $violet 100%);
+    // background-color: transparent;
+    // background-image: linear-gradient(130deg, $blue-700 0%, $violet 100%);
     box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.1);
     z-index: 100;
     padding: 15px 0;
+    background:
+        linear-gradient(135deg, $violet 21px, #d9ecff 22px, #d9ecff 24px, transparent 24px, transparent 67px, #d9ecff 67px, #d9ecff 69px, transparent 69px),
+        linear-gradient(225deg, $violet 21px, #d9ecff 22px, #d9ecff 24px, transparent 24px, transparent 67px, #d9ecff 67px, #d9ecff 69px, transparent 69px)0 64px;
+    background-color: $violet;
+    background-size: 64px 128px;
+
 
     @media screen and (max-width:575.98px) {
         padding: 10px 0;

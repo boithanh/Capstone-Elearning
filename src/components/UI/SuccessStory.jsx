@@ -16,11 +16,11 @@ const SuccessStory = () => {
         <div className='successStory py-20'>
             <div className='container gap-3 xs:block md:flex items-start py-10 xs:max-w-full sm:max-w-screen-sm md:max-w-screen-md lg:max-w-[1140px]'>
                 <div className='xs:block md:grid grid-cols-2 gap-10 items-center mb-5'>
-                    <div className="left mb-5">
+                    <div className="left mb-5 animate__animated animate__fadeInDown animate__delay-1s animate__slow">
                         <div className="overlay"></div>
                         <img src={leftImg} alt="err" className='w-full' />
                     </div>
-                    <div className="right mb-5">
+                    <div className="right mb-5 animate__animated animate__fadeInUp animate__delay-1s animate__slow">
                         <h2 className='font-semibold leading-normal mb-3 text-center'>Success Story</h2>
                         <div className='carousel_inner'>
                             <Carousel arrows infinite={true} dots={true} autoplay={false} draggable={true}>

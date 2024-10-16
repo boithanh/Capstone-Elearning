@@ -24,7 +24,7 @@
 
     a {
         color: white;
-        padding: 20px 16px;
+        padding: 7px 6px;
         text-decoration: none;
         font-size: 20px;
         text-align: center;
@@ -34,15 +34,14 @@
         border-right: none;
         transition: all .5s;
 
-
         &:hover {
-            background: rgba(255, 255, 255, 0.56);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-            backdrop-filter: blur(3.7px);
-            -webkit-backdrop-filter: blur(3.7px);
-            border-color: rgba(255, 255, 255, 1);
             color: black;
             font-weight: bold;
+            background-color: #fff;
+            background-image:
+                linear-gradient(90deg, transparent 79px, #abced4 79px, #abced4 81px, transparent 81px),
+                linear-gradient(#eee .1em, transparent .1em);
+            background-size: 100% 0.5em;
         }
     }
 
