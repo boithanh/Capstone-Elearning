@@ -12,11 +12,7 @@ export default {
     extend: {
       screens: {
         'xs': '320px',
-      },
-      textAlign: {
-        'webkit-center': '-webkit-center',
-        'webkit-left': '-webkit-left',
-        'webkit-right': '-webkit-right',
+        'tiny': '50px'
       },
     },
   },

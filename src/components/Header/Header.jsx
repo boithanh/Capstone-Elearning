@@ -92,7 +92,7 @@ const Header = () => {
       <header>
         <div className="container max-w-full">
           <div className="header_container">
-            <nav className="header_main xs:!hidden sm:text-xs md:text-sm lg:text-base sm:!block">
+            <nav className="header_main sm:text-xs md:text-sm lg:text-base tiny:!hidden sm:!block">
               <div className="header_navigate w-full flex items-center justify-around ">
                 <Link className="header_logo me-5" to={path.homePage}>
                   <LogoIcon />

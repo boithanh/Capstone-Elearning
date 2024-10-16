@@ -7,7 +7,7 @@ const MobileMenuGlass = ({ valueDanhMuc }) => {
         setIsMenuOpen(!isMenuOpen); // Thay đổi trạng thái menu mỗi khi nút được ấn
     };
     return (
-        <nav className="topnav mobile-menu xs:!block sm:!hidden">
+        <nav className="topnav mobile-menu tiny:!block sm:!hidden">
             <button className="icon" onClick={toggleMenu}>
                 {isMenuOpen ? <i className="fa-solid fa-circle-xmark" />
                     : <i className="fa fa-bars" />}
