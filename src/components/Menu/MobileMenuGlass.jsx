@@ -16,7 +16,7 @@ const MobileMenuGlass = ({ valueDanhMuc }) => {
                 {
                     valueDanhMuc.map((item, index) => {
                         return (
-                            <Link key={index} to={`/danh-muc-khoa-hoc?maDanhMuc=${item?.maDanhMuc}&MaNhom=GP01`} onClick={toggleMenu}>{item.tenDanhMuc}
+                            <Link key={index} to={`/danh-muc-khoa-hoc?maDanhMuc=${item?.maDanhMuc}&ten=${item?.tenDanhMuc}&MaNhom=GP01`} onClick={toggleMenu}>{item.tenDanhMuc}
                             </Link>
                         )
                     })

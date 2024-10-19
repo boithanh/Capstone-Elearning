@@ -24,7 +24,7 @@ const DanhMucKhoaHoc = () => {
         <>
             <div className="container px-0 mx-auto xs:max-w-full">
                 <div className='banner_danhmuc text-center pt-28'>
-                    <h1 className='xs:text-2xl sm:text-3xl text-[#211C5B] ms-8'>{searchParam.get("ten")}</h1>
+                    <h1 className='xs:text-2xl sm:text-3xl text-[#211C5B]' data-aos="flip-down" data-aos-delay="1000">{searchParam.get("ten")}</h1>
                 </div>
             </div>
             <div className='container danhMucKhoaHoc pb-16 pt-8 px-5 mx-auto xs:max-w-full sm:max-w-screen-sm md:max-w-screen-md lg:max-w-[1140px]'>
