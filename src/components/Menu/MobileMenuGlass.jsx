@@ -12,18 +12,16 @@ const MobileMenuGlass = ({ valueDanhMuc }) => {
                 {isMenuOpen ? <i className="fa-solid fa-circle-xmark" />
                     : <i className="fa fa-bars" />}
             </button>
-            {isMenuOpen && (
-                <div id="myLinks" className='animate__animated animate__slideInDown'>
-                    {
-                        valueDanhMuc.map((item, index) => {
-                            return (
-                                <Link key={index} to={`/danh-muc-khoa-hoc?maDanhMuc=${item?.maDanhMuc}&MaNhom=GP01`} onClick={toggleMenu}>{item.tenDanhMuc}
-                                </Link>
-                            )
-                        })
-                    }
-                </div>
-            )}
+            <div id="myLinks" className={isMenuOpen ? "active" : "inactive"}>
+                {
+                    valueDanhMuc.map((item, index) => {
+                        return (
+                            <Link key={index} to={`/danh-muc-khoa-hoc?maDanhMuc=${item?.maDanhMuc}&MaNhom=GP01`} onClick={toggleMenu}>{item.tenDanhMuc}
+                            </Link>
+                        )
+                    })
+                }
+            </div>
         </nav>
     )
 }

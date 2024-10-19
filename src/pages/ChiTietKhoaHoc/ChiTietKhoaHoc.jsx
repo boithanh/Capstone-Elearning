@@ -42,7 +42,7 @@ const ChiTietKhoaHoc = () => {
 
     return (
         <>
-            <div className='banner_course'>
+            <div className='banner_course pt-24'>
                 <div className='container text-[#211C5B] py-14 relative xs:max-w-full sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg xl:max-w-screen-xl'>
                     <div className='xs:block md:flex items-center py-32 w-10/12 mx-auto'>
                         <div className='xs:w-full md:w-8/12 text-white mb-10'>

@@ -14,7 +14,7 @@ const WhyLearn = () => {
                     <div className='flip-card' data-aos="fade-up" data-aos-delay="2500">
                         <div className='flip-card-inner'>
                             <div className="flip-card-front">
-                                <i className="fa-solid fa-earth-americas" />
+                                <i className="fa-solid fa-business-time" />
                                 <h3>1</h3>
                                 <p>Sắp xếp dành thời gian 3h mỗi ngày- tận dụng thời gian rảnh</p>
                             </div>
@@ -28,7 +28,7 @@ const WhyLearn = () => {
                     <div className='flip-card' data-aos="fade-down" data-aos-delay="1000">
                         <div className='flip-card-inner'>
                             <div className="flip-card-front">
-                                <i className="fa-solid fa-trophy" />
+                                <i className="fa-solid fa-earth-americas" />
                                 <h3>2</h3>
                                 <p>Chọn một lộ trình để đi</p>
                             </div>
@@ -42,7 +42,7 @@ const WhyLearn = () => {
                     <div className='flip-card' data-aos="fade-up" data-aos-delay="1500">
                         <div className='flip-card-inner'>
                             <div className="flip-card-front">
-                                <i className="fa-solid fa-business-time" />
+                                <i className="fa-solid fa-trophy" />
                                 <h3>3</h3>
                                 <p>Thực hành trên dự án, đủ skill, kết nối doanh nghiệp sau khóa học để nhận việc</p>
                             </div>

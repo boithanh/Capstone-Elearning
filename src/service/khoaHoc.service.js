@@ -38,9 +38,23 @@ export const khoaHocService = {
   dangKyKhoaHocUser: (token, data) => {
     return http.post(`QuanLyKhoaHoc/DangKyKhoaHoc`, data, {
       headers: {
-        token,
-      }
+        Authorization: `Bearer ${token}`,
+      },
     }
     );
+  },
+  layThongTinKhoaHocUser: (token) => {
+    return http.post(`QuanLyNguoiDung/ThongTinNguoiDung`, {}, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+  },
+  huyGhiDanhUser: (token, data) => {
+    return http.post("QuanLyKhoaHoc/HuyGhiDanh", data, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      }
+    })
   }
 };

@@ -10,14 +10,15 @@ import Footer from "../../components/Footer/Footer";
 import { NotificationContext } from "../../App";
 
 const UserInfoTemplate = () => {
-  const onChange = () => {};
+  const onChange = () => { };
   const { showNotification } = useContext(NotificationContext);
   const [userInfo, setUserInfo] = useState(getLocalStorage("user"));
   const [listKhoaHoc, setListKhoaHoc] = useState([]);
-  const { taiKhoan, matKhau, hoTen, email, soDT } = userInfo;
+  const { taiKhoan, matKhau, hoTen, email, soDT, accessToken } = userInfo;
   const [listKhoaHocMoi, setListKhoaHocMoi] = useState([]);
 
   useEffect(() => {
+    //Gọi API Lấy All DS KH
     khoaHocService
       .layAllKhoaHoc()
       .then((res) => {
@@ -27,21 +28,44 @@ const UserInfoTemplate = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
 
-  // useEffect(() => {
-  //   userService
-  //     .listKhoaHocUser({ taiKhoan: taiKhoan })
-  //     .then((res) => setListKhoaHoc(res.data))
-  //     .catch((err) => console.log(err));
-  // }, []);
-
-  useEffect(() => {
+    // Gọi API lấy thông tin các khóa học mà user đã đăng ký
     khoaHocService
-      .layDanhSachKhoaHocReact()
-      .then((res) => setListKhoaHoc(res.data))
-      .catch((err) => console.log(err));
+      .layThongTinKhoaHocUser(accessToken)
+      .then((res) => {
+        console.log(res.data.chiTietKhoaHocGhiDanh);
+        setListKhoaHoc(res.data.chiTietKhoaHocGhiDanh);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }, []);
+
+  const handleCancelCourse = (maKhoaHoc, taiKhoan) => {
+    let data = {
+      maKhoaHoc,
+      taiKhoan
+    };
+    console.log(data);
+
+    khoaHocService.huyGhiDanhUser(getLocalStorage("user").accessToken, data).then((res) => {
+      console.log(res);
+      showNotification("Hủy ghi Danh thành công", "success");
+      khoaHocService
+        .layThongTinKhoaHocUser(accessToken)
+        .then((res) => {
+          console.log(res.data.chiTietKhoaHocGhiDanh);
+          setListKhoaHoc(res.data.chiTietKhoaHocGhiDanh);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+
+    }).catch((err) => {
+      console.log(err);
+      showNotification("Có lỗi xảy ra vui lòng liên hệ BP.CSKH", "error");
+    })
+  }
 
   const { values, handleChange, handleSubmit, touched, errors } = useFormik({
     initialValues: {
@@ -173,7 +197,9 @@ const UserInfoTemplate = () => {
                         <p className="text-purple-700 font-semibold">
                           ( Lượt xem: {item.luotXem} )
                         </p>
-                        <button className="bg-black px-5 py-2 text-white rounded-md">
+                        <button className="bg-black px-5 py-2 text-white rounded-md" onClick={() => {
+                          handleCancelCourse(item.maKhoaHoc, taiKhoan);
+                        }}>
                           Hủy
                         </button>
                       </div>
@@ -187,6 +213,8 @@ const UserInfoTemplate = () => {
       ),
     },
   ];
+
+
 
   return (
     <>
