@@ -14,29 +14,22 @@ const ChiTietKhoaHoc = () => {
         let maKhoaHoc = searchParam.get("maKhoaHoc");
         let taiKhoan = getLocalStorage("user").taiKhoan;
         let token = getLocalStorage("user").accessToken;
-        // console.log(userData);
         setDuLieuDangKy({
             maKhoaHoc, taiKhoan
         });
         khoaHocService.dangKyKhoaHocUser(token, duLieuDangKy).then((res) => {
-            // console.log(res);
             showNotification("Đăng ký thành công, vui lòng kiểm tra thông tin khóa đã đăng ký", "success");
             navigate("/user-info")
         }).catch((err) => {
-            console.log(err);
             showNotification(err.response.data, "error");
         })
     }
 
     useEffect(() => {
         let maKhoaHoc = searchParam.get("maKhoaHoc");
-        // console.log(maKhoaHoc);
         khoaHocService.layChiTietKhoaHocTheoMa(maKhoaHoc).then((res) => {
-            // console.log(res);
             setChiTietKhoaHoc(res.data)
-            // console.log(chiTietKhoaHoc);
         }).catch((err) => {
-            console.log(err);
         })
     }, [searchParam.get("maKhoaHoc")])
 
