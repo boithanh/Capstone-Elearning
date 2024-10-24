@@ -17,7 +17,6 @@ const WrapperSuggestCourse = ({ children }) => {
     useEffect(() => {
         if (value) {
             khoaHocService.layKhoaHocTheoTen(value).then((res) => {
-                // console.log(res);
                 let newItems = res.data.slice(0, 4).map((item, index) => {
                     return {
                         key: index.toString(),
@@ -35,7 +34,6 @@ const WrapperSuggestCourse = ({ children }) => {
                 setItems(newItems);
                 setOpenDropdown(true);
             }).catch((err) => {
-                console.log(err);
                 setOpenDropdown(false);
             })
         }

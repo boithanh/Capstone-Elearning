@@ -1,10 +1,23 @@
 .listKhoaHoc,
 .danhMucKhoaHoc {
+    background-color: #FCFCFC;
     color: $blue-700;
 
     h2 {
         font-size: 25px;
         font-weight: 600;
+    }
+
+    .danhMuc_item,
+    .list_item {
+        border: 1px solid transparent;
+        padding: 20px;
+        transition: all .5s;
+
+        &:hover {
+            border-color: $blue-700;
+            box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+        }
     }
 
     .img_content {
@@ -14,6 +27,7 @@
             width: 310px;
             height: 176px;
             border-radius: 15px;
+            object-fit: cover;
 
             @media screen and (max-width:576px) {
                 width: 100%;
@@ -25,5 +39,29 @@
     button,
     a {
         @include styleButton ($violet, white, 12px 30px, $pink-700);
+    }
+}
+
+.findCourse {
+    .findCourse_item {
+        background-image: linear-gradient(to right,
+                #423E73 0,
+                $pink-700 51%,
+                #423E73 100%);
+        background-size: 300%;
+
+        &:hover {
+            transition: .5s;
+            background-position: center;
+            background-image: linear-gradient(to right,
+                    #423E73 0,
+                    $pink-700 51%,
+                    #423E73 100%);
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+            span {
+                color: $blue-300;
+            }
+        }
     }
 }

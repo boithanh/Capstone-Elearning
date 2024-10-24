@@ -63,8 +63,8 @@ const LoginPage = () => {
       <Header />
       <div className="container xs:max-w-full sm:max-w-screen-sm md:max-w-screen-md lg:max-w-[1140px] xs:px-4 md:px-8 mx-auto py-10">
         <div className="xs:block sm:flex md:flex justify-between items-center h-full">
-          <div className="xs:w-full sm:w-1/2" data-aos="zoom-out-down" data-aos-delay="1000">{View}</div>
-          <div className="xs:w-full sm:w-1/2 xs:block sm:flex flex-col justify-center space-y-8" data-aos="zoom-out-up" data-aos-delay="2000">
+          <div className="xs:w-full sm:w-1/2" data-aos="zoom-out-down">{View}</div>
+          <div className="xs:w-full sm:w-1/2 xs:block sm:flex flex-col justify-center space-y-8" data-aos="zoom-out-up">
             <h2 className="text-3xl font-bold text-purple-800">Login Page</h2>
             <form className="space-y-5" onSubmit={handleSubmit}>
               <InputCustom

@@ -17,7 +17,7 @@ const PopularCourse = () => {
                                 Popular Courses</h2>
                             <p className='mb-10'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.</p>
                         </div>
-                        <div className='popular_content xs:block lg:grid grid-cols-2 grid-rows-2 mb-5' data-aos="fade-up" data-aos-delay="1000">
+                        <div className='popular_content xs:block lg:grid grid-cols-2 grid-rows-2 mb-5' data-aos="fade-up">
                             <div className='xs:block lg:flex flex-col justify-center mb-5'>
                                 <img src={popular1} alt="err" width={78} height={78} className='mb-5 hover:animate-bounce' />
                                 <p>Digital Painting</p>
@@ -35,11 +35,11 @@ const PopularCourse = () => {
                                 <p>Web Design</p>
                             </div>
                         </div>
-                        <Link className='button-pink inline-block mb-3' data-aos="fade-down" data-aos-delay="1500">More Course</Link>
+                        <Link className='button-pink inline-block mb-3' data-aos="fade-down">More Course</Link>
                     </div>
-                    <div className="right mb-5">
-                        <div className="overlay" data-aos="fade-down" data-aos-delay="1500"></div>
-                        <img src={rightImg} alt="err" className='w-full' data-aos="fade-up" data-aos-delay="3000" />
+                    <div className="right mb-5" data-aos="fade-up">
+                        <div className="overlay"></div>
+                        <img src={rightImg} alt="err" className='w-full' />
                     </div>
                 </div>
             </div>

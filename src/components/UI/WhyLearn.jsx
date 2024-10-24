@@ -5,13 +5,13 @@ const WhyLearn = () => {
     return (
         <div className='whyLearn pt-10 pb-20'>
             <div className='container mx-auto py-10 xs:max-w-full sm:max-w-screen-sm md:max-w-screen-md lg:max-w-[1140px]'>
-                <div className='whyLearn_title mb-5 xs:w-full lg:w-4/12'>
-                    <h2 className='mb-5' data-aos="fade-up" data-aos-delay="300">3 bước giúp
+                <div className='whyLearn_title mb-5 xs:w-full lg:w-4/12' data-aos="fade-down">
+                    <h2 className='mb-5'>3 bước giúp
                         bạn chuyển nghề</h2>
                     <Link className='button-pink inline-block mb-5'>Tư vấn định hướng</Link>
                 </div>
-                <div className='whyLearn_content mb-5 xs:block lg:flex gap-6 justify-center'>
-                    <div className='flip-card' data-aos="fade-up" data-aos-delay="2500">
+                <div className='whyLearn_content mb-5 xs:block lg:flex gap-6 justify-center' data-aos="fade-up">
+                    <div className='flip-card'>
                         <div className='flip-card-inner'>
                             <div className="flip-card-front">
                                 <i className="fa-solid fa-business-time" />
@@ -25,7 +25,7 @@ const WhyLearn = () => {
                             </div>
                         </div>
                     </div>
-                    <div className='flip-card' data-aos="fade-down" data-aos-delay="1000">
+                    <div className='flip-card'>
                         <div className='flip-card-inner'>
                             <div className="flip-card-front">
                                 <i className="fa-solid fa-earth-americas" />
@@ -39,7 +39,7 @@ const WhyLearn = () => {
                             </div>
                         </div>
                     </div>
-                    <div className='flip-card' data-aos="fade-up" data-aos-delay="1500">
+                    <div className='flip-card'>
                         <div className='flip-card-inner'>
                             <div className="flip-card-front">
                                 <i className="fa-solid fa-trophy" />

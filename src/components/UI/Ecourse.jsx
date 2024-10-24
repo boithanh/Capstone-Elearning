@@ -8,15 +8,15 @@ const Ecourse = () => {
         <div className='eCourse py-20'>
             <div className='container gap-3 xs:block md:flex items-start py-10 xs:max-w-full sm:max-w-screen-sm md:max-w-screen-md lg:max-w-[1140px]'>
                 <div className=' xs:block lg:flex justify-center items-center mb-5'>
-                    <div className="left mb-5">
-                        <div className="overlay" data-aos="fade-up" data-aos-delay="1500"></div>
-                        <img src={leftImg} alt="err" className='w-full' data-aos="fade-up" data-aos-delay="3000" />
+                    <div className="left mb-5" data-aos="fade-up">
+                        <div className="overlay"></div>
+                        <img src={leftImg} alt="err" className='w-full' />
                     </div>
-                    <div className="right mb-5">
-                        <h2 className='font-semibold text-4xl leading-normal mb-3' data-aos="fade-up" data-aos-delay="1000">E-Courses Platform
+                    <div className="right mb-5" data-aos="fade-up">
+                        <h2 className='font-semibold text-4xl leading-normal mb-3'>E-Courses Platform
                             with Complete Features</h2>
-                        <p className='mb-7' data-aos="fade-up" data-aos-delay="700">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.</p>
-                        <div className='progress_bar mb-6' data-aos="fade-up" data-aos-delay="100">
+                        <p className='mb-7'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.</p>
+                        <div className='progress_bar mb-6'>
                             <Flex gap="large" vertical >
                                 <Progress percent={97}
                                     percentPosition={{
@@ -42,7 +42,7 @@ const Ecourse = () => {
 
                             </Flex>
                         </div>
-                        <Link className='button-pink inline-block mb-3' data-aos="fade-up" data-aos-delay="1000">Get Started</Link>
+                        <Link className='button-pink inline-block mb-3'>Get Started</Link>
                     </div>
                 </div>
             </div>
