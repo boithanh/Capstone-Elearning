@@ -1,27 +1,47 @@
 import React, { useEffect, useState } from "react";
 import { Space, Table, Tag } from "antd";
 import { userService } from "../../service/user.service";
-import utils from "../../utils/utils";
+import utils, { getLocalStorage } from "../../utils/utils";
 
 const GhiDanhUser = (taiKhoan) => {
   const [dsDaXet, setDsDaXet] = useState([]);
   const [dsChoXet, setDsChoXet] = useState([]);
   // const [arrFilter, setArrFilter] = useState([]);
   // const [isSearching, setIsSearching] = useState(false);
-
   useEffect(() => {
     userService
-      .layDanhSachKhoaHocDaXetDuyet(taiKhoan)
+      .layDanhSachKhoaHocDaXetDuyet(getLocalStorage("admin").accessToken, taiKhoan)
       .then((res) => setDsDaXet(res.data))
       .catch((err) => console.log(err));
-  }, [taiKhoan]);
-
-  useEffect(() => {
     userService
-      .layDanhSachKhoaHocChoXetDuyet(taiKhoan)
+      .layDanhSachKhoaHocChoXetDuyet(getLocalStorage("admin").accessToken, taiKhoan)
       .then((res) => setDsChoXet(res.data))
       .catch((err) => console.log(err));
   }, [taiKhoan]);
+
+  const duyetGhiDanh = (data) => {
+    userService.duyetGhiDanhCourseForUser(getLocalStorage("admin").accessToken, data).then((res) => {
+      userService
+        .layDanhSachKhoaHocDaXetDuyet(getLocalStorage("admin").accessToken, taiKhoan)
+        .then((res) => {
+          setDsDaXet(res.data)
+        })
+        .catch((err) => {
+        });
+      userService
+        .layDanhSachKhoaHocChoXetDuyet(getLocalStorage("admin").accessToken, taiKhoan)
+        .then((res) => {
+          // console.log(res);
+          setDsChoXet(res.data)
+        })
+        .catch((err) => {
+          // console.log(err)?
+        });
+    })
+      .catch((err) => {
+        // console.log(err);
+      });
+  }
 
   const dataSourceDaXet = dsDaXet.map((item, index) => ({
     ...item,
@@ -59,7 +79,7 @@ const GhiDanhUser = (taiKhoan) => {
           </button> */}
           <button
             className="bg-red-500/80 text-white py-2 px-3 rounded-md hover:scale-125 duration-300"
-            onClick={() => {}}
+            onClick={() => { }}
           >
             X
           </button>
@@ -88,16 +108,19 @@ const GhiDanhUser = (taiKhoan) => {
       key: "action",
       render: (_, record) => (
         <Space size="middle" className="space-x-1">
-          <button className="bg-green-500/80 text-white py-2 px-3 rounded-md hover:scale-125 duration-300">
+          <button className="bg-green-500/80 text-white py-2 px-3 rounded-md hover:scale-125 duration-300" onClick={() => {
+            let sumData = { ...taiKhoan, maKhoaHoc: record.maKhoaHoc };
+            duyetGhiDanh(sumData);
+          }}>
             <i className="fa-solid fa-check"></i>
           </button>
           <button
             className="bg-red-500/80 text-white py-2 px-3 rounded-md hover:scale-125 duration-300"
-            onClick={() => {}}
+            onClick={() => { }}
           >
             X
           </button>
-        </Space>
+        </Space >
       ),
     },
   ];

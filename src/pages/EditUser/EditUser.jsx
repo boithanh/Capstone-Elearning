@@ -6,6 +6,7 @@ import { path } from "../../common/path";
 import { userService } from "../../service/user.service";
 import { useSelector } from "react-redux";
 import { NotificationContext } from "../../App";
+import { getLocalStorage } from "../../utils/utils";
 
 const EditUser = () => {
   const dataUser = useSelector((state) => state.userSlice.editUser);
@@ -43,9 +44,9 @@ const EditUser = () => {
       maLoaiNguoiDung: "",
     },
     onSubmit: (values) => {
-      console.log(values);
+      // console.log(values);
       userService
-        .updateUser({ ...values, maNhom: "GP01" })
+        .updateUser(getLocalStorage("admin").accessToken, { ...values, maNhom: "GP01" })
         .then((res) => {
           showNotification(`Đã sửa tài khoản ${res.data.taiKhoan}`, "warning");
           navigate(path.manageUser);
@@ -132,7 +133,7 @@ const EditUser = () => {
             <div className="flex justify-between">
               <Link
                 className="px-5 py-3 rounded-md button-right w-1/4 text-center"
-                to={path.adminPage}
+                to={path.manageUser}
               >
                 <i className="fa-solid fa-arrow-left"></i> Back
               </Link>
