@@ -26,35 +26,50 @@ export const khoaHocService = {
       `QuanLyKhoaHoc/LayDanhSachKhoaHoc?tenKhoaHoc=react&MaNhom=GP01`
     );
   },
-  xoaKhoaHoc: (data) => {
-    return http.delete(`QuanLyKhoaHoc/XoaKhoaHoc?MaKhoaHoc=${data}`);
+  xoaKhoaHoc: (data, token) => {
+    return http.delete(`QuanLyKhoaHoc/XoaKhoaHoc?MaKhoaHoc=${data}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
   },
-  themKhoaHoc: (data) => {
-    return http.post(`QuanLyKhoaHoc/ThemKhoaHoc`, data);
+  themKhoaHoc: (data, token) => {
+    return http.post(`QuanLyKhoaHoc/ThemKhoaHoc`, data, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
   },
-  suaKhoaHoc: (data) => {
-    return http.put("QuanLyKhoaHoc/CapNhatKhoaHoc", data);
+  suaKhoaHoc: (token, data) => {
+    return http.put("QuanLyKhoaHoc/CapNhatKhoaHoc", data, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
   },
   dangKyKhoaHocUser: (token, data) => {
     return http.post(`QuanLyKhoaHoc/DangKyKhoaHoc`, data, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
-    }
-    );
+    });
   },
   layThongTinKhoaHocUser: (token) => {
-    return http.post(`QuanLyNguoiDung/ThongTinNguoiDung`, {}, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    return http.post(
+      `QuanLyNguoiDung/ThongTinNguoiDung`,
+      {},
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
   },
   huyGhiDanhUser: (token, data) => {
     return http.post("QuanLyKhoaHoc/HuyGhiDanh", data, {
       headers: {
         Authorization: `Bearer ${token}`,
-      }
-    })
-  }
+      },
+    });
+  },
 };

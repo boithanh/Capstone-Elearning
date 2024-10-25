@@ -4,7 +4,7 @@ import { Space, Table, Tag } from "antd";
 import { getValueUserApi, setUser } from "../../redux/userSlice";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import { path } from "../../common/path";
-import utils from "../../utils/utils";
+import utils, { getLocalStorage } from "../../utils/utils";
 import { userService } from "../../service/user.service";
 import { NotificationContext } from "../../App";
 import { Button, Modal } from "antd";
@@ -28,6 +28,8 @@ const ManageUser = () => {
   useEffect(() => {
     dispatch(getValueUserApi());
   }, [dispatch]);
+
+  let token = getLocalStorage("admin").accessToken;
 
   const columns = [
     {
@@ -94,7 +96,7 @@ const ManageUser = () => {
             className="bg-red-500/80 text-white py-2 px-3 rounded-md hover:scale-125 duration-300"
             onClick={() => {
               userService
-                .xoaNguoiDung(record.taiKhoan)
+                .xoaNguoiDung(record.taiKhoan, token)
                 .then((res) => {
                   // console.log(res);
                   showNotification(

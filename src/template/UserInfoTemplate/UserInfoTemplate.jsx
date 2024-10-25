@@ -2,20 +2,39 @@ import React, { useContext, useEffect, useState } from "react";
 import { Tabs } from "antd";
 import { useFormik } from "formik";
 import InputCustom from "../../components/Input/InputCustom";
-import { getLocalStorage, setLocalStorage } from "../../utils/utils";
+import utils, { getLocalStorage, setLocalStorage } from "../../utils/utils";
 import { userService } from "../../service/user.service";
 import { khoaHocService } from "../../service/khoaHoc.service";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import { NotificationContext } from "../../App";
+import { Link } from "react-router-dom";
+import { truncateText } from "../../utils/utils";
 
 const UserInfoTemplate = () => {
-  const onChange = () => { };
+  const onChange = () => {};
   const { showNotification } = useContext(NotificationContext);
   const [userInfo, setUserInfo] = useState(getLocalStorage("user"));
   const [listKhoaHoc, setListKhoaHoc] = useState([]);
   const { taiKhoan, matKhau, hoTen, email, soDT, accessToken } = userInfo;
   const [listKhoaHocMoi, setListKhoaHocMoi] = useState([]);
+  const [isSearching, setIsSearching] = useState(false);
+  const [arrFilter, setArrFilter] = useState([]);
+  let token = getLocalStorage("user").accessToken;
+
+  const searchTenKhoaHoc = (name) => {
+    let txt = utils.removeVietnameseTones(name).trim().toLowerCase();
+    let arrSearch = listKhoaHoc.filter((item, index) => {
+      let searchName = utils
+        .removeVietnameseTones(item.tenKhoaHoc)
+        .trim()
+        .toLowerCase();
+      return searchName.includes(txt);
+    });
+    setIsSearching(true);
+    setArrFilter(arrSearch);
+    return arrSearch;
+  };
 
   useEffect(() => {
     //Gọi API Lấy All DS KH
@@ -42,24 +61,26 @@ const UserInfoTemplate = () => {
   const handleCancelCourse = (maKhoaHoc, taiKhoan) => {
     let data = {
       maKhoaHoc,
-      taiKhoan
+      taiKhoan,
     };
-    khoaHocService.huyGhiDanhUser(getLocalStorage("user").accessToken, data).then((res) => {
-      showNotification("Hủy ghi Danh thành công", "success");
-      khoaHocService
-        .layThongTinKhoaHocUser(accessToken)
-        .then((res) => {
-          setListKhoaHoc(res.data.chiTietKhoaHocGhiDanh);
-        })
-        .catch((err) => {
-          // console.log(err);
-        });
-
-    }).catch((err) => {
-      // console.log(err);
-      showNotification("Có lỗi xảy ra vui lòng liên hệ BP.CSKH", "error");
-    })
-  }
+    khoaHocService
+      .huyGhiDanhUser(getLocalStorage("user").accessToken, data)
+      .then((res) => {
+        showNotification("Hủy ghi Danh thành công", "success");
+        khoaHocService
+          .layThongTinKhoaHocUser(accessToken)
+          .then((res) => {
+            setListKhoaHoc(res.data.chiTietKhoaHocGhiDanh);
+          })
+          .catch((err) => {
+            // console.log(err);
+          });
+      })
+      .catch((err) => {
+        // console.log(err);
+        showNotification("Có lỗi xảy ra vui lòng liên hệ BP.CSKH", "error");
+      });
+  };
 
   const { values, handleChange, handleSubmit, touched, errors } = useFormik({
     initialValues: {
@@ -73,17 +94,18 @@ const UserInfoTemplate = () => {
     },
     onSubmit: (values) => {
       userService
-        .updateUser(values)
+        .updateUser(token, values)
         .then((res) => {
           showNotification(`Đã sửa tài khoản ${values.taiKhoan}`, "warning");
           setUserInfo(res.data);
-          setLocalStorage("user", values);
+          // setLocalStorage("user", { ...values });
         })
         .catch((err) => {
           // console.log(err);
         });
     },
   });
+
   const tabItems = [
     {
       label: "Thông tin cá nhân",
@@ -161,15 +183,25 @@ const UserInfoTemplate = () => {
         <>
           <div className="mx-auto xs:max-w-full sm:max-w-screen-sm md:max-w-screen-md lg:max-w-[1140px] space-y-8">
             <div className="tiny:block sm:grid md:grid-cols-2 gap-x-40 gap-y-5">
-              <h1 className="text-3xl font-bold mb-5">Các lớp học đã tham gia</h1>
+              <h1 className="text-3xl font-bold mb-5">
+                Các lớp học đã tham gia
+              </h1>
               <input
                 type="text"
                 placeholder="Nhập khóa học cần tìm"
                 className="border py-2 px-3 rounded-md tiny:w-full"
+                onInput={(e) => {
+                  if (e.target.value.trim() !== "") {
+                    setIsSearching(true);
+                    searchTenKhoaHoc(e.target.value);
+                  } else {
+                    setIsSearching(false);
+                  }
+                }}
               />
             </div>
             <div className="space-y-5">
-              {listKhoaHoc.map((item, index) => {
+              {(isSearching ? arrFilter : listKhoaHoc).map((item, index) => {
                 return (
                   <div
                     key={index}
@@ -189,9 +221,12 @@ const UserInfoTemplate = () => {
                         <p className="text-purple-700 font-semibold mb-5">
                           ( Lượt xem: {item.luotXem} )
                         </p>
-                        <button className="bg-black px-5 py-2 text-white rounded-md mb-3 tiny:w-2/3 sm:w-auto" onClick={() => {
-                          handleCancelCourse(item.maKhoaHoc, taiKhoan);
-                        }}>
+                        <button
+                          className="bg-black px-5 py-2 text-white rounded-md mb-3 tiny:w-2/3 sm:w-auto"
+                          onClick={() => {
+                            handleCancelCourse(item.maKhoaHoc, taiKhoan);
+                          }}
+                        >
                           Hủy
                         </button>
                       </div>
@@ -206,8 +241,6 @@ const UserInfoTemplate = () => {
     },
   ];
 
-
-
   return (
     <>
       <Header />
@@ -215,38 +248,44 @@ const UserInfoTemplate = () => {
         <h1 className="font-bold text-3xl mt-16 text-[#211C5B] mx-auto">
           Các khóa học mới nhất
         </h1>
-        <div className="tiny:block sm:grid md:grid-cols-2 lg:grid-cols-3 gap-16 mx-auto">
-          {listKhoaHocMoi.splice(-4).map((item, index) => {
+        <div className="tiny:block sm:grid md:grid-cols-2 lg:grid-cols-3 gap-5 mx-auto">
+          {listKhoaHocMoi.splice(6, 7).map((item, index) => {
+            // console.log(item);
             return (
-              <div className="mb-8">
+              <div className="list_item">
                 <div className="mb-3 img_content">
-                  <img src={item?.hinhAnh} alt="err" className="w-full" />
+                  <img
+                    src={item?.hinhAnh}
+                    alt="err"
+                    className="xs:!w-full xs:!h-full md:!w-[310px] md:!h-[176px]"
+                  />
                 </div>
                 <div className="mb-3">
-                  <h2>{item?.tenKhoaHoc}</h2>
+                  <h2 className="leading-8">{item?.tenKhoaHoc}</h2>
                 </div>
-                <div>
-                  <div className="mb-4">
+                <div className="mb-3">
+                  <p className="text-[#7A7A7A] text-base">
+                    {truncateText(item?.moTa, 65)}
+                  </p>
+                </div>
+                <div className="flex items-center justify-start mb-8">
+                  <div>
                     <i className="fa-solid fa-user-graduate text-2xl" />
                     <p className="inline text-xl font-semibold mx-5">
                       {item?.soLuongHocVien}
                     </p>
                   </div>
-                  <div>
-                    <span className="text-[#E31C8D] me-4">
-                      <div>
-                        <i className="fa-solid fa-star" />
-                        <i className="fa-solid fa-star" />
-                        <i className="fa-solid fa-star" />
-                        <i className="fa-solid fa-star" />
-                        <i className="fa-regular fa-star" />
-                      </div>
-                    </span>
-                  </div>
+                  <span className="text-[#E31C8D] me-4 inline-block">
+                    <i className="fa-solid fa-star" />
+                    <i className="fa-solid fa-star" />
+                    <i className="fa-solid fa-star" />
+                    <i className="fa-solid fa-star" />
+                    <i className="fa-regular fa-star" />
+                  </span>
                 </div>
-                <div>
-                  <button to={`chi-tiet?maKhoaHoc=${item.maKhoaHoc}`}>ĐĂNG KÝ</button>
-                </div>
+                <Link to={`/chi-tiet?maKhoaHoc=${item.maKhoaHoc}`}>
+                  ĐĂNG KÝ
+                </Link>
               </div>
             );
           })}

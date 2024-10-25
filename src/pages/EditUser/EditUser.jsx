@@ -46,14 +46,17 @@ const EditUser = () => {
     onSubmit: (values) => {
       // console.log(values);
       userService
-        .updateUser(getLocalStorage("admin").accessToken, { ...values, maNhom: "GP01" })
+        .updateUser(getLocalStorage("admin").accessToken, {
+          ...values,
+          maNhom: "GP01",
+        })
         .then((res) => {
           showNotification(`Đã sửa tài khoản ${res.data.taiKhoan}`, "warning");
           navigate(path.manageUser);
           resetForm();
         })
         .catch((err) => {
-          console.log(err);
+          // console.log(err);
         });
     },
   });

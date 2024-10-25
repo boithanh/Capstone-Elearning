@@ -9,6 +9,7 @@ import { khoaHocService } from "../../service/khoaHoc.service";
 import ImgUpload from "../../components/ImgUpload/ImgUpload";
 import { getValueUserApi } from "../../redux/userSlice";
 import { Rate } from "antd";
+import { getLocalStorage } from "../../utils/utils";
 
 const EditCourse = () => {
   const navigate = useNavigate();
@@ -29,7 +30,9 @@ const EditCourse = () => {
       .then((res) => {
         setDanhMuc(res.data);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        // console.log(err)
+      });
   }, []);
 
   useEffect(() => {
@@ -43,7 +46,7 @@ const EditCourse = () => {
         });
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
       });
   }, [dataCourse]);
 
@@ -79,16 +82,16 @@ const EditCourse = () => {
     onSubmit: (values) => {
       const { danhMucKhoaHoc, nguoiTao, soLuongHocVien, ...formValues } =
         values;
-      console.log("formEdit", formValues);
+      // console.log("formEdit", formValues);
       khoaHocService
-        .suaKhoaHoc(formValues)
+        .suaKhoaHoc(getLocalStorage("admin").accessToken, formValues)
         .then((res) => {
           showNotification(`Đã sửa khóa học ${res.data.tenKhoaHoc}`, "warning");
           resetForm();
           navigate(path.manageCourse);
         })
         .catch((err) => {
-          console.log(err);
+          // console.log(err);
           showNotification(`${err.response.data}`, "error");
         });
     },

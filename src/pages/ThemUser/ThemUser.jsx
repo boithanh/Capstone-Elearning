@@ -6,10 +6,13 @@ import { path } from "../../common/path";
 import { userService } from "../../service/user.service";
 import { NotificationContext } from "../../App";
 import { useDispatch } from "react-redux";
+import { getLocalStorage } from "../../utils/utils";
 
 const ThemUser = () => {
   const navigate = useNavigate();
   const { showNotification } = useContext(NotificationContext);
+  let token = getLocalStorage("admin").accessToken;
+
   const { values, handleChange, handleSubmit, touched, errors, resetForm } =
     useFormik({
       initialValues: {
@@ -23,7 +26,7 @@ const ThemUser = () => {
       },
       onSubmit: (values) => {
         userService
-          .themNguoiDung(values)
+          .themNguoiDung(values, token)
           .then((res) => {
             console.log(res.data);
             showNotification(

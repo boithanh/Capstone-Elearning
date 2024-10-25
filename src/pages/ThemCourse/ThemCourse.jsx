@@ -11,6 +11,7 @@ import { createEditor } from "slate";
 import { NotificationContext } from "../../App";
 import { Slate, Editable, withReact } from "slate-react";
 import { Rate } from "antd";
+import { getLocalStorage } from "../../utils/utils";
 
 const ThemCourse = () => {
   const [danhMuc, setDanhMuc] = useState([]);
@@ -61,8 +62,12 @@ const ThemCourse = () => {
         setDanhMuc(res.data);
         // console.log(res.data);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        // console.log(err)
+      });
   }, []);
+
+  let token = getLocalStorage("admin").accessToken;
 
   const {
     values,
@@ -87,7 +92,7 @@ const ThemCourse = () => {
     },
     onSubmit: (values) => {
       khoaHocService
-        .themKhoaHoc(values)
+        .themKhoaHoc(values, token)
         .then((res) => {
           // console.log(res.data);
           showNotification(`Đã thêm khóa học ${res.data.tenKhoaHoc}`, "info");
@@ -95,7 +100,7 @@ const ThemCourse = () => {
           navigate(path.manageCourse);
         })
         .catch((err) => {
-          console.log(err);
+          // console.log(err);
           showNotification(`${err.response.data}`, "error");
         });
     },
