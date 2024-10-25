@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Space, Table, Tag } from "antd";
 import { userService } from "../../service/user.service";
-import utils from "../../utils/utils";
+import utils, { getLocalStorage } from "../../utils/utils";
 
 const GhiDanhCourse = (maKhoaHoc) => {
   const [dsHocVien, setDsHocVien] = useState([]);
@@ -13,14 +13,14 @@ const GhiDanhCourse = (maKhoaHoc) => {
 
   useEffect(() => {
     userService
-      .layDanhSachHocVienKhoaHoc(maKhoaHoc)
+      .layDanhSachHocVienKhoaHoc(getLocalStorage("admin").accessToken, maKhoaHoc)
       .then((res) => setDsHocVien(res.data))
       .catch((err) => console.log(err));
   }, [maKhoaHoc]);
 
   useEffect(() => {
     userService
-      .layDanhSachHocVienChoXetDuyet(maKhoaHoc)
+      .layDanhSachHocVienChoXetDuyet(getLocalStorage("admin").accessToken, maKhoaHoc)
       .then((res) => setDsHVChoXet(res.data))
       .catch((err) => console.log(err));
   }, [maKhoaHoc]);
@@ -65,7 +65,7 @@ const GhiDanhCourse = (maKhoaHoc) => {
             </button> */}
           <button
             className="bg-red-500/80 text-white py-2 px-3 rounded-md hover:scale-125 duration-300"
-            onClick={() => {}}
+            onClick={() => { }}
           >
             X
           </button>
@@ -100,7 +100,7 @@ const GhiDanhCourse = (maKhoaHoc) => {
           </button>
           <button
             className="bg-red-500/80 text-white py-2 px-3 rounded-md hover:scale-125 duration-300"
-            onClick={() => {}}
+            onClick={() => { }}
           >
             X
           </button>

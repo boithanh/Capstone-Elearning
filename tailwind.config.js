@@ -12,6 +12,7 @@ export default {
     extend: {
       screens: {
         'xs': '320px',
+        'tiny': '50px'
       },
     },
   },

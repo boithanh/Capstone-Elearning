@@ -15,20 +15,13 @@ const FormSearchKhoaHoc = ({ setOpenDropdown, handleGetValueChildren }) => {
 
 
     const handleSubmit = (event) => {
-        // console.log("hello");
         event.preventDefault();
-        navigate(`${path.timKiemKhoaHoc}?tenKhoaHoc=${valueSearch}`);
         setOpenDropdown(false);
+        navigate(`${path.timKiemKhoaHoc}?tenKhoaHoc=${valueSearch}`);
     }
 
     const handleChange = (event) => {
         setValueSearch(event.target.value);
-
-        // Đã chuyển lên trên useEffect (Tách componnetn xly chức năng và giao diện)
-        // if (!event.target.value) {
-        //     setOpenDropdown(false)
-        // }
-
     }
     return (
         <>

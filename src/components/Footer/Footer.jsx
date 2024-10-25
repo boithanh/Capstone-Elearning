@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import LogoIcon from '../Icon/LogoIcon'
 const Footer = () => {
+
     return (
         <footer className='pt-10 pb-10'>
             <div className="container xs:max-w-full sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg xl:max-w-screen-xl xs:px-4 md:px-8 mx-auto">
                 <div className="footer_content">
                     <div className=" xs:block sm:grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-10">
                         <div className='footer_subscribe mb-3'>
-                            <LogoIcon />
+                            <button className='!bg-transparent !border-0' onClick={() => { window.location.href = "https://cybersoft.edu.vn/" }}><LogoIcon /></button>
                             <p className='mb-8'>CyberSoft Academy - Hệ thống đào tạo lập trình chuyên sâu theo dự án thực tế.</p>
                             <h2>Đăng ký nhận Ưu đãi & Bài viết mới</h2>
                             <p className='mb-3'>CyberSoft sẽ gởi các khóa học trực tuyến & các chương trình CyberLive hoàn toàn MIỄN PHÍ và các chương trình KHUYẾN MÃI hấp dẫn đến các bạn.</p>

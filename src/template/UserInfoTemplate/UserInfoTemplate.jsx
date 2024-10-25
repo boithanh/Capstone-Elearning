@@ -10,38 +10,56 @@ import Footer from "../../components/Footer/Footer";
 import { NotificationContext } from "../../App";
 
 const UserInfoTemplate = () => {
-  const onChange = () => {};
+  const onChange = () => { };
   const { showNotification } = useContext(NotificationContext);
   const [userInfo, setUserInfo] = useState(getLocalStorage("user"));
   const [listKhoaHoc, setListKhoaHoc] = useState([]);
-  const { taiKhoan, matKhau, hoTen, email, soDT } = userInfo;
+  const { taiKhoan, matKhau, hoTen, email, soDT, accessToken } = userInfo;
   const [listKhoaHocMoi, setListKhoaHocMoi] = useState([]);
 
   useEffect(() => {
+    //Gọi API Lấy All DS KH
     khoaHocService
       .layAllKhoaHoc()
       .then((res) => {
-        // console.log(res.data);
         setListKhoaHocMoi(res.data);
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
+      });
+
+    // Gọi API lấy thông tin các khóa học mà user đã đăng ký
+    khoaHocService
+      .layThongTinKhoaHocUser(accessToken)
+      .then((res) => {
+        setListKhoaHoc(res.data.chiTietKhoaHocGhiDanh);
+      })
+      .catch((err) => {
+        // console.log(err);
       });
   }, []);
 
-  // useEffect(() => {
-  //   userService
-  //     .listKhoaHocUser({ taiKhoan: taiKhoan })
-  //     .then((res) => setListKhoaHoc(res.data))
-  //     .catch((err) => console.log(err));
-  // }, []);
+  const handleCancelCourse = (maKhoaHoc, taiKhoan) => {
+    let data = {
+      maKhoaHoc,
+      taiKhoan
+    };
+    khoaHocService.huyGhiDanhUser(getLocalStorage("user").accessToken, data).then((res) => {
+      showNotification("Hủy ghi Danh thành công", "success");
+      khoaHocService
+        .layThongTinKhoaHocUser(accessToken)
+        .then((res) => {
+          setListKhoaHoc(res.data.chiTietKhoaHocGhiDanh);
+        })
+        .catch((err) => {
+          // console.log(err);
+        });
 
-  useEffect(() => {
-    khoaHocService
-      .layDanhSachKhoaHocReact()
-      .then((res) => setListKhoaHoc(res.data))
-      .catch((err) => console.log(err));
-  }, []);
+    }).catch((err) => {
+      // console.log(err);
+      showNotification("Có lỗi xảy ra vui lòng liên hệ BP.CSKH", "error");
+    })
+  }
 
   const { values, handleChange, handleSubmit, touched, errors } = useFormik({
     initialValues: {
@@ -54,7 +72,6 @@ const UserInfoTemplate = () => {
       maLoaiNguoiDung: "HV",
     },
     onSubmit: (values) => {
-      console.log(values);
       userService
         .updateUser(values)
         .then((res) => {
@@ -63,7 +80,7 @@ const UserInfoTemplate = () => {
           setLocalStorage("user", values);
         })
         .catch((err) => {
-          console.log(err);
+          // console.log(err);
         });
     },
   });
@@ -73,23 +90,22 @@ const UserInfoTemplate = () => {
       key: "1",
       children: (
         <>
-          <div className="container mx-auto">
+          <div className="mx-auto xs:max-w-full sm:max-w-screen-sm md:max-w-screen-md lg:max-w-[1140px] space-y-8">
             <form
-              className="grid lg:grid-cols-2 lg:grid-rows-3 gap-x-5 items-center"
+              className="tiny:block sm:grid sm:grid-cols-2 lg:grid-rows-3 gap-x-5 items-center"
               onSubmit={handleSubmit}
             >
-              <div className="w-1/2">
+              <div className="tiny:w-full md:w-1/2">
                 <InputCustom
                   name="taiKhoan"
                   labelContent="Tài khoản"
                   typeInput="text"
-                  // value={values.taiKhoan}
                   placeholder={values.taiKhoan}
                   onChange={handleChange}
                   disabled={true}
                 />
               </div>
-              <div className="w-1/2">
+              <div className="tiny:w-full md:w-1/2">
                 <InputCustom
                   name="matKhau"
                   labelContent="Mật khẩu"
@@ -98,7 +114,7 @@ const UserInfoTemplate = () => {
                   value={values.matKhau}
                 />
               </div>
-              <div className="w-1/2">
+              <div className="tiny:w-full md:w-1/2">
                 <InputCustom
                   name="hoTen"
                   labelContent="Họ và Tên"
@@ -107,7 +123,7 @@ const UserInfoTemplate = () => {
                   value={values.hoTen}
                 />
               </div>
-              <div className="w-1/2">
+              <div className="tiny:w-full md:w-1/2">
                 <InputCustom
                   name="email"
                   labelContent="Email"
@@ -116,7 +132,7 @@ const UserInfoTemplate = () => {
                   value={values.email}
                 />
               </div>
-              <div className="w-1/2">
+              <div className="tiny:w-full md:w-1/2">
                 <InputCustom
                   name="soDT"
                   labelContent="Số Điện Thoại"
@@ -143,13 +159,13 @@ const UserInfoTemplate = () => {
       key: "2",
       children: (
         <>
-          <div className="container mx-auto space-y-8">
-            <div className="grid lg:grid-cols-2 gap-x-40 gap-y-5">
-              <h1 className="text-3xl font-bold">Các lớp học đã tham gia</h1>
+          <div className="mx-auto xs:max-w-full sm:max-w-screen-sm md:max-w-screen-md lg:max-w-[1140px] space-y-8">
+            <div className="tiny:block sm:grid md:grid-cols-2 gap-x-40 gap-y-5">
+              <h1 className="text-3xl font-bold mb-5">Các lớp học đã tham gia</h1>
               <input
                 type="text"
                 placeholder="Nhập khóa học cần tìm"
-                className="border py-2 px-3 rounded-md"
+                className="border py-2 px-3 rounded-md tiny:w-full"
               />
             </div>
             <div className="space-y-5">
@@ -157,23 +173,25 @@ const UserInfoTemplate = () => {
                 return (
                   <div
                     key={index}
-                    className="flex flex-row items-center gap-5 bg-purple-200 p-5 rounded-md w-full justify-evenly"
+                    className=" tiny:block md:flex flex-row items-center gap-5 bg-purple-200 p-5 rounded-md w-full justify-evenly"
                   >
-                    <div className="w-[150px]">
+                    <div className=" tiny:w-full md:w-[150px] mb-3">
                       <img src={item?.hinhAnh} alt="err" className="w-full" />
                     </div>
-                    <div className="w-1/2">
-                      <div className="space-y-5">
+                    <div className="tiny:w-full md:w-1/2 mb-3">
+                      <div className="space-y-5 mb-3">
                         <h2 className="font-bold text-2xl">
                           {item.tenKhoaHoc}
                         </h2>
                         <p>{item.moTa}</p>
                       </div>
-                      <div className="flex justify-between items-center">
-                        <p className="text-purple-700 font-semibold">
+                      <div className=" tiny:block md:flex justify-between items-center mb-3 tiny:text-center sm:text-left">
+                        <p className="text-purple-700 font-semibold mb-5">
                           ( Lượt xem: {item.luotXem} )
                         </p>
-                        <button className="bg-black px-5 py-2 text-white rounded-md">
+                        <button className="bg-black px-5 py-2 text-white rounded-md mb-3 tiny:w-2/3 sm:w-auto" onClick={() => {
+                          handleCancelCourse(item.maKhoaHoc, taiKhoan);
+                        }}>
                           Hủy
                         </button>
                       </div>
@@ -188,6 +206,8 @@ const UserInfoTemplate = () => {
     },
   ];
 
+
+
   return (
     <>
       <Header />
@@ -195,10 +215,10 @@ const UserInfoTemplate = () => {
         <h1 className="font-bold text-3xl mt-16 text-[#211C5B] mx-auto">
           Các khóa học mới nhất
         </h1>
-        <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16 mx-auto">
+        <div className="tiny:block sm:grid md:grid-cols-2 lg:grid-cols-3 gap-16 mx-auto">
           {listKhoaHocMoi.splice(-4).map((item, index) => {
             return (
-              <div>
+              <div className="mb-8">
                 <div className="mb-3 img_content">
                   <img src={item?.hinhAnh} alt="err" className="w-full" />
                 </div>
@@ -225,13 +245,13 @@ const UserInfoTemplate = () => {
                   </div>
                 </div>
                 <div>
-                  <button>ĐĂNG KÝ</button>
+                  <button to={`chi-tiet?maKhoaHoc=${item.maKhoaHoc}`}>ĐĂNG KÝ</button>
                 </div>
               </div>
             );
           })}
         </div>
-        <div className="w-full px-20">
+        <div className="w-full tiny:px-2 mx-auto">
           <Tabs onChange={onChange} type="card" items={tabItems} />
         </div>
       </div>

@@ -37,10 +37,14 @@
 .banner_course {
   background-image: url("./../assets/img/blue-bg.png");
   background-repeat: no-repeat;
-  background-position: top;
+  background-position-y: 60px;
   background-size: cover;
   position: relative;
-  height: 100%;
+
+  @media screen and (max-width: 576px) {
+    background-position-y: 0;
+    background-position: center;
+  }
 
   &::before {
     content: "";

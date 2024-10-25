@@ -1,6 +1,8 @@
 .prepare {
     .prepare_content {
         .prepare_left {
+            position: relative;
+
             .title {
                 margin-top: -85px;
                 padding: 40px;
@@ -36,5 +38,29 @@
                 padding: 0 50px;
             }
         }
+    }
+}
+
+@keyframes elementor-headline-dash {
+    0% {
+        stroke-dasharray: 0 1500;
+        opacity: 1
+    }
+
+    to {
+        stroke-dasharray: 1500 1500;
+        opacity: 1
+    }
+}
+
+@keyframes hide-highlight {
+    0% {
+        opacity: 1;
+        stroke-dasharray: 1500 1500
+    }
+
+    to {
+        opacity: 0;
+        filter: blur(10px)
     }
 }

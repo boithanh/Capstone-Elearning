@@ -15,7 +15,6 @@
 
 @mixin styleButton ($bg, $color, $pd, $hover-bg, $hover-color: white) {
     background-color: $bg;
-    // background-image: linear-gradient(to right, #3f51b1, #5a55ae, #7b5fac, #8f6aae, #a86aa4, #cc6b8e, #f18271, #f3a469, #f7c978);
     color: $color;
     padding: $pd;
     border: 2px solid $blue-700;
@@ -23,6 +22,7 @@
     transition: all .5s;
     font-size: 15px;
     line-height: 1;
+    text-align: center;
 
     &:hover {
         background-color: $hover-bg;

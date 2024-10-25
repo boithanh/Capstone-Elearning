@@ -8,6 +8,9 @@ import LetStarted from "../../components/UI/LetStarted";
 import Discover from "../../components/UI/Discover";
 import Prepare from "../../components/UI/Prepare";
 import WhyLearn from "../../components/UI/WhyLearn";
+import Ecourse from "../../components/UI/Ecourse";
+import PopularCourse from "../../components/UI/PopularCourse";
+import SuccessStory from "../../components/UI/SuccessStory";
 
 const HomePage = () => {
   const location = useLocation();
@@ -18,16 +21,17 @@ const HomePage = () => {
         <>
           {" "}
           <Banner />
-          <Prepare />{" "}
+          <Prepare /> <Ecourse /> <WhyLearn />
+          <PopularCourse />
         </>
       )}
 
-      <main className="h-full">
+      <main className="min-h-screen">
         <Outlet />
       </main>
       {location.pathname === path.homePage && (
         <>
-          <Discover /> <WhyLearn />
+          <Discover /> <SuccessStory />
           <LetStarted />
         </>
       )}

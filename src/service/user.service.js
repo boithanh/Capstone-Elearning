@@ -1,8 +1,12 @@
 import { http } from "./config";
 
 export const userService = {
-  updateUser: (data) => {
-    return http.put("QuanLyNguoiDung/CapNhatThongTinNguoiDung", data);
+  updateUser: (token, data) => {
+    return http.put("QuanLyNguoiDung/CapNhatThongTinNguoiDung", data, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      }
+    });
   },
   listKhoaHocUser: (data) => {
     return http.post("QuanLyNguoiDung/LayDanhSachKhoaHocDaXetDuyet", data);
@@ -22,16 +26,39 @@ export const userService = {
       `QuanLyNguoiDung/TimKiemNguoiDung?MaNhom=GP01&tuKhoa=${data}`
     );
   },
-  layDanhSachKhoaHocDaXetDuyet: (data) => {
-    return http.post(`QuanLyNguoiDung/LayDanhSachKhoaHocDaXetDuyet`, data);
+  layDanhSachKhoaHocDaXetDuyet: (token, data) => {
+    return http.post(`QuanLyNguoiDung/LayDanhSachKhoaHocDaXetDuyet`, data, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      }
+    });
   },
-  layDanhSachKhoaHocChoXetDuyet: (data) => {
-    return http.post("QuanLyNguoiDung/LayDanhSachKhoaHocChoXetDuyet", data);
+  layDanhSachKhoaHocChoXetDuyet: (token, data) => {
+    return http.post("QuanLyNguoiDung/LayDanhSachKhoaHocChoXetDuyet", data, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      }
+    });
   },
-  layDanhSachHocVienChoXetDuyet: (data) => {
-    return http.post("QuanLyNguoiDung/LayDanhSachHocVienChoXetDuyet", data);
+  layDanhSachHocVienChoXetDuyet: (token, data) => {
+    return http.post("QuanLyNguoiDung/LayDanhSachHocVienChoXetDuyet", data, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      }
+    });
   },
-  layDanhSachHocVienKhoaHoc: (data) => {
-    return http.post("QuanLyNguoiDung/LayDanhSachHocVienKhoaHoc", data);
+  layDanhSachHocVienKhoaHoc: (token, data) => {
+    return http.post("QuanLyNguoiDung/LayDanhSachHocVienKhoaHoc", data, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      }
+    });
   },
+  duyetGhiDanhCourseForUser: (token, data) => {
+    return http.post("QuanLyKhoaHoc/GhiDanhKhoaHoc", data, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      }
+    })
+  }
 };

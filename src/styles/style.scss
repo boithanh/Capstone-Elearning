@@ -1,4 +1,5 @@
 @import "./base/reset";
+@import "./base/custom";
 @import "./helpers/variable";
 @import "./helpers/mixin";
 @import "./layouts/global/header";
@@ -9,4 +10,7 @@
 @import "./layouts/components/button";
 @import "./layouts/components/cta";
 @import "./layouts/components/prepare";
-@import "./layouts//components/whyLearn";
+@import "./layouts/components/whyLearn";
+@import "./layouts/components/eCourse";
+@import "./layouts/components/popularCourse";
+@import "./layouts/components/successStory"
