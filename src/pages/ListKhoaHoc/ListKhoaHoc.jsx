@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { khoaHocService } from '../../service/khoaHoc.service';
 import { Link } from 'react-router-dom';
-import { truncateText } from '../../utils/utils';
+import { getLocalStorage, truncateText } from '../../utils/utils';
 const ListKhoaHoc = () => {
     const [listKhoaHoc, setListKhoaHoc] = useState([]);
     useEffect(
@@ -44,7 +44,8 @@ const ListKhoaHoc = () => {
                                     <i className="fa-regular fa-star" />
                                 </span>
                             </div>
-                            <Link to={`chi-tiet?maKhoaHoc=${item.maKhoaHoc}`}>ĐĂNG KÝ</Link>
+                            {/* <Link to={`chi-tiet?maKhoaHoc=${item.maKhoaHoc}`}>ĐĂNG KÝ</Link> */}
+                            <Link to={(getLocalStorage("user") ? `/chi-tiet?maKhoaHoc=${item?.maKhoaHoc}` : `/login`)}>ĐĂNG KÝ</Link>
                         </div>
                     })
                     }

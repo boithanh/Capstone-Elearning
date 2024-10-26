@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom';
 import { khoaHocService } from '../../service/khoaHoc.service';
-import { truncateText } from '../../utils/utils';
+import { getLocalStorage, truncateText } from '../../utils/utils';
 
 const DanhMucKhoaHoc = () => {
     const [searchParam, setSearchParam] = useSearchParams();
@@ -52,7 +52,8 @@ const DanhMucKhoaHoc = () => {
                                     </span>
                                 </div>
                                 <div>
-                                    <Link to={`/chi-tiet?maKhoaHoc=${item?.maKhoaHoc}`}>ĐĂNG KÝ</Link>
+                                    {/* <Link to={`/chi-tiet?maKhoaHoc=${item?.maKhoaHoc}`}>ĐĂNG KÝ</Link> */}
+                                    <Link to={(getLocalStorage("user") ? `/chi-tiet?maKhoaHoc=${item?.maKhoaHoc}` : `/login`)}>ĐĂNG KÝ</Link>
                                 </div>
                             </div>
                         })
