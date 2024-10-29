@@ -86,6 +86,7 @@ const ManageUser = () => {
             <Link
               to={path.editUser}
               onClick={() => {
+                // console.log(record);
                 dispatch(setUser(record.taiKhoan));
               }}
             >

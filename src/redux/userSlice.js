@@ -13,7 +13,7 @@ export const getValueUserApi = createAsyncThunk(
 const initialState = {
   listUsers: [],
   editUser: null,
-  infoUser: getLocalStorage("user")
+  infoUser: getLocalStorage("user"),
 };
 
 const userSlice = createSlice({
@@ -25,7 +25,7 @@ const userSlice = createSlice({
     },
     userStatus: (state, action) => {
       state.infoUser = action.payload;
-    }
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(getValueUserApi.fulfilled, (state, action) => {
