@@ -8,6 +8,8 @@ import { NotificationContext } from "../../App";
 import { khoaHocService } from "../../service/khoaHoc.service";
 import ImgUpload from "../../components/ImgUpload/ImgUpload";
 import { getValueUserApi } from "../../redux/userSlice";
+import { Rate } from "antd";
+import { getLocalStorage } from "../../utils/utils";
 
 const EditCourse = () => {
   const navigate = useNavigate();
@@ -28,7 +30,9 @@ const EditCourse = () => {
       .then((res) => {
         setDanhMuc(res.data);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        // console.log(err)
+      });
   }, []);
 
   useEffect(() => {
@@ -42,7 +46,7 @@ const EditCourse = () => {
         });
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
       });
   }, [dataCourse]);
 
@@ -80,18 +84,22 @@ const EditCourse = () => {
         values;
       // console.log("formEdit", formValues);
       khoaHocService
-        .suaKhoaHoc(formValues)
+        .suaKhoaHoc(getLocalStorage("admin").accessToken, formValues)
         .then((res) => {
           showNotification(`Đã sửa khóa học ${res.data.tenKhoaHoc}`, "warning");
           resetForm();
           navigate(path.manageCourse);
         })
         .catch((err) => {
-          console.log(err);
+          // console.log(err);
           showNotification(`${err.response.data}`, "error");
         });
     },
   });
+
+  const handleRateChange = (value) => {
+    setFieldValue("danhGia", value);
+  };
 
   return (
     <>
@@ -160,12 +168,21 @@ const EditCourse = () => {
                 />
               </div>
               <div>
-                <InputCustom
+                {/* <InputCustom
                   name="danhGia"
                   labelContent="Đánh giá"
                   typeInput="number"
                   onChange={handleChange}
                   value={values.danhGia}
+                /> */}
+                <label className="block mb-2 text-sm font-medium text-gray-900">
+                  Đánh giá
+                </label>
+                <Rate
+                  defaultValue={2}
+                  value={values.danhGia}
+                  onChange={handleRateChange}
+                  className="rounded-md outline-none block w-1/2 py-2.5 mb-3"
                 />
               </div>
               <div>

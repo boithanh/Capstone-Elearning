@@ -9,7 +9,12 @@ export default {
       center: true,
       padding: '2rem',
     },
-    extend: {},
+    extend: {
+      screens: {
+        'xs': '320px',
+        'tiny': '50px'
+      },
+    },
   },
   plugins: [],
 }

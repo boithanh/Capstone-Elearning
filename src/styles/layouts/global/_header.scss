@@ -1,0 +1,22 @@
+header {
+    position: fixed;
+    width: 100%;
+    background-color: transparent;
+    background-image: linear-gradient(130deg, $blue-700 0%, $violet 100%);
+    box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+    padding: 15px 0;
+
+
+    @media screen and (max-width:575.98px) {
+        padding: 10px 0;
+    }
+
+    .header_container {
+        .header_main {
+            input {
+                @include styleInput($glass-white, white, 10px 20px);
+            }
+        }
+    }
+}

@@ -4,7 +4,7 @@ import { Space, Table, Tag } from "antd";
 import { getValueUserApi, setUser } from "../../redux/userSlice";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import { path } from "../../common/path";
-import utils from "../../utils/utils";
+import utils, { getLocalStorage } from "../../utils/utils";
 import { userService } from "../../service/user.service";
 import { NotificationContext } from "../../App";
 import { Button, Modal } from "antd";
@@ -28,6 +28,8 @@ const ManageUser = () => {
   useEffect(() => {
     dispatch(getValueUserApi());
   }, [dispatch]);
+
+  let token = getLocalStorage("admin").accessToken;
 
   const columns = [
     {
@@ -84,6 +86,7 @@ const ManageUser = () => {
             <Link
               to={path.editUser}
               onClick={() => {
+                // console.log(record);
                 dispatch(setUser(record.taiKhoan));
               }}
             >
@@ -94,7 +97,7 @@ const ManageUser = () => {
             className="bg-red-500/80 text-white py-2 px-3 rounded-md hover:scale-125 duration-300"
             onClick={() => {
               userService
-                .xoaNguoiDung(record.taiKhoan)
+                .xoaNguoiDung(record.taiKhoan, token)
                 .then((res) => {
                   // console.log(res);
                   showNotification(
@@ -172,7 +175,7 @@ const ManageUser = () => {
         <div className="flex flex-row gap-x-5">
           <input
             type="text"
-            placeholder="Tìm kiếm họ và tên"
+            placeholder="Tìm kiếm Họ và tên"
             className="border w-3/4 px-2 py-3 rounded-md"
             onInput={(e) => {
               if (e.target.value.trim() !== "") {
@@ -183,12 +186,12 @@ const ManageUser = () => {
               }
             }}
           />
-          <button
+          {/* <button
             className="border rounded-md px-5 py-3 bg-blue-400 text-white"
             onClick={() => {}}
           >
             Tìm kiếm
-          </button>
+          </button> */}
         </div>
         <Table columns={columns} dataSource={dataSource} />
         <Outlet />

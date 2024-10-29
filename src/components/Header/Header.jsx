@@ -11,12 +11,21 @@ import LogOutIcon from "../Icon/LogOutIcon";
 import { path } from "../../common/path";
 import { useDispatch, useSelector } from "react-redux";
 import { userStatus } from "../../redux/userSlice";
-import { info } from "sass";
+import { khoaHocService } from "../../service/khoaHoc.service";
+import MobileMenuGlass from "../Menu/MobileMenuGlass";
 
 const Header = () => {
   const { infoUser } = useSelector((state) => state.userSlice);
+  const [valueDanhMuc, setValueDanhMuc] = useState([]);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  useEffect(() => {
+    khoaHocService.layAllDanhMucKhoaHoc().then((res) => {
+      setValueDanhMuc(res.data);
+    }).catch(() => {
+      console.log(err);
+    })
+  }, [])
   const items = [
     {
       label: (
@@ -50,8 +59,6 @@ const Header = () => {
       type: "divider",
     },
   ];
-
-  // Note: infoUser giả lập user sau khi login sẽ có thông tin này để load lên header menu
   const checkUserLogin = () => {
     return infoUser ? (
       <Dropdown
@@ -84,21 +91,24 @@ const Header = () => {
     <>
       <header>
         <div className="container max-w-full">
-          <div className="header_content flex items-center justify-items-center">
-            <Link className="header_logo me-20" to={path.homePage}>
-              <LogoIcon />
-            </Link>
-            <nav className="header_navigate w-full">
-              <CourseMenu />
-              <WrapperSuggestCourse>
-                <FormSearchKhoaHoc />
-              </WrapperSuggestCourse>
-              <div className="inline-block w-4/12 text-right">
-                {checkUserLogin()}
+          <div className="header_container">
+            <nav className="header_main sm:text-xs md:text-sm lg:text-base tiny:!hidden sm:!block">
+              <div className="header_navigate w-full flex items-center justify-around ">
+                <Link className="header_logo me-5" to={path.homePage}>
+                  <LogoIcon />
+                </Link>
+                <CourseMenu valueDanhMuc={valueDanhMuc} />
+                <WrapperSuggestCourse>
+                  <FormSearchKhoaHoc />
+                </WrapperSuggestCourse>
+                <div className="inline-block w-4/12 text-right">
+                  {checkUserLogin()}
+                </div>
               </div>
             </nav>
+            {/* <MobileMenu valueDanhMuc={valueDanhMuc} /> */}
+            <MobileMenuGlass valueDanhMuc={valueDanhMuc} />
           </div>
-          <MobileMenu />
         </div>
       </header>
     </>

@@ -1,0 +1,66 @@
+.prepare {
+    .prepare_content {
+        .prepare_left {
+            position: relative;
+
+            .title {
+                margin-top: -85px;
+                padding: 40px;
+                background-color: $blue-700;
+                border-radius: 15px;
+
+                @media screen and (max-width:1023.98px) {
+                    margin-top: auto;
+                }
+
+                h2 {
+                    color: white;
+                    padding: 10px;
+                    font-size: 38px;
+                    font-weight: 600;
+                    line-height: 45px;
+                }
+            }
+        }
+
+        .prepare_right {
+            color: $blue-700;
+            margin-top: -30px;
+
+            span {
+                font-size: 34px;
+                font-weight: bold;
+                padding: 0 60px;
+            }
+
+            p {
+                font-size: 19px;
+                padding: 0 50px;
+            }
+        }
+    }
+}
+
+@keyframes elementor-headline-dash {
+    0% {
+        stroke-dasharray: 0 1500;
+        opacity: 1
+    }
+
+    to {
+        stroke-dasharray: 1500 1500;
+        opacity: 1
+    }
+}
+
+@keyframes hide-highlight {
+    0% {
+        opacity: 1;
+        stroke-dasharray: 1500 1500
+    }
+
+    to {
+        opacity: 0;
+        filter: blur(10px)
+    }
+}

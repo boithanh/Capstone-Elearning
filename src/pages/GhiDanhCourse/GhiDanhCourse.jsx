@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Space, Table, Tag } from "antd";
 import { userService } from "../../service/user.service";
-import utils from "../../utils/utils";
+import utils, { getLocalStorage } from "../../utils/utils";
+import { khoaHocService } from "../../service/khoaHoc.service";
 
 const GhiDanhCourse = (maKhoaHoc) => {
   const [dsHocVien, setDsHocVien] = useState([]);
@@ -13,14 +14,17 @@ const GhiDanhCourse = (maKhoaHoc) => {
 
   useEffect(() => {
     userService
-      .layDanhSachHocVienKhoaHoc(maKhoaHoc)
+      .layDanhSachHocVienKhoaHoc(
+        getLocalStorage("admin").accessToken,
+        maKhoaHoc
+      )
       .then((res) => setDsHocVien(res.data))
       .catch((err) => console.log(err));
-  }, [maKhoaHoc]);
-
-  useEffect(() => {
     userService
-      .layDanhSachHocVienChoXetDuyet(maKhoaHoc)
+      .layDanhSachHocVienChoXetDuyet(
+        getLocalStorage("admin").accessToken,
+        maKhoaHoc
+      )
       .then((res) => setDsHVChoXet(res.data))
       .catch((err) => console.log(err));
   }, [maKhoaHoc]);
@@ -38,6 +42,78 @@ const GhiDanhCourse = (maKhoaHoc) => {
     ...item,
     index: index + 1,
   }));
+
+  const duyetGhiDanh = (data) => {
+    userService
+      .duyetGhiDanhCourseForUser(getLocalStorage("admin").accessToken, data)
+      // .then((res) => {
+      //   userService
+      //     .layDanhSachKhoaHocDaXetDuyet(
+      //       getLocalStorage("admin").accessToken,
+      //       taiKhoan
+      //     )
+      //     .then((res) => {
+      //       setDsHocVien(res.data);
+      //     })
+      //     .catch((err) => {});
+      //   userService
+      //     .layDanhSachKhoaHocChoXetDuyet(
+      //       getLocalStorage("admin").accessToken,
+      //       taiKhoan
+      //     )
+      //     .then((res) => {
+      //       // console.log(res);
+      //       setDsHVChoXet(res.data);
+      //     })
+      //     .catch((err) => {
+      //       // console.log(err)?
+      //     });
+      // })
+      .then((res) => {
+        userService
+          .layDanhSachHocVienKhoaHoc(
+            getLocalStorage("admin").accessToken,
+            maKhoaHoc
+          )
+          .then((res) => setDsHocVien(res.data))
+          .catch((err) => console.log(err));
+        userService
+          .layDanhSachHocVienChoXetDuyet(
+            getLocalStorage("admin").accessToken,
+            maKhoaHoc
+          )
+          .then((res) => setDsHVChoXet(res.data))
+          .catch((err) => console.log(err));
+      })
+      .catch((err) => {
+        // console.log(err);
+      });
+  };
+
+  const handleCancelUser = (data) => {
+    khoaHocService
+      .huyGhiDanhUser(getLocalStorage("admin").accessToken, data)
+      .then((res) => {
+        userService
+          .layDanhSachHocVienKhoaHoc(
+            getLocalStorage("admin").accessToken,
+            maKhoaHoc
+          )
+          .then((res) => setDsHocVien(res.data))
+          .catch((err) => console.log(err));
+        userService
+          .layDanhSachHocVienChoXetDuyet(
+            getLocalStorage("admin").accessToken,
+            maKhoaHoc
+          )
+          .then((res) => setDsHVChoXet(res.data))
+          .catch((err) => console.log(err));
+      })
+      .catch((err) => {
+        // console.log(err);
+        // showNotification("Có lỗi xảy ra vui lòng liên hệ BP.CSKH", "error");
+      });
+  };
 
   const columnsHV = [
     {
@@ -65,7 +141,11 @@ const GhiDanhCourse = (maKhoaHoc) => {
             </button> */}
           <button
             className="bg-red-500/80 text-white py-2 px-3 rounded-md hover:scale-125 duration-300"
-            onClick={() => {}}
+            onClick={() => {
+              let sumData = { ...maKhoaHoc, taiKhoan: record.taiKhoan };
+              handleCancelUser(sumData);
+              setIsSearching(false);
+            }}
           >
             X
           </button>
@@ -95,12 +175,23 @@ const GhiDanhCourse = (maKhoaHoc) => {
       key: "action",
       render: (_, record) => (
         <Space size="middle" className="space-x-1">
-          <button className="bg-green-500/80 text-white py-2 px-3 rounded-md hover:scale-125 duration-300">
+          <button
+            className="bg-green-500/80 text-white py-2 px-3 rounded-md hover:scale-125 duration-300"
+            onClick={() => {
+              let sumData = { ...maKhoaHoc, taiKhoan: record.taiKhoan };
+              duyetGhiDanh(sumData);
+              setIsSearchingChoXet(false);
+            }}
+          >
             <i className="fa-solid fa-check"></i>
           </button>
           <button
             className="bg-red-500/80 text-white py-2 px-3 rounded-md hover:scale-125 duration-300"
-            onClick={() => {}}
+            onClick={() => {
+              let sumData = { ...maKhoaHoc, taiKhoan: record.taiKhoan };
+              handleCancelUser(sumData);
+              setIsSearchingChoXet(false);
+            }}
           >
             X
           </button>

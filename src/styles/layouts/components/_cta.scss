@@ -1,0 +1,22 @@
+.letStarted,
+.discover {
+    position: relative;
+    background-image: url("./../assets/img/partten.png");
+    background-position: top center;
+    background-repeat: no-repeat;
+
+    .overlay {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: $blue-700;
+        opacity: 0.85;
+    }
+}
+
+.discover {
+    background-position: bottom center;
+}

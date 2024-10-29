@@ -1,0 +1,139 @@
+.whyLearn {
+    background-color: $pink-100;
+
+    .whyLearn_title {
+        h2 {
+            color: $blue-700;
+            font-size: 38px;
+            font-weight: 600;
+        }
+
+        a {
+            font-weight: 600;
+        }
+    }
+
+    .whyLearn_content {
+        .flip-card {
+            background-color: transparent;
+            width: 100%;
+            height: 280px;
+            perspective: 1000px;
+            text-align: left;
+            margin-bottom: 30px;
+
+            @media screen and (max-width:1139.98px) {
+                margin-top: 0 !important;
+            }
+
+            &:hover .flip-card-inner {
+                transform: rotateX(180deg);
+            }
+
+            .flip-card-inner {
+                position: relative;
+                width: 100%;
+                height: 100%;
+                transition: transform 0.8s;
+                transform-style: preserve-3d;
+                transform-origin: center center;
+
+                .flip-card-front,
+                .flip-card-back {
+                    position: absolute;
+                    width: 100%;
+                    height: 100%;
+                    -webkit-backface-visibility: hidden;
+                    backface-visibility: hidden;
+                    padding: 35px;
+                    border-radius: 27px;
+
+                    i {
+                        font-size: 50px;
+                        margin-bottom: 20px;
+                    }
+
+                    h3 {
+                        font-size: 29px;
+                        line-height: 30px;
+                        text-align: center;
+                        font-weight: bolder;
+                        margin-bottom: 20px;
+                    }
+
+                    p {
+                        font-size: 14px;
+                        margin-bottom: 30px;
+                        text-align: center;
+                        font-weight: bolder;
+                    }
+
+                    button,
+                    a {
+                        margin-bottom: 20px;
+                        width: 50%;
+
+                        @media screen and (max-width:1139.98px) {
+                            width: 100%;
+                        }
+
+                    }
+                }
+
+                .flip-card-front {
+                    color: white;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: start;
+                }
+
+                .flip-card-back {
+                    color: white;
+                    transform: rotateX(180deg);
+                    text-align: center;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                }
+            }
+        }
+
+        .flip-card:first-child {
+            .flip-card-front {
+                background-color: $violet;
+            }
+
+            .flip-card-back {
+                background-color: $orange-300;
+            }
+        }
+
+        .flip-card:nth-child(2) {
+            margin-top: -70px;
+
+            .flip-card-inner {
+                .flip-card-front {
+                    background-color: $pink-700;
+                }
+
+                .flip-card-back {
+                    background-color: $blue-300;
+                }
+            }
+        }
+
+        .flip-card:last-child {
+            margin-top: -160px;
+
+            .flip-card-inner {
+                .flip-card-front {
+                    background-color: $violet;
+                }
+
+                .flip-card-back {
+                    background-color: $blue-300;
+                }
+            }
+        }
+    }
+}

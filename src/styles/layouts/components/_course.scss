@@ -1,0 +1,117 @@
+.listKhoaHoc,
+.danhMucKhoaHoc {
+    background-color: #FCFCFC;
+    color: $blue-700;
+
+    h2 {
+        position: relative;
+        font-size: 25px;
+        font-weight: 600;
+    }
+
+    p {
+        position: relative;
+    }
+
+    position: relative;
+
+    .danhMuc_item,
+    .list_item {
+        border: 1px solid transparent;
+        padding: 20px;
+        transition: all .1s;
+        margin: 50px auto;
+        position: relative;
+        overflow: hidden;
+        outline: 1px solid transparent;
+        outline-offset: -2px;
+        background-color: #FCFCFC !important;
+
+
+        &:hover {
+            background-image: repeating-linear-gradient(#FCFCFC 0px, #FCFCFC 24px, steelblue 25px);
+            outline-color: $blue-700;
+            border-top-right-radius: 15px;
+
+            &::before {
+                content: '';
+                position: absolute;
+                left: 45px;
+                height: 100%;
+                width: 2px;
+                background: rgba(255, 0, 0, 0.4);
+                opacity: 0.2;
+            }
+
+            &::after {
+                content: '';
+                display: block;
+                border-width: 75px 75px 0px 0px;
+                border-style: solid;
+                border-color: #d7d7d7 transparent;
+                position: absolute;
+                bottom: 0;
+                right: 0;
+            }
+
+            &::after {
+                content: '';
+                display: block;
+                border-width: 75px 75px 0px 0px;
+                border-style: solid;
+                border-color: #d7d7d7 #FFF;
+                box-shadow: -5px 6px 10px rgb(129, 127, 127);
+                position: absolute;
+                bottom: 0;
+                right: 0;
+            }
+        }
+    }
+
+    .img_content {
+        position: relative;
+        width: 100%;
+
+        img {
+            width: 310px;
+            height: 176px;
+            border-radius: 15px;
+            object-fit: cover;
+
+            @media screen and (max-width:576px) {
+                width: 100%;
+                height: 100%;
+            }
+        }
+    }
+
+    button,
+    a {
+        position: relative;
+        @include styleButton ($violet, white, 12px 30px, $pink-700);
+    }
+}
+
+.findCourse {
+    .findCourse_item {
+        background-image: linear-gradient(to right,
+                #423E73 0,
+                $pink-700 51%,
+                #423E73 100%);
+        background-size: 300%;
+
+        &:hover {
+            transition: .5s;
+            background-position: center;
+            background-image: linear-gradient(to right,
+                    #423E73 0,
+                    $pink-700 51%,
+                    #423E73 100%);
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+            span {
+                color: $blue-300;
+            }
+        }
+    }
+}

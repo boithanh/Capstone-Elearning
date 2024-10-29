@@ -104,8 +104,9 @@ const AdminTemplate = () => {
         />
       </Sider>
       <Layout>
-        <div className="flex items-center justify-between container mx-auto bg-blue-950">
-          <Header
+        <div className="flex items-center justify-between container mx-auto bg-blue-950 py-2">
+          <LogoIcon />
+          {/* <Header
             style={{
               padding: 0,
             }}
@@ -119,10 +120,10 @@ const AdminTemplate = () => {
               style={{
                 fontSize: "16px",
                 width: 200,
-                height: 64,
+                height: " auto",
               }}
             />
-          </Header>
+          </Header> */}
           <div className="inline-block w-4/12 text-right">
             {checkAdminLogin()}
           </div>

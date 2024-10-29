@@ -4,7 +4,7 @@ import { Space, Table, Tag } from "antd";
 import { getValueCourseApi, setCourse } from "../../redux/courseSlice";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import { path } from "../../common/path";
-import utils from "../../utils/utils";
+import utils, { getLocalStorage } from "../../utils/utils";
 import { khoaHocService } from "../../service/khoaHoc.service";
 import { NotificationContext } from "../../App";
 import { Button, Modal } from "antd";
@@ -28,6 +28,8 @@ const ManageCourse = () => {
   useEffect(() => {
     dispatch(getValueCourseApi());
   }, [dispatch]);
+
+  let token = getLocalStorage("admin").accessToken;
 
   const columns = [
     {
@@ -86,10 +88,10 @@ const ManageCourse = () => {
             </Link>
           </button>
           <button
-            className="bg-red-500/80 text-white py-2 px-3 rounded-md"
+            className="bg-red-500/80 text-white py-2 px-3 rounded-md hover:scale-125 duration-300"
             onClick={() => {
               khoaHocService
-                .xoaKhoaHoc(record.maKhoaHoc)
+                .xoaKhoaHoc(record.maKhoaHoc, token)
                 .then((res) => {
                   // console.log(res);
                   showNotification(
@@ -97,6 +99,7 @@ const ManageCourse = () => {
                     "error"
                   );
                   dispatch(getValueCourseApi());
+                  setIsSearching(false);
                   khoaHocService.layAllKhoaHoc();
                 })
                 .catch((err) => {
@@ -167,7 +170,7 @@ const ManageCourse = () => {
         <div className="flex flex-row gap-x-5">
           <input
             type="text"
-            placeholder="Tìm kiếm tên khóa học"
+            placeholder="Tìm kiếm Tên khóa học"
             className="border w-3/4 px-2 py-3 rounded-md"
             onInput={(e) => {
               if (e.target.value.trim() !== "") {
@@ -178,12 +181,12 @@ const ManageCourse = () => {
               }
             }}
           />
-          <button
+          {/* <button
             className="border rounded-md px-5 py-3 bg-blue-400 text-white"
             onClick={() => {}}
           >
             Tìm kiếm
-          </button>
+          </button> */}
         </div>
         <Table columns={columns} dataSource={dataSource} />
         <Outlet />
