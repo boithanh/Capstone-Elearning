@@ -26,7 +26,7 @@ const HomePage = () => {
         </>
       )}
 
-      <main className="min-h-screen">
+      <main>
         <Outlet />
       </main>
       {location.pathname === path.homePage && (

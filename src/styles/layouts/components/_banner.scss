@@ -11,12 +11,10 @@
     @include styleButton($pink-700, white, 13px 20px, $blue-700);
     background-size: 150%;
     // background-image: linear-gradient(to right, $blue-700 0, $pink-700 51%, $blue-700 100%);
-    background-image: linear-gradient(
-      to right,
-      $pink-700 0,
-      $blue-300 51%,
-      $pink-700 100%
-    );
+    background-image: linear-gradient(to right,
+        $pink-700 0,
+        $blue-300 51%,
+        $pink-700 100%);
     font-weight: 600;
     transition: all 1s;
 
@@ -42,7 +40,6 @@
   position: relative;
 
   @media screen and (max-width: 576px) {
-    background-position-y: 0;
     background-position: center;
   }
 
@@ -63,9 +60,6 @@
 
   img {
     border-radius: 8px;
-    width: 310px;
-    height: 176px;
-    border-radius: 15px;
     object-fit: cover;
     object-position: center;
   }

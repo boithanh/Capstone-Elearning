@@ -52,8 +52,7 @@ const DanhMucKhoaHoc = () => {
                                     </span>
                                 </div>
                                 <div>
-                                    {/* <Link to={`/chi-tiet?maKhoaHoc=${item?.maKhoaHoc}`}>ĐĂNG KÝ</Link> */}
-                                    <Link to={(getLocalStorage("user") ? `/chi-tiet?maKhoaHoc=${item?.maKhoaHoc}` : `/login`)}>ĐĂNG KÝ</Link>
+                                    <Link to={`/chi-tiet?maKhoaHoc=${item?.maKhoaHoc}`}>ĐĂNG KÝ</Link>
                                 </div>
                             </div>
                         })

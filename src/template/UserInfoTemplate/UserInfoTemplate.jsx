@@ -12,7 +12,7 @@ import { Link } from "react-router-dom";
 import { truncateText } from "../../utils/utils";
 
 const UserInfoTemplate = () => {
-  const onChange = () => {};
+  const onChange = () => { };
   const { showNotification } = useContext(NotificationContext);
   const [userInfo, setUserInfo] = useState(getLocalStorage("user"));
   const [listKhoaHoc, setListKhoaHoc] = useState([]);

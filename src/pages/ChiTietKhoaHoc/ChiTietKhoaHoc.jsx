@@ -8,23 +8,16 @@ const ChiTietKhoaHoc = () => {
   const { showNotification } = useContext(NotificationContext);
   const [searchParam, setSearchParam] = useSearchParams();
   const [chiTietKhoaHoc, setChiTietKhoaHoc] = useState([]);
-  // const [duLieuDangKy, setDuLieuDangKy] = useState({
-  //   maKhoaHoc: "",
-  //   taiKhoan: "",
-  // });
-  let maKhoaHoc = searchParam.get("maKhoaHoc");
-  let taiKhoan = getLocalStorage("user").taiKhoan;
-  let token = getLocalStorage("user").accessToken;
-  let duLieuDangKy = { maKhoaHoc, taiKhoan };
+  const [duLieuDangKy, setDuLieuDangKy] = useState({ "maKhoaHoc": "", "taiKhoan": "", });
   const navigate = useNavigate();
   const handleSignUpCourse = () => {
-    // let maKhoaHoc = searchParam.get("maKhoaHoc");
-    // let taiKhoan = getLocalStorage("user").taiKhoan;
-    // let token = getLocalStorage("user").accessToken;
-    // setDuLieuDangKy({
-    //   maKhoaHoc,
-    //   taiKhoan,
-    // });
+    let maKhoaHoc = searchParam.get("maKhoaHoc");
+    let taiKhoan = getLocalStorage("user").taiKhoan;
+    let token = getLocalStorage("user").accessToken;
+    setDuLieuDangKy({
+      maKhoaHoc,
+      taiKhoan,
+    });
     khoaHocService
       .dangKyKhoaHocUser(token, duLieuDangKy)
       .then((res) => {
@@ -46,14 +39,14 @@ const ChiTietKhoaHoc = () => {
       .then((res) => {
         setChiTietKhoaHoc(res.data);
       })
-      .catch((err) => {});
+      .catch((err) => { });
   }, [searchParam.get("maKhoaHoc")]);
 
   return (
     <>
       <div className="banner_course pt-24">
         <div className="container text-[#211C5B] py-14 relative xs:max-w-full sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg xl:max-w-screen-xl">
-          <div className="xs:block md:flex items-center py-20 w-10/12 mx-auto">
+          <div className="xs:block md:flex items-center py-10 w-10/12 mx-auto">
             <div
               className="xs:w-full md:w-8/12 text-white mb-10"
               data-aos="fade-left"
@@ -82,11 +75,11 @@ const ChiTietKhoaHoc = () => {
               </button>
             </div>
             <div className="xs:w-full md:w-4/12 mb-5">
-              <div className="w-full" data-aos="fade-right">
+              <div className="img_content" data-aos="fade-right">
                 <img
                   src={chiTietKhoaHoc?.hinhAnh}
                   alt="err"
-                  className="xs:!w-full xs:!h-full md:!w-[310px] md:!h-[176px]"
+                  className="w-full"
                 />
               </div>
             </div>
@@ -104,15 +97,6 @@ const ChiTietKhoaHoc = () => {
           </div>
         </div>
       </div>
-      {/* <div className="detail_course py-20">
-        <div
-          className="container xs:max-w-full sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg"
-          data-aos="fade-up-left"
-        >
-          <h1 className="text-3xl font-semibold mb-5">Giới thiệu khóa học</h1>
-          <p>{chiTietKhoaHoc?.moTa}</p>
-        </div>
-      </div> */}
     </>
   );
 };
