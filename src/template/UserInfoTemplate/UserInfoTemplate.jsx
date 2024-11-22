@@ -245,6 +245,9 @@ const UserInfoTemplate = () => {
     <>
       <Header />
       <div className="container listKhoaHoc py-10 xs:max-w-full sm:max-w-screen-sm md:max-w-screen-md lg:max-w-[1140px] space-y-8">
+        <div className="w-full tiny:px-2 mx-auto pt-20 pb-12">
+          <Tabs onChange={onChange} type="card" items={tabItems} />
+        </div>
         <h1 className="font-bold text-3xl mt-16 text-[#211C5B] mx-auto">
           Các khóa học mới nhất
         </h1>
@@ -289,9 +292,6 @@ const UserInfoTemplate = () => {
               </div>
             );
           })}
-        </div>
-        <div className="w-full tiny:px-2 mx-auto">
-          <Tabs onChange={onChange} type="card" items={tabItems} />
         </div>
       </div>
       <Footer />
