@@ -1,3 +1,6 @@
+@use "./../../helpers/variable" as *;
+@use "./../../helpers/mixin" as *;
+
 .banner {
   padding: 70px 0 20px 0;
   background-color: $pink-100;

@@ -1,3 +1,6 @@
+@use "./../../helpers/variable" as *;
+@use "./../../helpers/mixin" as *;
+
 footer {
     color: white;
     background-image: linear-gradient(130deg, $blue-700 0%, $violet 100%);

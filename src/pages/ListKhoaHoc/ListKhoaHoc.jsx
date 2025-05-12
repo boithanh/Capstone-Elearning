@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { khoaHocService } from '../../service/khoaHoc.service';
 import { Link } from 'react-router-dom';
-import { getLocalStorage, truncateText } from '../../utils/utils';
+import { truncateText } from '../../utils/utils';
+import { useSelector } from 'react-redux';
 const ListKhoaHoc = () => {
     const [listKhoaHoc, setListKhoaHoc] = useState([]);
+    const { arrImgReplace } = useSelector((state) => state.imageSlice);
+
     useEffect(
         () => {
             khoaHocService.layAllKhoaHoc().then((res) => {
@@ -20,10 +23,9 @@ const ListKhoaHoc = () => {
                 <h1 className='font-bold text-3xl mb-10 text-[#211C5B] mx-auto'>Các khóa học mới nhất</h1>
                 <div className="xs:block md:grid-cols-2 md:grid lg:grid lg:grid-cols-3 gap-16 mx-auto">
                     {listKhoaHoc.splice(-9).map((item, index) => {
-                        // console.log(item);
                         return <div className='list_item mb-14'>
                             <div className='mb-3 img_content'>
-                                <img src={item?.hinhAnh} alt="err" className='xs:!w-full xs:!h-full md:!w-[310px] md:!h-[176px]' />
+                                <img src={`./icons/${arrImgReplace[Math.floor(Math.random() * arrImgReplace.length + 1)]}`} alt="err" className='xs:!w-full xs:!h-full md:!w-[310px] md:!h-[176px]' />
                             </div>
                             <div className='mb-3'>
                                 <h2 className='leading-8'>{item?.tenKhoaHoc}</h2>
@@ -37,11 +39,9 @@ const ListKhoaHoc = () => {
                                     <p className='inline text-xl font-semibold mx-5'>{item?.soLuongHocVien}</p>
                                 </div>
                                 <span className='text-[#E31C8D] me-4 inline-block'>
-                                    <i className="fa-solid fa-star" />
-                                    <i className="fa-solid fa-star" />
-                                    <i className="fa-solid fa-star" />
-                                    <i className="fa-solid fa-star" />
-                                    <i className="fa-regular fa-star" />
+                                    {Array.from({ length: 5 }).map(() => (
+                                        <i className={`${Math.floor(Math.random() * 2) == 1 ? "fa-solid" : "fa-regular"} fa-star`} />
+                                    ))}
                                 </span>
                             </div>
                             <Link to={`chi-tiet?maKhoaHoc=${item.maKhoaHoc}`}>ĐĂNG KÝ</Link>

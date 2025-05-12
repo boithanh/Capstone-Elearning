@@ -1,4 +1,5 @@
 import React from 'react'
+import CountUp from 'react-countup'
 
 const Prepare = () => {
     return (
@@ -10,9 +11,46 @@ const Prepare = () => {
                     </div>
                 </div>
                 <div className='prepare_right mb-5 xs:block xs:text-center lg:flex gap-3' data-aos="fade-down">
-                    <div className='mb-5'><span>99</span><p>Courses</p></div>
-                    <div className='mb-5'><span>129</span><p>Teachers</p></div>
-                    <div className='mb-5'><span>23</span><p>Award</p></div>
+                    <CountUp
+                        start={0}
+                        end={99}
+                        duration={2.75}
+                        delay={0}
+                    >
+                        {({ countUpRef }) => (
+                            <div className='mb-5'>
+                                <span ref={countUpRef} >99</span>
+                                <p>Courses</p>
+                            </div>
+                        )}
+                    </CountUp>
+                    <CountUp
+                        start={0}
+                        end={129}
+                        duration={2.75}
+                        delay={0}
+                    >
+                        {({ countUpRef }) => (
+                            <div className='mb-5'>
+                                <span ref={countUpRef} >129</span>
+                                <p>Teachers</p>
+                            </div>
+                        )}
+                    </CountUp>
+                    <CountUp
+                        start={0}
+                        end={23}
+                        duration={2.75}
+                        delay={0}
+                    >
+                        {({ countUpRef }) => (
+                            <div className='mb-5'>
+                                <span ref={countUpRef} >23</span>
+                                <p>Award</p>
+                            </div>
+                        )}
+                    </CountUp>
+
                 </div>
             </div>
         </div >

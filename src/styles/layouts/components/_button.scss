@@ -1,3 +1,6 @@
+@use "./../../helpers/variable" as *;
+@use "./../../helpers/mixin" as *;
+
 .button-left,
 .button-violet {
   @include styleButton($violet, white, 12px 30px, $pink-700);

@@ -1,3 +1,6 @@
+@use "./../../helpers/variable" as *;
+@use "./../../helpers/mixin" as *;
+
 .listKhoaHoc,
 .danhMucKhoaHoc {
     background-color: #FCFCFC;

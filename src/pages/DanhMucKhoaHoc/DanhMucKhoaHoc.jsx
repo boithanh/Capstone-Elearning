@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom';
 import { khoaHocService } from '../../service/khoaHoc.service';
-import { getLocalStorage, truncateText } from '../../utils/utils';
+import { useSelector } from 'react-redux';
 
 const DanhMucKhoaHoc = () => {
     const [searchParam, setSearchParam] = useSearchParams();
     const [listKhoaHoc, setListKhoaHoc] = useState([]);
+    const { arrImgReplace } = useSelector((state) => state.imageSlice);
     useEffect(
         () => {
             let maDanhMuc = searchParam.get("maDanhMuc");
@@ -33,7 +34,7 @@ const DanhMucKhoaHoc = () => {
                             // console.log(item);
                             return <div className='danhMuc_item p-3 mb-10' key={index}>
                                 <div className='mb-3 img_content'>
-                                    <img src={item?.hinhAnh} alt="err" className='xs:!w-full xs:!h-full md:!w-[310px] md:!h-[176px]' />
+                                    <img src={`./icons/${arrImgReplace[Math.floor(Math.random() * arrImgReplace.length + 1)]}`} alt="err" className='xs:!w-full xs:!h-full md:!w-[310px] md:!h-[176px]' />
                                 </div>
                                 <div className='mb-3'>
                                     <h2>{item?.tenKhoaHoc}</h2>
@@ -44,11 +45,9 @@ const DanhMucKhoaHoc = () => {
                                         <p className='inline text-xl font-semibold mx-5'>{item?.soLuongHocVien}</p>
                                     </div>
                                     <span className='text-[#E31C8D] me-4'>
-                                        <i className="fa-solid fa-star" />
-                                        <i className="fa-solid fa-star" />
-                                        <i className="fa-solid fa-star" />
-                                        <i className="fa-solid fa-star" />
-                                        <i className="fa-regular fa-star" />
+                                        {Array.from({ length: 5 }).map(() => (
+                                            <i className={`${Math.floor(Math.random() * 2) == 1 ? "fa-solid" : "fa-regular"} fa-star`} />
+                                        ))}
                                     </span>
                                 </div>
                                 <div>

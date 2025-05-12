@@ -1,3 +1,5 @@
+@use "./../../helpers/variable" as *;
+
 .successStory {
     .left {
         background-image: url('./../assets/img/bgsuccess.png');

@@ -3,12 +3,14 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import { getLocalStorage } from "../../utils/utils";
 import { khoaHocService } from "../../service/khoaHoc.service";
 import { NotificationContext } from "../../App";
+import { useSelector } from "react-redux";
 
 const ChiTietKhoaHoc = () => {
   const { showNotification } = useContext(NotificationContext);
   const [searchParam, setSearchParam] = useSearchParams();
   const [chiTietKhoaHoc, setChiTietKhoaHoc] = useState([]);
   const [duLieuDangKy, setDuLieuDangKy] = useState({ "maKhoaHoc": "", "taiKhoan": "", });
+  const { arrImgReplace } = useSelector((state) => state.imageSlice);
   const navigate = useNavigate();
   const handleSignUpCourse = () => {
     let maKhoaHoc = searchParam.get("maKhoaHoc");
@@ -57,11 +59,11 @@ const ChiTietKhoaHoc = () => {
               <p className="mb-5">
                 Đánh giá khóa học
                 <span className="text-[#F28820] ms-4">
-                  <i className="fa-solid fa-star " />
-                  <i className="fa-solid fa-star" />
-                  <i className="fa-solid fa-star" />
-                  <i className="fa-solid fa-star" />
-                  <i className="fa-solid fa-star" />
+                  {
+                    Array.from({ length: 5 }).map(() => (
+                      <i className={`${Math.floor(Math.random() * 2) == 1 ? "fa-solid" : "fa-regular"} fa-star`} />
+                    ))
+                  }
                 </span>
               </p>
               <button
@@ -77,7 +79,7 @@ const ChiTietKhoaHoc = () => {
             <div className="xs:w-full md:w-4/12 mb-5">
               <div className="img_content" data-aos="fade-right">
                 <img
-                  src={chiTietKhoaHoc?.hinhAnh}
+                  src={`./icons/${arrImgReplace[Math.floor(Math.random() * arrImgReplace.length + 1)]}`}
                   alt="err"
                   className="w-full"
                 />
